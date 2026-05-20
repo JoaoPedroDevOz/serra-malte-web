@@ -1,0 +1,23 @@
+.input {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem 1rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #d1d5db;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+}
+.input:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px #f59e0b;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
