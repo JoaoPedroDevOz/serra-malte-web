@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model rel_fornecedor_ingrediente {
+  fornecedor_id          Int             @default(autoincrement())
+  ingrediente_id         Int             @default(autoincrement())
+  data_hora_fornecimento DateTime        @db.Timestamptz(6)
+  valor_fornecimento     Decimal?        @db.Decimal(10, 0)
+  quantidade             Int?
+  tbl_fornecedor         tbl_fornecedor  @relation(fields: [fornecedor_id], references: [fornecedor_id], onDelete: NoAction, onUpdate: NoAction, map: "rel_ingrediente_fornecedor_fornecedor_id_fkey")
+  tbl_ingrediente        tbl_ingrediente @relation(fields: [ingrediente_id], references: [ingrediente_id], onDelete: NoAction, onUpdate: NoAction, map: "rel_ingrediente_fornecedor_ingrediente_id_fkey")
+
+  @@id([fornecedor_id, ingrediente_id, data_hora_fornecimento], map: "rel_ingrediente_fornecedor_pkey")
+}
+
+model rel_fornecedor_produto {
+  fornecedor_id          Int            @default(autoincrement())
+  produto_id             Int            @default(autoincrement())
+  data_hora_fornecimento DateTime       @db.Timestamptz(6)
+  valor_fornecimento     Decimal?       @db.Decimal(10, 0)
+  quantidade             Int?
+  tbl_fornecedor         tbl_fornecedor @relation(fields: [fornecedor_id], references: [fornecedor_id], onDelete: NoAction, onUpdate: NoAction, map: "rel_produto_fornecedor_fornecedor_id_fkey")
+  tbl_produto            tbl_produto    @relation(fields: [produto_id], references: [produto_id], onDelete: NoAction, onUpdate: NoAction, map: "rel_produto_fornecedor_produto_id_fkey")
+
+  @@id([fornecedor_id, produto_id, data_hora_fornecimento], map: "rel_produto_fornecedor_pkey")
+}
+
+model rel_pedido_produto {
+  produto_id     Int         @default(autoincrement())
+  pedido_id      Int         @default(autoincrement())
+  valor_unitario Decimal?    @db.Decimal(10, 0)
+  quantidade     Int?
+  tbl_pedido     tbl_pedido  @relation(fields: [pedido_id], references: [pedido_id], onDelete: NoAction, onUpdate: NoAction)
+  tbl_produto    tbl_produto @relation(fields: [produto_id], references: [produto_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([produto_id, pedido_id])
+}
+
+model rel_produto_ingrediente {
+  ingrediente_id  Int             @default(autoincrement())
+  produto_id      Int             @default(autoincrement())
+  quantidade      Int
+  tbl_ingrediente tbl_ingrediente @relation(fields: [ingrediente_id], references: [ingrediente_id], onDelete: NoAction, onUpdate: NoAction)
+  tbl_produto     tbl_produto     @relation(fields: [produto_id], references: [produto_id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([ingrediente_id, produto_id, quantidade])
+}
+
+model tbl_cliente {
+  cliente_id        Int              @id @default(autoincrement())
+  tipo_pessoa_id    Int?             @db.SmallInt
+  registro_nacional String?          @db.VarChar(50)
+  nome              String?          @db.VarChar(100)
+  sobrenome         String?          @db.VarChar(100)
+  nome_fantasia     String?          @db.VarChar(200)
+  email             String?          @db.VarChar(320)
+  telefone          String?          @db.VarChar(15)
+  tbl_tipo_pessoa   tbl_tipo_pessoa? @relation(fields: [tipo_pessoa_id], references: [tipo_pessoa_id], onDelete: NoAction, onUpdate: NoAction)
+  tbl_endereco      tbl_endereco[]
+  tbl_pedido        tbl_pedido[]
+}
+
+model tbl_endereco {
+  endereco_id Int         @id @default(autoincrement())
+  cliente_id  Int         @default(autoincrement())
+  pais        String?     @db.VarChar(10)
+  uf          String?     @db.VarChar(10)
+  complemento String?     @db.VarChar(255)
+  rua         String?     @db.VarChar(255)
+  cod_postal  String?     @db.VarChar(10)
+  tbl_cliente tbl_cliente @relation(fields: [cliente_id], references: [cliente_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model tbl_fornecedor {
+  fornecedor_id              Int                          @id @default(autoincrement())
+  email                      String?                      @db.VarChar(320)
+  contato                    String?                      @db.VarChar(100)
+  telefone                   String?                      @db.VarChar(15)
+  nome                       String?                      @db.VarChar(200)
+  registro_nacional          String?                      @db.VarChar(50)
+  rel_fornecedor_ingrediente rel_fornecedor_ingrediente[]
+  rel_fornecedor_produto     rel_fornecedor_produto[]
+}
+
+model tbl_ingrediente {
+  ingrediente_id             Int                          @id @default(autoincrement())
+  tipo_ingrediente_id        Int?
+  nome                       String?                      @db.VarChar(50)
+  rel_fornecedor_ingrediente rel_fornecedor_ingrediente[]
+  rel_produto_ingrediente    rel_produto_ingrediente[]
+  tbl_tipo_ingrediente       tbl_tipo_ingrediente?        @relation(fields: [tipo_ingrediente_id], references: [tipo_ingrediente_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model tbl_pedido {
+  pedido_id          Int                  @id @default(autoincrement())
+  status_pedido_id   Int?                 @db.SmallInt
+  cliente_id         Int                  @default(autoincrement())
+  data_hora_pedido   DateTime?            @db.Timestamptz(6)
+  rel_pedido_produto rel_pedido_produto[]
+  tbl_cliente        tbl_cliente          @relation(fields: [cliente_id], references: [cliente_id], onDelete: NoAction, onUpdate: NoAction)
+  tbl_status_pedido  tbl_status_pedido?   @relation(fields: [status_pedido_id], references: [status_pedido_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model tbl_produto {
+  produto_id              Int                       @id @default(autoincrement())
+  tipo_produto_id         Int?
+  nome                    String?                   @db.VarChar(100)
+  valor_unitario          Decimal?                  @db.Decimal(10, 0)
+  ibu                     String?                   @db.VarChar(10)
+  abv                     String?                   @db.VarChar(10)
+  rel_fornecedor_produto  rel_fornecedor_produto[]
+  rel_pedido_produto      rel_pedido_produto[]
+  rel_produto_ingrediente rel_produto_ingrediente[]
+  tbl_tipo_produto        tbl_tipo_produto?         @relation(fields: [tipo_produto_id], references: [tipo_produto_id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model tbl_status_pedido {
+  status_pedido_id Int          @id @db.SmallInt
+  status           String?      @db.VarChar(20)
+  tbl_pedido       tbl_pedido[]
+}
+
+model tbl_tipo_ingrediente {
+  tipo_ingrediente_id Int               @id
+  tipo                String?           @db.VarChar(30)
+  tbl_ingrediente     tbl_ingrediente[]
+}
+
+model tbl_tipo_pessoa {
+  tipo_pessoa_id Int           @id @db.SmallInt
+  tipo           Int?          @db.SmallInt
+  tbl_cliente    tbl_cliente[]
+}
+
+model tbl_tipo_produto {
+  tipo_produto_id Int           @id
+  tipo            String?       @db.VarChar(100)
+  tbl_produto     tbl_produto[]
+}

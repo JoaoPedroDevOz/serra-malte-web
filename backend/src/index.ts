@@ -1,17 +1,12 @@
-import express, { Router, Request, Response } from "express";
+import express from "express";
+import { route } from "./routes.ts";
 
 const app = express();
-const route = Router();
+
+const PORT = process.env.PORT || 3030;
 
 app.use(express.json());
-
-route.get("/", (req: Request, res: Response) => {
-  res.json({ message: "Wow! My first project in TypeScript!!!" });
-});
-
 app.use(route);
-
-const PORT = 3030;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
