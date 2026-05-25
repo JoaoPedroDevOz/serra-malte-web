@@ -7,7 +7,6 @@ export type ButtonVariant =
   | "secondary"
   | "destructive"
   | "outline"
-  | "secondary"
   | "ghost"
   | "link";
 
@@ -17,7 +16,7 @@ type ButtonProps = React.ComponentProps<"button"> & {
   variant?: ButtonVariant;
   size?: ButtonSize;
   asChild?: boolean;
-};  
+};
 
 export function Button({
   className,

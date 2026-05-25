@@ -1,3 +1,12 @@
+:root {
+  --brand-color-600: #d97706; 
+  --brand-color-700: #b45309;
+  --gray-color-700: #374151;
+  --orange-color: #fff7ed;
+  --red-color: #dc2626;
+  --white-color: white;
+}
+
 .button {
   border: none;
   border-radius: 9999px;
@@ -14,12 +23,12 @@
 /* Variantes */
 
 .button--variant-primary {
-  background: #d97706;
-  color: white;
+  background: var(--brand-color-600);
+  color: var(--white-color);
 }
 
 .button--variant-primary:hover {
-  background: #b45309;
+  background: var(--brand-color-700);
 }
 
 .button--variant-secondary {
@@ -32,18 +41,18 @@
 }
 
 .button--variant-outline {
-  border: 1px solid #d97706;
+  border: 1px solid var(--brand-color-600);
   background: transparent;
-  color: #d97706;
+  color: var(--brand-color-600);
 }
 
 .button--variant-outline:hover {
-  background: #fffbeb;
+  background: var(--orange-color);
 }
 
 .button--variant-destructive {
-  background: #dc2626;
-  color: white;
+  background: var(--red-color);
+  color: var(--white-color);
 }
 
 .button--variant-destructive:hover {
@@ -61,12 +70,12 @@
 
 .button--variant-link {
   background: transparent;
-  color: #2563eb;
+  color: var(--gray-color-700);
   text-decoration: none;
 }
 
 .button--variant-link:hover {
-  text-decoration: underline;
+  color: var(--brand-color-600);
 }
 
 /* Tamanhos */

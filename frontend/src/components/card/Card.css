@@ -1,91 +1,88 @@
+/* Estilos base do card */
 .card {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-
-  background-color: var(--card-bg, #ffffff);
-  color: var(--card-color, #111827);
-
-  border: 1px solid var(--card-border, #e5e7eb);
-  border-radius: var(--card-radius, 0.75rem);
-
-  box-sizing: border-box;
-  overflow: hidden; /* impede vazamento visual */
-  width: 100%;
+  height: 100vh; /* Ocupa toda a altura da viewport */
+  width: 100%; /* Ocupa toda a largura */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.card-header,
-.card-body,
-.card-footer {
-  box-sizing: border-box;
-  width: 100%;
-  min-width: 0; /* importante para flex/grid */
-}
-
+/* Card Header com padding maior */
 .card-header {
-  display: grid;
-  grid-template-rows: auto auto;
-  align-items: start;
-  gap: 0.375rem;
-
-  padding-inline: 1.5rem;
-  padding-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px; /* Padding maior */
+  border-bottom: 1px solid #e5e7eb;
+  background-color: white;
 }
 
-.card-header.has-action {
-  grid-template-columns: minmax(0, 1fr) auto;
+/* Remove a borda quando a flag noBorder está ativa */
+.card-header.no-border {
+  border-bottom: none;
+}
+
+/* Card Body - preenche todo espaço disponível */
+.card-body {
+  flex: 1;
+  overflow-y: auto; /* Adiciona scroll se necessário */
+  padding: 20px;
+}
+
+/* Estilos existentes mantidos */
+.card-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-title {
   margin: 0;
-  line-height: 1.2;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-weight: 600;
-
-  min-width: 0;
-  overflow-wrap: break-word;
 }
 
 .card-description {
-  margin: 0;
-  color: var(--card-muted, #6b7280);
+  margin: 8px 0 0;
+  color: #6b7280;
   font-size: 0.875rem;
-
-  min-width: 0;
-  overflow-wrap: break-word;
 }
 
 .card-action {
-  grid-column-start: 2;
-  grid-row: 1 / span 2;
-
-  align-self: start;
-  justify-self: end;
-}
-
-.card-body {
-  padding-inline: 1.5rem;
-}
-
-.card-body:last-child {
-  padding-bottom: 1.5rem;
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .card-footer {
-  display: flex;
-  align-items: center;
-
-  padding-inline: 1.5rem;
-  padding-bottom: 1.5rem;
-
-  gap: 1rem;
-  flex-wrap: wrap; /* evita overflow */
+  padding: 16px 24px;
+  border-top: 1px solid #e5e7eb;
+  background-color: #f9fafb;
 }
 
-.card.border-top .card-footer {
-  padding-top: 1.5rem;
-}
+/* Responsividade */
+@media (max-width: 768px) {
+  .card-header {
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 20px; /* Padding menor em mobile */
+  }
 
-.card.border-bottom .card-header {
-  padding-bottom: 1.5rem;
+  .card-heading {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .card-action {
+    width: 100%;
+    justify-content: center;
+  }
 }
