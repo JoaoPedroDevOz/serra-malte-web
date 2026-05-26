@@ -1,6 +1,3 @@
-// BeersSection.jsx
-import "./BeersSection.css";
-
 export default function BeersSection() {
   const beers = [
     {
@@ -47,43 +44,50 @@ export default function BeersSection() {
   };
 
   return (
-    <section id="beers" className="beers-section">
-      <div className="beers-container">
-        <div className="beers-header">
-          <h2 className="beers-title">Nossas Cervejas</h2>
-          <p className="beers-subtitle">
+    <section
+      id="beers"
+      className="py-20 bg-gradient-to-br from-amber-50 to-orange-50"
+    >
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="mb-4">Nossas Cervejas</h2>
+          <p className="text-xl text-gray-600">
             Explore nossa seleção de cervejas artesanais premiadas
           </p>
         </div>
 
-        <div className="beers-grid">
+        <div className="grid md:grid-cols-3 gap-8">
           {beers.map((beer) => (
-            <div key={beer.id} className="beer-card">
-              <img src={beer.image} alt={beer.name} className="beer-image" />
-              <div className="beer-content">
-                <h3 className="beer-name">{beer.name}</h3>
-                <p className="beer-description">{beer.description}</p>
-
-                <div className="beer-stats">
-                  <div className="beer-stat">
-                    <div className="beer-stat-label">ABV</div>
-                    <div className="beer-stat-value">{beer.abv}</div>
+            <div
+              key={beer.id}
+              className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+            >
+              <img
+                src={beer.image}
+                alt={beer.name}
+                className="w-full h-64 object-cover"
+              />
+              <div className="p-6">
+                <h3>{beer.name}</h3>
+                <p className="text-gray-600 mb-4">{beer.description}</p>
+                <div className="flex justify-between items-center mb-4">
+                  <div>
+                    <div className="text-sm text-gray-500">ABV</div>
+                    <div className="font-medium">{beer.abv}</div>
                   </div>
-                  <div className="beer-stat">
-                    <div className="beer-stat-label">IBU</div>
-                    <div className="beer-stat-value">{beer.ibu}</div>
+                  <div>
+                    <div className="text-sm text-gray-500">IBU</div>
+                    <div className="font-medium">{beer.ibu}</div>
                   </div>
-                  <div className="beer-stat">
-                    <div className="beer-stat-label">Estilo</div>
-                    <div className="beer-stat-value">{beer.style}</div>
+                  <div>
+                    <div className="text-sm text-gray-500">Estilo</div>
+                    <div className="font-medium">{beer.style}</div>
                   </div>
                 </div>
-
-                <div className="beer-price">{beer.price}</div>
-                <button
-                  className="beer-button"
-                  onClick={() => handleOrder(beer.name)}
-                >
+                <div className="text-2xl font-bold text-amber-600 mb-4">
+                  {beer.price}
+                </div>
+                <button className="w-full bg-amber-600 text-white py-3 rounded-full hover:bg-amber-700 transition-colors">
                   Encomendar
                 </button>
               </div>
