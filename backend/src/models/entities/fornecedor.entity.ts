@@ -7,11 +7,11 @@ export interface Fornecedor {
   registro_nacional: string;
 }
 
-export interface PesquisaFornecedor {
-  fornecedor_id?: number | null;
-  nome?: string | null;
-  registro_nacional?: string | null;
-}
+// export interface PesquisaFornecedor {
+//   fornecedor_id?: number | null;
+//   nome?: string | null;
+//   registro_nacional?: string | null;
+// }
 
 export interface FornecedorProdutoIngrediente {
   fornecedor_id: number;

@@ -1,25 +1,25 @@
 import {
-  deleteSupplier,
-  insertSupplier,
-  selectSuppliers,
-  updateSupplier,
+  deleteProduct,
+  insertProduct,
+  selectProducts,
+  updateProduct,
 } from "../datasource/postgre/sql/supplier.sql.ts";
 import { AppError } from "../models/classes/error.class.ts";
-import { Fornecedor } from "../models/entities/fornecedor.entity.ts";
+import { Produto } from "../models/entities/produto.entity.ts";
 import { Message } from "../models/interfaces/message.interface.ts";
 import { APP_ERRORS } from "../utils/errors.util.ts";
-import { validateInsertSupplier } from "../validators/supplier.validator.ts";
+import { validateInsertProduct } from "../validators/supplier.validator.ts";
 
-async function handlerInsertSupplier(req: Fornecedor): Promise<Fornecedor> {
-  const fornecedor: Fornecedor = req;
+async function handlerInsertProduct(req: Produto): Promise<Produto> {
+  const fornecedor: Produto = req;
   const messages = APP_ERRORS.SUPPLIER.INSERT;
 
   try {
-    validateInsertSupplier(fornecedor);
+    validateInsertProduct(fornecedor);
 
     if (
       (
-        await handlerSelectSuppliers({
+        await handlerSelectProducts({
           registro_nacional: req.registro_nacional,
         })
       ).length > 0
@@ -30,7 +30,7 @@ async function handlerInsertSupplier(req: Fornecedor): Promise<Fornecedor> {
       );
     }
 
-    return await insertSupplier(fornecedor);
+    return await insertProduct(fornecedor);
   } catch (err) {
     const error: Message = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -38,7 +38,7 @@ async function handlerInsertSupplier(req: Fornecedor): Promise<Fornecedor> {
     };
 
     console.log(
-      `controller: supplier.controller :: handlerInsertSupplier - [error]: ${
+      `controller: supplier.controller :: handlerInsertProduct - [error]: ${
         error.message
       }`,
     );
@@ -47,13 +47,11 @@ async function handlerInsertSupplier(req: Fornecedor): Promise<Fornecedor> {
   }
 }
 
-async function handlerSelectSuppliers(
-  req: Partial<Fornecedor>,
-): Promise<Fornecedor[]> {
-  const fornecedor: Partial<Fornecedor> = req;
+async function handlerSelectProducts(req: PesquisaProduto): Promise<Produto[]> {
+  const fornecedor: PesquisaProduto = req;
 
   try {
-    return await selectSuppliers(fornecedor);
+    return await selectProducts(fornecedor);
   } catch (err) {
     const error = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -61,7 +59,7 @@ async function handlerSelectSuppliers(
     };
 
     console.log(
-      `controller: supplier.controller :: handlerSelectSuppliers - [error]: ${
+      `controller: supplier.controller :: handlerSelectProducts - [error]: ${
         error.message
       }`,
     );
@@ -70,15 +68,15 @@ async function handlerSelectSuppliers(
   }
 }
 
-async function handlerUpdateSupplier(
-  toUpdateReq: Partial<Fornecedor>,
-  req: Fornecedor,
-): Promise<Fornecedor> {
-  const fornecedor: Partial<Fornecedor> = toUpdateReq;
+async function handlerUpdateProduct(
+  toUpdateReq: PesquisaProduto,
+  req: Produto,
+): Promise<Produto> {
+  const fornecedor: PesquisaProduto = toUpdateReq;
   const messages = APP_ERRORS.SUPPLIER.UPDATE;
 
   try {
-    const suppliers = await handlerSelectSuppliers({
+    const suppliers = await handlerSelectProducts({
       registro_nacional: req.registro_nacional,
     });
 
@@ -93,7 +91,7 @@ async function handlerUpdateSupplier(
       );
     }
 
-    return await updateSupplier(fornecedor, req);
+    return await updateProduct(fornecedor, req);
   } catch (err) {
     const error: Message = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -101,7 +99,7 @@ async function handlerUpdateSupplier(
     };
 
     console.log(
-      `controller: supplier.controller :: handlerUpdateSupplier - [error]: ${
+      `controller: supplier.controller :: handlerUpdateProduct - [error]: ${
         error.message
       }`,
     );
@@ -110,10 +108,8 @@ async function handlerUpdateSupplier(
   }
 }
 
-async function handlerDeleteSupplier(
-  req: Partial<Fornecedor>,
-): Promise<Fornecedor> {
-  const fornecedor: Partial<Fornecedor> = req;
+async function handlerDeleteProduct(req: PesquisaProduto): Promise<Produto> {
+  const fornecedor: PesquisaProduto = req;
 
   try {
     if (!fornecedor.fornecedor_id) {
@@ -124,7 +120,7 @@ async function handlerDeleteSupplier(
       throw err;
     }
 
-    return await deleteSupplier(fornecedor);
+    return await deleteProduct(fornecedor);
   } catch (err) {
     const error = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -132,7 +128,7 @@ async function handlerDeleteSupplier(
     };
 
     console.log(
-      `controller: supplier.controller :: handlerDeleteSupplier - [error]: ${
+      `controller: supplier.controller :: handlerDeleteProduct - [error]: ${
         error.message
       }`,
     );
@@ -142,8 +138,8 @@ async function handlerDeleteSupplier(
 }
 
 export {
-  handlerInsertSupplier,
-  handlerSelectSuppliers,
-  handlerUpdateSupplier,
-  handlerDeleteSupplier,
+  handlerInsertProduct,
+  handlerSelectProducts,
+  handlerUpdateProduct,
+  handlerDeleteProduct,
 };

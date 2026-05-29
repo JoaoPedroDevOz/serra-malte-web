@@ -7,10 +7,7 @@ import {
 } from "../controllers/supplier.controller.ts";
 import { AppError } from "../models/classes/error.class.ts";
 import { HTTP_STATUS } from "../utils/consts.util.ts";
-import {
-  Fornecedor,
-  PesquisaFornecedor,
-} from "../models/entities/fornecedor.entity.ts";
+import { Fornecedor } from "../models/entities/fornecedor.entity.ts";
 
 export async function registerSupplier(req: Request, res: Response) {
   try {
@@ -86,10 +83,10 @@ export async function reviseSupplier(req: Request, res: Response) {
       `api: supplier.api :: updateSupplier - [req.body]: ${JSON.stringify(req.body)}`,
     );
 
-    const filtro: PesquisaFornecedor = {
-      fornecedor_id: req.query.fornecedor_id
-        ? Number(req.query.fornecedor_id)
-        : null,
+    const filtro: Partial<Fornecedor> = {
+      fornecedor_id: Number(req.query.fornecedor_id),
+      // ? Number(req.query.fornecedor_id)
+      // : null,
     };
 
     const supplier = await handlerUpdateSupplier(filtro, req.body);
@@ -121,10 +118,10 @@ export async function removeSupplier(req: Request, res: Response) {
       `api: supplier.api :: removeSupplier - [req.query]: ${JSON.stringify(req.query)}`,
     );
 
-    const filtro: PesquisaFornecedor = {
-      fornecedor_id: req.query.fornecedor_id
-        ? Number(req.query.fornecedor_id)
-        : null,
+    const filtro: Partial<Fornecedor> = {
+      fornecedor_id: Number(req.query.fornecedor_id),
+      // ? Number(req.query.fornecedor_id)
+      // : null,
     };
 
     const supplier = await handlerDeleteSupplier(filtro);

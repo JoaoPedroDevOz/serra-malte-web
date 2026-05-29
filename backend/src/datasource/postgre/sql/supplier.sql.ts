@@ -1,8 +1,5 @@
 import { AppError } from "../../../models/classes/error.class.ts";
-import {
-  Fornecedor,
-  PesquisaFornecedor,
-} from "../../../models/entities/fornecedor.entity.ts";
+import { Fornecedor } from "../../../models/entities/fornecedor.entity.ts";
 import { treatDatabaseMessages } from "../../../utils/messages.util.ts";
 import { prisma } from "../index.ts";
 
@@ -31,7 +28,9 @@ async function insertSupplier(req: Fornecedor): Promise<Fornecedor> {
   }
 }
 
-async function selectSuppliers(req: PesquisaFornecedor): Promise<Fornecedor[]> {
+async function selectSuppliers(
+  req: Partial<Fornecedor>,
+): Promise<Fornecedor[]> {
   try {
     const whereClause: any = {};
 
@@ -72,7 +71,7 @@ async function selectSuppliers(req: PesquisaFornecedor): Promise<Fornecedor[]> {
 }
 
 async function updateSupplier(
-  toUpdateReq: PesquisaFornecedor,
+  toUpdateReq: Partial<Fornecedor>,
   req: Fornecedor,
 ): Promise<Fornecedor> {
   try {
@@ -102,7 +101,7 @@ async function updateSupplier(
   }
 }
 
-async function deleteSupplier(req: PesquisaFornecedor): Promise<Fornecedor> {
+async function deleteSupplier(req: Partial<Fornecedor>): Promise<Fornecedor> {
   try {
     const supplier = await prisma.tbl_fornecedor.delete({
       where: {
