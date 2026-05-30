@@ -7,12 +7,13 @@ import {
 import { AppError } from "../models/classes/error.class.ts";
 import { Fornecedor } from "../models/entities/fornecedor.entity.ts";
 import { Message } from "../models/interfaces/message.interface.ts";
-import { APP_ERRORS } from "../utils/errors.util.ts";
+import { APP_ERRORS } from "../utils/errors/index.error.ts";
 import { validateInsertSupplier } from "../validators/supplier.validator.ts";
+
+const messages = APP_ERRORS.SUPPLIER;
 
 async function handlerInsertSupplier(req: Fornecedor): Promise<Fornecedor> {
   const fornecedor: Fornecedor = req;
-  const messages = APP_ERRORS.SUPPLIER.INSERT;
 
   try {
     validateInsertSupplier(fornecedor);
@@ -24,10 +25,7 @@ async function handlerInsertSupplier(req: Fornecedor): Promise<Fornecedor> {
         })
       ).length > 0
     ) {
-      throw new AppError(
-        messages.ALREADY_EXISTS_RN.message,
-        messages.ALREADY_EXISTS_RN.status,
-      );
+      throw new AppError(messages.INSERT.ALREADY_EXISTS_RN);
     }
 
     return await insertSupplier(fornecedor);
@@ -43,7 +41,7 @@ async function handlerInsertSupplier(req: Fornecedor): Promise<Fornecedor> {
       }`,
     );
 
-    throw new AppError(error.message, error.status);
+    throw new AppError(error);
   }
 }
 
@@ -66,20 +64,20 @@ async function handlerSelectSuppliers(
       }`,
     );
 
-    throw new AppError(error.message, error.status);
+    throw new AppError(error);
   }
 }
 
 async function handlerUpdateSupplier(
-  toUpdateReq: Partial<Fornecedor>,
-  req: Fornecedor,
+  req: Partial<Fornecedor>,
+  novoFornecedor: Fornecedor,
 ): Promise<Fornecedor> {
-  const fornecedor: Partial<Fornecedor> = toUpdateReq;
+  const fornecedor: Partial<Fornecedor> = req;
   const messages = APP_ERRORS.SUPPLIER.UPDATE;
 
   try {
     const suppliers = await handlerSelectSuppliers({
-      registro_nacional: req.registro_nacional,
+      registro_nacional: novoFornecedor.registro_nacional,
     });
 
     const alreadyExists = suppliers.some(
@@ -87,13 +85,10 @@ async function handlerUpdateSupplier(
     );
 
     if (alreadyExists) {
-      throw new AppError(
-        messages.ALREADY_EXISTS_RN.message,
-        messages.ALREADY_EXISTS_RN.status,
-      );
+      throw new AppError(messages.ALREADY_EXISTS_RN);
     }
 
-    return await updateSupplier(fornecedor, req);
+    return await updateSupplier(fornecedor, novoFornecedor);
   } catch (err) {
     const error: Message = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -106,7 +101,7 @@ async function handlerUpdateSupplier(
       }`,
     );
 
-    throw new AppError(error.message, error.status);
+    throw new AppError(error);
   }
 }
 
@@ -117,11 +112,7 @@ async function handlerDeleteSupplier(
 
   try {
     if (!fornecedor.fornecedor_id) {
-      const err = {
-        message:
-          "O número identificador do fornecedor é obrigatório para sua exclusão.",
-      };
-      throw err;
+      throw new AppError(messages.DELETE.NO_ID);
     }
 
     return await deleteSupplier(fornecedor);
@@ -137,7 +128,7 @@ async function handlerDeleteSupplier(
       }`,
     );
 
-    throw new AppError(error.message, error.status);
+    throw new AppError(error);
   }
 }
 

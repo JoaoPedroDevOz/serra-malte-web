@@ -46,10 +46,8 @@ export async function searchSuppliers(req: Request, res: Response) {
       `api: supplier.api :: searchSuppliers - [req.query]: ${JSON.stringify(req.query)}`,
     );
 
-    const filtros = {
-      fornecedor_id: req.query.fornecedor_id
-        ? Number(req.query.fornecedor_id)
-        : null,
+    const filtros: Partial<Fornecedor> = {
+      fornecedor_id: Number(req.query.fornecedor_id),
       registro_nacional: req.query.registro_nacional as string,
       nome: req.query.nome as string,
     };

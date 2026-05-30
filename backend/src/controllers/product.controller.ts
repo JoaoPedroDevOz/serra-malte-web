@@ -3,34 +3,43 @@ import {
   insertProduct,
   selectProducts,
   updateProduct,
-} from "../datasource/postgre/sql/supplier.sql.ts";
+} from "../datasource/postgre/sql/product.sql.ts";
 import { AppError } from "../models/classes/error.class.ts";
 import { Produto } from "../models/entities/produto.entity.ts";
 import { Message } from "../models/interfaces/message.interface.ts";
-import { APP_ERRORS } from "../utils/errors.util.ts";
-import { validateInsertProduct } from "../validators/supplier.validator.ts";
+import { APP_ERRORS } from "../utils/errors/index.error.ts";
+import {
+  validateInsertProduct,
+  validateUpdateProduct,
+} from "../validators/product.validator.ts";
+import { handlerSelectProductsTypes } from "./types/product_types.controller.ts";
+
+const messagesProductTypes = APP_ERRORS.PRODUCT_TYPES;
+const messages = APP_ERRORS.PRODUCT;
 
 async function handlerInsertProduct(req: Produto): Promise<Produto> {
-  const fornecedor: Produto = req;
-  const messages = APP_ERRORS.SUPPLIER.INSERT;
+  const produto: Produto = req;
 
   try {
-    validateInsertProduct(fornecedor);
+    validateInsertProduct(produto);
 
-    if (
-      (
-        await handlerSelectProducts({
-          registro_nacional: req.registro_nacional,
-        })
-      ).length > 0
-    ) {
-      throw new AppError(
-        messages.ALREADY_EXISTS_RN.message,
-        messages.ALREADY_EXISTS_RN.status,
-      );
+    const productType = await handlerSelectProductsTypes({
+      tipo_produto_id: produto.tipo_produto_id!,
+    });
+
+    if (productType.length === 0) {
+      throw new AppError(messagesProductTypes.SELECT.NOT_FOUND);
     }
 
-    return await insertProduct(fornecedor);
+    const products = await handlerSelectProducts({
+      nome: produto.nome,
+    });
+
+    if (products.length > 0) {
+      throw new AppError(messages.MULTIPLE.ALREADY_EXISTS_NAME);
+    }
+
+    return await insertProduct(produto);
   } catch (err) {
     const error: Message = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -38,20 +47,22 @@ async function handlerInsertProduct(req: Produto): Promise<Produto> {
     };
 
     console.log(
-      `controller: supplier.controller :: handlerInsertProduct - [error]: ${
+      `controller: product.controller :: handlerInsertProduct - [error]: ${
         error.message
       }`,
     );
 
-    throw new AppError(error.message, error.status);
+    throw new AppError(error);
   }
 }
 
-async function handlerSelectProducts(req: PesquisaProduto): Promise<Produto[]> {
-  const fornecedor: PesquisaProduto = req;
+async function handlerSelectProducts(
+  req: Partial<Produto>,
+): Promise<Produto[]> {
+  const produto: Partial<Produto> = req;
 
   try {
-    return await selectProducts(fornecedor);
+    return await selectProducts(produto);
   } catch (err) {
     const error = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -59,39 +70,44 @@ async function handlerSelectProducts(req: PesquisaProduto): Promise<Produto[]> {
     };
 
     console.log(
-      `controller: supplier.controller :: handlerSelectProducts - [error]: ${
+      `controller: product.controller :: handlerSelectProducts - [error]: ${
         error.message
       }`,
     );
 
-    throw new AppError(error.message, error.status);
+    throw new AppError({ message: error.message, status: error.status });
   }
 }
 
 async function handlerUpdateProduct(
-  toUpdateReq: PesquisaProduto,
-  req: Produto,
+  req: Partial<Produto>,
+  novoProduto: Produto,
 ): Promise<Produto> {
-  const fornecedor: PesquisaProduto = toUpdateReq;
-  const messages = APP_ERRORS.SUPPLIER.UPDATE;
+  const produto: Partial<Produto> = req;
 
   try {
-    const suppliers = await handlerSelectProducts({
-      registro_nacional: req.registro_nacional,
+    validateUpdateProduct(produto, novoProduto);
+
+    const products = await handlerSelectProducts({
+      nome: novoProduto.nome,
     });
 
-    const alreadyExists = suppliers.some(
-      (supplier) => supplier.fornecedor_id !== fornecedor.fornecedor_id,
+    const alreadyExists = products.some(
+      (product) => product.produto_id !== produto.produto_id,
     );
 
     if (alreadyExists) {
-      throw new AppError(
-        messages.ALREADY_EXISTS_RN.message,
-        messages.ALREADY_EXISTS_RN.status,
-      );
+      throw new AppError(messages.MULTIPLE.ALREADY_EXISTS_NAME);
     }
 
-    return await updateProduct(fornecedor, req);
+    if (novoProduto.tipo_produto_id) {
+      const productType = await handlerSelectProductsTypes(novoProduto);
+      if (productType.length === 0) {
+        throw new AppError(messagesProductTypes.SELECT.NOT_FOUND);
+      }
+    }
+
+    return await updateProduct(produto, novoProduto);
   } catch (err) {
     const error: Message = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -99,28 +115,24 @@ async function handlerUpdateProduct(
     };
 
     console.log(
-      `controller: supplier.controller :: handlerUpdateProduct - [error]: ${
+      `controller: product.controller :: handlerUpdateProduct - [error]: ${
         error.message
       }`,
     );
 
-    throw new AppError(error.message, error.status);
+    throw new AppError({ message: error.message, status: error.status });
   }
 }
 
-async function handlerDeleteProduct(req: PesquisaProduto): Promise<Produto> {
-  const fornecedor: PesquisaProduto = req;
+async function handlerDeleteProduct(req: Partial<Produto>): Promise<Produto> {
+  const produto: Partial<Produto> = req;
 
   try {
-    if (!fornecedor.fornecedor_id) {
-      const err = {
-        message:
-          "O número identificador do fornecedor é obrigatório para sua exclusão.",
-      };
-      throw err;
+    if (!produto.produto_id) {
+      throw new AppError(messages.DELETE.NO_ID);
     }
 
-    return await deleteProduct(fornecedor);
+    return await deleteProduct(produto);
   } catch (err) {
     const error = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -128,12 +140,12 @@ async function handlerDeleteProduct(req: PesquisaProduto): Promise<Produto> {
     };
 
     console.log(
-      `controller: supplier.controller :: handlerDeleteProduct - [error]: ${
+      `controller: product.controller :: handlerDeleteProduct - [error]: ${
         error.message
       }`,
     );
 
-    throw new AppError(error.message, error.status);
+    throw new AppError({ message: error.message, status: error.status });
   }
 }
 

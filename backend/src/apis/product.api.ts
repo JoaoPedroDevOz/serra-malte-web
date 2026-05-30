@@ -9,7 +9,6 @@ import { AppError } from "../models/classes/error.class.ts";
 import { HTTP_STATUS } from "../utils/consts.util.ts";
 import { Produto } from "../models/entities/produto.entity.ts";
 
-
 export async function registerProduct(req: Request, res: Response) {
   try {
     console.log(
@@ -47,11 +46,8 @@ export async function searchProducts(req: Request, res: Response) {
       `api: product.api :: searchProducts - [req.query]: ${JSON.stringify(req.query)}`,
     );
 
-    const filtros = {
-      fornecedor_id: req.query.fornecedor_id
-        ? Number(req.query.fornecedor_id)
-        : null,
-      registro_nacional: req.query.registro_nacional as string,
+    const filtros: Partial<Produto> = {
+      produto_id: Number(req.query.produto_id),
       nome: req.query.nome as string,
     };
 
@@ -84,10 +80,8 @@ export async function reviseProduct(req: Request, res: Response) {
       `api: product.api :: updateProduct - [req.body]: ${JSON.stringify(req.body)}`,
     );
 
-    const filtro: PesquisaProduto = {
-      fornecedor_id: req.query.fornecedor_id
-        ? Number(req.query.fornecedor_id)
-        : null,
+    const filtro: Partial<Produto> = {
+      produto_id: Number(req.query.fornecedor_id),
     };
 
     const product = await handlerUpdateProduct(filtro, req.body);
@@ -119,10 +113,8 @@ export async function removeProduct(req: Request, res: Response) {
       `api: product.api :: removeProduct - [req.query]: ${JSON.stringify(req.query)}`,
     );
 
-    const filtro: PesquisaProduto = {
-      fornecedor_id: req.query.fornecedor_id
-        ? Number(req.query.fornecedor_id)
-        : null,
+    const filtro: Partial<Produto> = {
+      produto_id: Number(req.query.produto_id),
     };
 
     const product = await handlerDeleteProduct(filtro);

@@ -21,10 +21,10 @@ async function insertSupplier(req: Fornecedor): Promise<Fornecedor> {
 
     const error = treatDatabaseMessages(errorMessage);
 
-    throw new AppError(
-      `Erro ao consultar fornecedores. ${error.message}`,
-      error.status,
-    );
+    throw new AppError({
+      message: `Erro ao adicionar fornecedor. ${error.message}`,
+      status: error.status,
+    });
   }
 }
 
@@ -63,10 +63,10 @@ async function selectSuppliers(
 
     const error = treatDatabaseMessages(errorMessage);
 
-    throw new AppError(
-      `Erro ao consultar fornecedores. ${error.message}`,
-      error.status,
-    );
+    throw new AppError({
+      message: `Erro ao consultar fornecedores. ${error.message}`,
+      status: error.status,
+    });
   }
 }
 
@@ -94,10 +94,10 @@ async function updateSupplier(
 
     const error = treatDatabaseMessages(errorMessage);
 
-    throw new AppError(
-      `Erro ao atualizar fornecedor. ${error.message}`,
-      error.status,
-    );
+    throw new AppError({
+      message: `Erro ao atualizar fornecedor. ${error.message}`,
+      status: error.status,
+    });
   }
 }
 
@@ -114,15 +114,15 @@ async function deleteSupplier(req: Partial<Fornecedor>): Promise<Fornecedor> {
     const errorMessage = err instanceof Error ? err.message : String(err);
 
     console.log(
-      `sql: supplier.sql :: insertSupplier - [error]: ${errorMessage}`,
+      `sql: supplier.sql :: deleteSupplier - [error]: ${errorMessage}`,
     );
 
     const error = treatDatabaseMessages(errorMessage);
 
-    throw new AppError(
-      `Erro ao excluir fornecedor. ${error.message}`,
-      error.status,
-    );
+    throw new AppError({
+      message: `Erro ao excluir fornecedor. ${error.message}`,
+      status: error.status,
+    });
   }
 }
 

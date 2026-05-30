@@ -1,19 +1,12 @@
 import { Fornecedor } from "../models/entities/fornecedor.entity.ts";
+import { validateRequiredFields } from "./requiredFields.validator.ts";
 
-function validateInsertSupplier(fornecedor: Fornecedor) {
-  const camposObrigatorios: (keyof Fornecedor)[] = [
-    "contato",
-    "email",
+export function validateInsertSupplier(fornecedor: Fornecedor) {
+  validateRequiredFields(fornecedor, [
     "nome",
     "registro_nacional",
+    "email",
     "telefone",
-  ];
-
-  for (const campo of camposObrigatorios) {
-    if (!fornecedor[campo]) {
-      throw new Error(`O campo ${campo} é obrigatório.`);
-    }
-  }
+    "contato",
+  ]);
 }
-
-export { validateInsertSupplier };
