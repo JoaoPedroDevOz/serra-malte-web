@@ -50,7 +50,7 @@ export default function BeersSection() {
     >
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="mb-4">Nossas Cervejas</h2>
+          <h2 className="mb-4 text-2xl font-semibold">Nossas Cervejas</h2>
           <p className="text-xl text-gray-600">
             Explore nossa seleção de cervejas artesanais premiadas
           </p>
