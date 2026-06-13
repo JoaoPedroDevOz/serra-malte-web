@@ -11,7 +11,7 @@ export default function HeroSection() {
       <div className="container mx-auto px-6 py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="mb-6">
+            <h1 className="mb-6 text-2xl font-semibold">
               Cervejas Artesanais
               <br />
               <span className="text-amber-600">Feitas com Paixão</span>

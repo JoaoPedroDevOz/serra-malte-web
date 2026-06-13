@@ -26,7 +26,7 @@ export default function BreweryTourSection() {
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="mb-6">Visite Nossa Cervejaria</h2>
+            <h2 className="mb-6 text-2xl font-semibold">Visite Nossa Cervejaria</h2>
             <p className="text-gray-600 mb-6">
               Venha conhecer nosso processo de produção artesanal! Oferecemos
               tours guiados onde você pode ver de perto como fazemos nossas

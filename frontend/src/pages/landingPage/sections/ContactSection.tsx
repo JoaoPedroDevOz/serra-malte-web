@@ -67,7 +67,7 @@ export default function ContactSection() {
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-12">
           <div>
-            <h2 className="mb-6">Entre em Contato</h2>
+            <h2 className="mb-6 text-2xl font-semibold">Entre em Contato</h2>
             <p className="text-gray-600 mb-8">
               Tem alguma dúvida ou quer fazer um pedido? Entre em contato
               conosco!

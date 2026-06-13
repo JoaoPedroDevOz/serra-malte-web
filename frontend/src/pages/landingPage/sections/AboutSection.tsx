@@ -13,7 +13,7 @@ function AboutSection() {
             />
           </div>
           <div>
-            <h2 className="mb-6">Nossa História</h2>
+            <h2 className="mb-6 text-2xl font-semibold">Nossa História</h2>
             <p className="text-gray-600 mb-6">
               Fundada em 2014, nossa cervejaria nasceu da paixão por criar
               cervejas excepcionais que celebram a tradição cervejeira com um
@@ -21,9 +21,7 @@ function AboutSection() {
             </p>
             <p className="text-gray-600 mb-8">
               Utilizamos apenas ingredientes premium, maltes importados e
-              lúpulos selecionados para criar experiências únimport HeroSection
-              from './sections/heroSection/HeroSeimport StatsSection from
-              './sections/statsSection/StatsSection'; ction'; icas de sabor.
+              lúpulos selecionados para criar experiências únicas de sabor.
               Cada lote é cuidadosamente monitorado por nossos mestres
               cervejeiros para garantir a qualidade que você merece.
             </p>

@@ -92,6 +92,7 @@ model tbl_ingrediente {
   ingrediente_id             Int                          @id @default(autoincrement())
   tipo_ingrediente_id        Int
   nome                       String                       @db.VarChar(50)
+  valor_unitario             Decimal?                     @db.Decimal(10, 0)
   rel_fornecedor_ingrediente rel_fornecedor_ingrediente[]
   rel_produto_ingrediente    rel_produto_ingrediente[]
   tbl_tipo_ingrediente       tbl_tipo_ingrediente         @relation(fields: [tipo_ingrediente_id], references: [tipo_ingrediente_id], onDelete: NoAction, onUpdate: NoAction)
