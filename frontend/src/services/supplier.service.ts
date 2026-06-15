@@ -74,9 +74,11 @@ export async function editSupplier(supplier: Supplier): Promise<Supplier> {
   };
 
   try {
-    const response = await routeApi(URLS.FORNECEDOR, "PATCH", body, {
+    const query: Partial<Fornecedor> = {
       fornecedor_id: supplier.supplierId,
-    });
+    };
+
+    const response = await routeApi(URLS.FORNECEDOR, "PATCH", body, query);
 
     const fornecedor = response.data.fornecedor || response.data;
 
@@ -102,14 +104,11 @@ export async function editSupplier(supplier: Supplier): Promise<Supplier> {
 
 export async function removeSupplier(supplier: Partial<Supplier>) {
   try {
-    await routeApi(
-      URLS.FORNECEDOR,
-      "DELETE",
-      {},
-      {
-        fornecedor_id: supplier.supplierId,
-      },
-    );
+    const query: Partial<Fornecedor> = {
+      fornecedor_id: supplier.supplierId,
+    };
+
+    await routeApi(URLS.FORNECEDOR, "DELETE", {}, query);
 
     return;
   } catch (err: any) {

@@ -1,59 +1,112 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
 import { Product } from "../../../shared/models/interfaces/product.interface";
 import Input from "../../../components/Input";
 import Select from "../../../components/Select";
 import Button from "./../../../components/Button";
+import {
+  listProducts,
+  registerProduct,
+  editProduct,
+  removeProduct,
+} from "../../../services/product.service";
 
-interface BeerListProps {
-  beers: Product[];
-  setBeers: React.Dispatch<React.SetStateAction<Product[]>>;
-}
+export default function ProductList() {
+  const [products, setProducts] = useState<Product[]>([]);
 
-export default function ProductList({ beers, setBeers }: BeerListProps) {
-  const [editingBeer, setEditingBeer] = useState<Product | null>(null);
+  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showForm, setShowForm] = useState(false);
 
-  const [formData, setFormData] = useState({
+  const formDataNState: Product = {
+    productId: 0,
     name: "",
-    typeProductId: 1,
+    type: {
+      id: 0,
+      text: "",
+    },
     unitValue: 0,
     abv: 0,
     ibu: 0,
-  });
+  };
+  const [formData, setFormData] = useState(formDataNState);
 
-  const handleEdit = (beer: Product) => {
-    setEditingBeer(beer);
+  useEffect(() => {
+    async function fetchProducts() {
+      const data = await listProducts();
+      setProducts(data);
+    }
+    fetchProducts();
+  }, []);
+
+  const handleEdit = (s: Product) => {
+    setEditingProduct(s);
     setFormData({
-      name: beer.name,
-      typeProductId: beer.typeProductId,
-      unitValue: beer.unitValue,
-      abv: beer.abv || 0,
-      ibu: beer.ibu || 0,
+      productId: s.productId,
+      type: {
+        id: s.type.id,
+        text: s.type.text,
+      },
+      name: s.name,
+      unitValue: s.unitValue,
+      ibu: s.ibu || 0,
+      abv: s.abv || 0,
     });
     setShowForm(true);
   };
 
-  const handleDelete = (id: number) => {
-    if (window.confirm("Deseja realmente excluir esta cerveja?")) {
-      setBeers(beers.filter((b) => b.productId !== id));
+  const handleRegister = async (product: Product) => {
+    try {
+      return await registerProduct(product);
+    } catch (error) {
+      throw error;
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (editingBeer) {
-      setBeers(
-        beers.map((b) =>
-          b.productId === editingBeer.productId ? { ...b, ...formData } : b,
-        ),
-      );
-    } else {
-      const newId = Math.max(...beers.map((b) => b.productId), 0) + 1;
-      setBeers([...beers, { ...formData, productId: newId }]);
+  const handleUpdate = async (product: Product) => {
+    try {
+      return await editProduct(product);
+    } catch (error) {
+      throw error;
     }
-    setShowForm(false);
-    setEditingBeer(null);
+  };
+
+  const handleRemove = async (product: Product) => {
+    try {
+      if (window.confirm("Deseja realmente excluir este produto?")) {
+        await removeProduct(product);
+
+        setProducts(products.filter((s) => s.productId !== product.productId));
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      if (editingProduct) {
+        const updatedProduct = await handleUpdate(formData);
+        if (updatedProduct) {
+          setProducts(
+            products.map((s) =>
+              s.productId === editingProduct.productId ? updatedProduct : s,
+            ),
+          );
+        }
+      } else {
+        await handleRegister(formData);
+
+        const newId = Math.max(...products.map((s) => s.productId), 0) + 1;
+        setProducts([...products, { ...formData, productId: newId }]);
+      }
+
+      setShowForm(false);
+      setEditingProduct(null);
+    } catch (error: any) {
+      alert(`${error.message}`);
+    }
   };
 
   return (
@@ -64,14 +117,8 @@ export default function ProductList({ beers, setBeers }: BeerListProps) {
         </h2>
         <Button
           onClick={() => {
-            setEditingBeer(null);
-            setFormData({
-              name: "",
-              typeProductId: 1,
-              unitValue: 0,
-              abv: 0,
-              ibu: 0,
-            });
+            setEditingProduct(null);
+            setFormData(formDataNState);
             setShowForm(true);
           }}
         >
@@ -85,7 +132,7 @@ export default function ProductList({ beers, setBeers }: BeerListProps) {
           className="bg-white p-6 rounded-lg shadow-sm mb-4"
         >
           <h3 className="text-lg font-medium mb-4">
-            {editingBeer ? "Editar Cerveja" : "Nova Cerveja"}
+            {editingProduct ? "Editar Cerveja" : "Nova Cerveja"}
           </h3>
           <div className="grid grid-cols-2 gap-4">
             <div>
@@ -105,11 +152,11 @@ export default function ProductList({ beers, setBeers }: BeerListProps) {
                 label="Tipo"
                 placeholder="Selecione"
                 required
-                value={formData.typeProductId}
+                value={formData.type.id}
                 onChange={(e) =>
                   setFormData({
                     ...formData,
-                    typeProductId: parseInt(e.target.value),
+                    type: { id: parseInt(e.target.value), text: "" },
                   })
                 }
                 options={[
@@ -173,28 +220,28 @@ export default function ProductList({ beers, setBeers }: BeerListProps) {
       )}
 
       <div className="grid gap-4">
-        {beers.map((beer) => (
+        {products.map((product: Product) => (
           <div
-            key={beer.productId}
+            key={product.productId}
             className="bg-white rounded-lg shadow-sm flex justify-between items-center p-8"
           >
             <div className="flex-1">
-              <h3 className="font-medium text-gray-900">{beer.name}</h3>
+              <h3 className="font-medium text-gray-900">{product.name}</h3>
               <div className="flex gap-4 mt-2 text-sm text-gray-600">
-                <span>Tipo ID: {beer.typeProductId}</span>
-                <span>ABV: {beer.abv}%</span>
-                <span>IBU: {beer.ibu}</span>
+                <span>Tipo ID: {product.type.id}</span>
+                <span>ABV: {product.abv}%</span>
+                <span>IBU: {product.ibu}</span>
                 <span className="font-medium text-amber-600">
-                  R$ {beer.unitValue.toFixed(2)}
+                  R$ {product.unitValue.toFixed(2)}
                 </span>
               </div>
             </div>
             <div className="flex gap-2">
-              <Button onClick={() => handleEdit(beer)} variant="editIcon">
+              <Button onClick={() => handleEdit(product)} variant="editIcon">
                 <Edit2 className="w-4 h-4" />
               </Button>
               <Button
-                onClick={() => handleDelete(beer.productId)}
+                onClick={() => handleRemove(product)}
                 variant="removeIcon"
               >
                 <Trash2 className="w-4 h-4" />

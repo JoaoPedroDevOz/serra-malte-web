@@ -82,7 +82,7 @@ export async function editSupplier(req: Request, res: Response) {
     );
 
     const filtro: Partial<Fornecedor> = {
-      fornecedor_id: Number(req.query.fornecedor_id),
+      fornecedor_id: Number(req.query.fornecedor_id || 0),
     };
 
     const supplier = await handlerUpdateSupplier(filtro, req.body);
@@ -117,9 +117,7 @@ export async function removeSupplier(req: Request, res: Response) {
     );
 
     const filtro: Partial<Fornecedor> = {
-      fornecedor_id: Number(req.query.fornecedor_id),
-      // ? Number(req.query.fornecedor_id)
-      // : null,
+      fornecedor_id: Number(req.query.fornecedor_id || 0),
     };
 
     const supplier = await handlerDeleteSupplier(filtro);

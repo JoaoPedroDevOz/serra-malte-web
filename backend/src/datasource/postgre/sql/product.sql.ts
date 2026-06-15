@@ -100,6 +100,7 @@ async function updateProduct(
       ...product,
       valor_unitario: product.valor_unitario?.toNumber() || 0,
       abv: product.abv?.toNumber() || 0,
+      tipo: ''
     };
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : String(err);
@@ -127,6 +128,7 @@ async function deleteProduct(req: Partial<Produto>): Promise<Produto> {
       ...product,
       valor_unitario: product.valor_unitario?.toNumber() || 0,
       abv: product.abv?.toNumber() || 0,
+      tipo: ''
     };
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : String(err);

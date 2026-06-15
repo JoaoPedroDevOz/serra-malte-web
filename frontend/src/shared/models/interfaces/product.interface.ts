@@ -1,6 +1,9 @@
 export interface Product {
   productId: number;
-  typeProductId: number;
+  type: {
+    id: number;
+    text: string;
+  }
   name: string;
   unitValue: number;
   ibu?: number;

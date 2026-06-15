@@ -19,7 +19,10 @@ export default function BrewerySystem() {
   const [beers, setBeers] = useState<Product[]>([
     {
       productId: 1,
-      typeProductId: 1,
+      type: {
+        id: 1,
+        text: "IPA",
+      },
       name: "IPA Tropical",
       abv: 6.5,
       ibu: 65,
@@ -27,7 +30,10 @@ export default function BrewerySystem() {
     },
     {
       productId: 2,
-      typeProductId: 1,
+      type: {
+        id: 2,
+        text: "Pilsen",
+      },
       name: "Pilsen Puro Malte",
       abv: 4.8,
       ibu: 25,
@@ -35,7 +41,10 @@ export default function BrewerySystem() {
     },
     {
       productId: 3,
-      typeProductId: 1,
+      type: {
+        id: 2,
+        text: "Stout",
+      },
       name: "Stout Imperial",
       abv: 8.2,
       ibu: 45,
@@ -177,18 +186,9 @@ export default function BrewerySystem() {
         </div>
 
         {/* Conteúdo Dinâmico das Abas */}
-        {activeTab === "beers" && (
-          <ProductList beers={beers} setBeers={setBeers} />
-        )}
-        {activeTab === "suppliers" && (
-          <SupplierList />
-        )}
-        {activeTab === "ingredients" && (
-          <IngredientList
-            ingredients={ingredients}
-            setIngredients={setIngredients}
-          />
-        )}
+        {activeTab === "beers" && <ProductList />}
+        {activeTab === "suppliers" && <SupplierList />}
+        {activeTab === "ingredients" && <IngredientList />}
         {activeTab === "orders" && (
           <OrderList orders={orders} setOrders={setOrders} beers={beers} />
         )}

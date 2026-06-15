@@ -16,3 +16,14 @@ import * as ProductTypeApi from "./types/product_type.api.ts";
  */
 export { ProductTypeApi };
 
+import * as IngredientApi from "./ingredient.api.ts";
+/**
+ * Ingredient / Ingrediente
+ */
+export { IngredientApi };
+
+import * as IngredientTypeApi from "./types/ingredient_types.api.ts";
+/**
+ * Ingredient Type / Tipo Ingrediente
+ */
+export { IngredientTypeApi };

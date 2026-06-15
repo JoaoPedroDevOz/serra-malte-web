@@ -15,14 +15,16 @@ export default function SupplierList() {
 
   const [showForm, setShowForm] = useState(false);
   const [editingSupplier, setEditingSupplier] = useState<Supplier | null>(null);
-  const [formData, setFormData] = useState<Supplier>({
+
+  const formDataNState: Supplier = {
     supplierId: 0,
     name: "",
     contact: "",
     email: "",
     phone: "",
     nationalRegister: "",
-  });
+  };
+  const [formData, setFormData] = useState<Supplier>(formDataNState);
 
   useEffect(() => {
     async function fetchSuppliers() {
@@ -111,14 +113,7 @@ export default function SupplierList() {
         <Button
           onClick={() => {
             setEditingSupplier(null);
-            setFormData({
-              supplierId: 0,
-              name: "",
-              contact: "",
-              email: "",
-              phone: "",
-              nationalRegister: "",
-            });
+            setFormData(formDataNState);
             setShowForm(true);
           }}
         >

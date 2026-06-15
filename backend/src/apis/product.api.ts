@@ -21,9 +21,7 @@ export async function registerProduct(req: Request, res: Response) {
       `api: product.api :: registerProduct - [success]: ${JSON.stringify(product)}`,
     );
 
-    return res.status(HTTP_STATUS.OK).json({
-      message: "Produto cadastrado com sucesso!",
-    });
+    return res.status(HTTP_STATUS.OK).send({ produto: product });
   } catch (err) {
     const error = {
       status: err instanceof AppError ? err.statusCode : Number(err),
@@ -47,7 +45,7 @@ export async function listProducts(req: Request, res: Response) {
     );
 
     const filtros: Partial<Produto> = {
-      produto_id: Number(req.query.produto_id),
+      produto_id: Number(req.query.produto_id || 0),
       nome: req.query.nome as string,
     };
 
@@ -75,11 +73,15 @@ export async function listProducts(req: Request, res: Response) {
 export async function editProduct(req: Request, res: Response) {
   try {
     console.log(
+      `api: product.api :: updateProduct - [req.query]: ${JSON.stringify(req.query)}`,
+    );
+
+    console.log(
       `api: product.api :: updateProduct - [req.body]: ${JSON.stringify(req.body)}`,
     );
 
     const filtro: Partial<Produto> = {
-      produto_id: Number(req.query.fornecedor_id),
+      produto_id: Number(req.query.produto_id || 0),
     };
 
     const product = await handlerUpdateProduct(filtro, req.body);
@@ -88,7 +90,7 @@ export async function editProduct(req: Request, res: Response) {
       `api: product.api :: updateProduct - [success]: ${JSON.stringify(product)}`,
     );
 
-    return res.status(HTTP_STATUS.OK).send(product);
+    return res.status(HTTP_STATUS.OK).send({ produto: product });
   } catch (err) {
     const error = {
       status: err instanceof AppError ? err.statusCode : Number(err),
@@ -112,7 +114,7 @@ export async function removeProduct(req: Request, res: Response) {
     );
 
     const filtro: Partial<Produto> = {
-      produto_id: Number(req.query.produto_id),
+      produto_id: Number(req.query.fornecedor_id || 0),
     };
 
     const product = await handlerDeleteProduct(filtro);

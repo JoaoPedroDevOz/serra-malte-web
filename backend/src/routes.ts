@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { ProductApi, ProductTypeApi, SupplierApi } from "./apis/index.api.ts";
+import {
+  IngredientApi,
+  IngredientTypeApi,
+  ProductApi,
+  ProductTypeApi,
+  SupplierApi,
+} from "./apis/index.api.ts";
 
 const route = Router();
 
@@ -34,5 +40,18 @@ route.delete("/api/produto", ProductApi.removeProduct);
 // route.get("/api/fornecedor/produto", SupplierProductApi.listSupplierProducts);
 // route.patch("/api/fornecedor/produto", SupplierProductApi.editSupplierProduct);
 // route.delete("/api/fornecedor/produto", SupplierProductApi.removeSupplierProduct);
+
+/**
+ * Ingrediente
+ */
+route.post("/api/ingrediente", IngredientApi.registerIngredient);
+route.get("/api/ingrediente", IngredientApi.listIngredients);
+route.patch("/api/ingrediente", IngredientApi.editIngredient);
+route.delete("/api/ingrediente", IngredientApi.removeIngredient);
+
+/**
+ * Tipo Ingrediente
+ */
+route.get("/api/ingrediente/tipos", IngredientTypeApi.listIngredientsTypes);
 
 export { route };

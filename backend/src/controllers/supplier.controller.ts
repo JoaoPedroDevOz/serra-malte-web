@@ -7,6 +7,7 @@ import {
 import { AppError } from "../models/classes/error.class.ts";
 import { Fornecedor } from "../models/entities/fornecedor.entity.ts";
 import { Message } from "../models/interfaces/message.interface.ts";
+import { HTTP_STATUS } from "../utils/consts.util.ts";
 import { APP_ERRORS } from "../utils/errors/index.error.ts";
 import { validateInsertSupplier } from "../validators/supplier.validator.ts";
 
@@ -79,7 +80,7 @@ async function handlerUpdateSupplier(
     if (!req.fornecedor_id) {
       throw new AppError({
         message: "Número identificador do fornecedor não informado.",
-        status: 404,
+        status: HTTP_STATUS.BAD_REQUEST,
       });
     }
 

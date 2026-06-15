@@ -7,6 +7,7 @@ import {
 import { AppError } from "../models/classes/error.class.ts";
 import { Produto } from "../models/entities/produto.entity.ts";
 import { Message } from "../models/interfaces/message.interface.ts";
+import { HTTP_STATUS } from "../utils/consts.util.ts";
 import { APP_ERRORS } from "../utils/errors/index.error.ts";
 import {
   validateInsertProduct,
@@ -86,6 +87,13 @@ async function handlerUpdateProduct(
   const produto: Partial<Produto> = req;
 
   try {
+    if (!produto.produto_id) {
+      throw new AppError({
+        message: "Número identificador do produto não informado.",
+        status: HTTP_STATUS.BAD_REQUEST,
+      });
+    }
+
     validateUpdateProduct(produto, novoProduto);
 
     const products = await handlerSelectProducts({
