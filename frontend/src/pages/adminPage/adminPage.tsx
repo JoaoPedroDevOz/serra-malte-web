@@ -4,11 +4,11 @@ import { Ingredient } from "../../shared/models/interfaces/ingredient.interface"
 import { Order } from "../../shared/models/interfaces/order.interface";
 import { Product } from "../../shared/models/interfaces/product.interface";
 import { Supplier } from "../../shared/models/interfaces/supplier.interface";
-import IngredientList from "./forms/IngredientsForm";
-import OrderList from "./forms/OrderForm";
+import IngredientList from "./forms/IngredientsList";
+import OrderList from "./forms/OrderList";
 import OrderReport from "./forms/OrderReport";
-import SupplierList from "./forms/SupplierForm";
-import ProductList from "./forms/ProductForm";
+import SupplierList from "./forms/SupplierList";
+import ProductList from "./forms/ProductList";
 
 export default function BrewerySystem() {
   const [activeTab, setActiveTab] = useState<
@@ -43,24 +43,24 @@ export default function BrewerySystem() {
     },
   ]);
 
-  const [suppliers, setSuppliers] = useState<Supplier[]>([
-    {
-      supplierId: 1,
-      name: "Maltes Brasil",
-      contact: "João Silva",
-      email: "joao@maltesbrasil.com",
-      phone: "(11) 98765-4321",
-      nationalRegister: "71526455000193",
-    },
-    {
-      supplierId: 2,
-      name: "Lúpulos Premium",
-      contact: "Maria Santos",
-      email: "maria@lupulospremium.com",
-      phone: "(11) 97654-3210",
-      nationalRegister: "67328084000168",
-    },
-  ]);
+  // const [suppliers, setSuppliers] = useState<Supplier[]>([
+  //   {
+  //     supplierId: 1,
+  //     name: "Maltes Brasil",
+  //     contact: "João Silva",
+  //     email: "joao@maltesbrasil.com",
+  //     phone: "(11) 98765-4321",
+  //     nationalRegister: "71526455000193",
+  //   },
+  //   {
+  //     supplierId: 2,
+  //     name: "Lúpulos Premium",
+  //     contact: "Maria Santos",
+  //     email: "maria@lupulospremium.com",
+  //     phone: "(11) 97654-3210",
+  //     nationalRegister: "67328084000168",
+  //   },
+  // ]);
 
   const [ingredients, setIngredients] = useState<Ingredient[]>([
     {
@@ -181,7 +181,7 @@ export default function BrewerySystem() {
           <ProductList beers={beers} setBeers={setBeers} />
         )}
         {activeTab === "suppliers" && (
-          <SupplierList suppliers={suppliers} setSuppliers={setSuppliers} />
+          <SupplierList />
         )}
         {activeTab === "ingredients" && (
           <IngredientList

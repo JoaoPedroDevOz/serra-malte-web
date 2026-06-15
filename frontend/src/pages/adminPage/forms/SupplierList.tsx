@@ -1,51 +1,105 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Plus, Edit2, Trash2 } from "lucide-react";
 import { Supplier } from "../../../shared/models/interfaces/supplier.interface";
 import Input from "../../../components/Input";
+import Button from "../../../components/Button";
+import {
+  editSupplier,
+  listSuppliers,
+  registerSupplier,
+  removeSupplier,
+} from "../../../services/supplier.service";
 
-export default function SupplierList({
-  suppliers,
-  setSuppliers,
-}: {
-  suppliers: Supplier[];
-  setSuppliers: any;
-}) {
+export default function SupplierList() {
+  const [suppliers, setSuppliers] = useState<Supplier[]>([]);
+
   const [showForm, setShowForm] = useState(false);
   const [editingSupplier, setEditingSupplier] = useState<Supplier | null>(null);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Supplier>({
+    supplierId: 0,
     name: "",
     contact: "",
     email: "",
     phone: "",
+    nationalRegister: "",
   });
+
+  useEffect(() => {
+    async function fetchSuppliers() {
+      const data = await listSuppliers();
+      setSuppliers(data);
+    }
+    fetchSuppliers();
+  }, []);
 
   const handleEdit = (s: Supplier) => {
     setEditingSupplier(s);
     setFormData({
+      supplierId: s.supplierId,
       name: s.name,
       contact: s.contact,
       email: s.email,
       phone: s.phone,
+      nationalRegister: s.nationalRegister,
     });
     setShowForm(true);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (editingSupplier) {
-      setSuppliers(
-        suppliers.map((s) =>
-          s.supplierId === editingSupplier.supplierId
-            ? { ...s, ...formData }
-            : s,
-        ),
-      );
-    } else {
-      const newId = Math.max(...suppliers.map((s) => s.supplierId), 0) + 1;
-      setSuppliers([...suppliers, { ...formData, id: newId }]);
+  const handleRegister = async (supplier: Supplier) => {
+    try {
+      return await registerSupplier(supplier);
+    } catch (error) {
+      throw error;
     }
-    setShowForm(false);
-    setEditingSupplier(null);
+  };
+
+  const handleUpdate = async (supplier: Supplier) => {
+    try {
+      return await editSupplier(supplier);
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleRemove = async (supplier: Supplier) => {
+    try {
+      if (window.confirm("Deseja realmente excluir este fornecedor?")) {
+        await removeSupplier(supplier);
+
+        setSuppliers(
+          suppliers.filter((s) => s.supplierId !== supplier.supplierId),
+        );
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      if (editingSupplier) {
+        const updatedSupplier = await handleUpdate(formData);
+        if (updatedSupplier) {
+          setSuppliers(
+            suppliers.map((s) =>
+              s.supplierId === editingSupplier.supplierId ? updatedSupplier : s,
+            ),
+          );
+        }
+      } else {
+        await handleRegister(formData);
+
+        const newId = Math.max(...suppliers.map((s) => s.supplierId), 0) + 1;
+        setSuppliers([...suppliers, { ...formData, supplierId: newId }]);
+      }
+
+      setShowForm(false);
+      setEditingSupplier(null);
+    } catch (error: any) {
+      alert(`${error.message}`);
+    }
   };
 
   return (
@@ -54,16 +108,22 @@ export default function SupplierList({
         <h2 className="text-xl font-semibold text-gray-800">
           Fornecedores Cadastrados
         </h2>
-        <button
+        <Button
           onClick={() => {
             setEditingSupplier(null);
-            setFormData({ name: "", contact: "", email: "", phone: "" });
+            setFormData({
+              supplierId: 0,
+              name: "",
+              contact: "",
+              email: "",
+              phone: "",
+              nationalRegister: "",
+            });
             setShowForm(true);
           }}
-          className="flex items-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700"
         >
           <Plus className="w-4 h-4" /> Novo Fornecedor
-        </button>
+        </Button>
       </div>
 
       {showForm && (
@@ -115,21 +175,22 @@ export default function SupplierList({
                 setFormData({ ...formData, phone: e.target.value })
               }
             />
+            <Input
+              label="Registro nacional"
+              type="text"
+              placeholder="Insira o Registro nacional"
+              required
+              value={formData.nationalRegister}
+              onChange={(e) =>
+                setFormData({ ...formData, nationalRegister: e.target.value })
+              }
+            />
           </div>
           <div className="flex gap-2 mt-4">
-            <button
-              type="submit"
-              className="bg-amber-600 text-white px-4 py-2 rounded-lg"
-            >
-              Salvar
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowForm(false)}
-              className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg"
-            >
+            <Button type="submit">Salvar</Button>
+            <Button onClick={() => setShowForm(false)} variant="secondary">
               Cancelar
-            </button>
+            </Button>
           </div>
         </form>
       )}
@@ -149,24 +210,15 @@ export default function SupplierList({
               </div>
             </div>
             <div className="flex gap-2">
-              <button
-                onClick={() => handleEdit(supplier)}
-                className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
-              >
+              <Button onClick={() => handleEdit(supplier)} variant="editIcon">
                 <Edit2 className="w-4 h-4" />
-              </button>
-              <button
-                onClick={() =>
-                  setSuppliers(
-                    suppliers.filter(
-                      (s) => s.supplierId !== supplier.supplierId,
-                    ),
-                  )
-                }
-                className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+              </Button>
+              <Button
+                onClick={async () => handleRemove(supplier)}
+                variant="removeIcon"
               >
                 <Trash2 className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
         ))}

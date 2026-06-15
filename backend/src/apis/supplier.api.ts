@@ -22,7 +22,7 @@ export async function registerSupplier(req: Request, res: Response) {
     );
 
     return res.status(HTTP_STATUS.OK).json({
-      message: "Fornecedor cadastrado com sucesso!",
+      fornecedor: supplier,
     });
   } catch (err) {
     const error = {
@@ -40,14 +40,14 @@ export async function registerSupplier(req: Request, res: Response) {
   }
 }
 
-export async function searchSuppliers(req: Request, res: Response) {
+export async function listSuppliers(req: Request, res: Response) {
   try {
     console.log(
-      `api: supplier.api :: searchSuppliers - [req.query]: ${JSON.stringify(req.query)}`,
+      `api: supplier.api :: listSuppliers - [req.query]: ${JSON.stringify(req.query)}`,
     );
 
     const filtros: Partial<Fornecedor> = {
-      fornecedor_id: Number(req.query.fornecedor_id),
+      fornecedor_id: Number(req.query.fornecedor_id || 0),
       registro_nacional: req.query.registro_nacional as string,
       nome: req.query.nome as string,
     };
@@ -55,7 +55,7 @@ export async function searchSuppliers(req: Request, res: Response) {
     const suppliersList: Fornecedor[] = await handlerSelectSuppliers(filtros);
 
     console.log(
-      `api: supplier.api :: searchSuppliers - [success]: ${JSON.stringify(suppliersList)}`,
+      `api: supplier.api :: listSuppliers - [success]: ${JSON.stringify(suppliersList)}`,
     );
 
     return res.status(201).send(suppliersList);
@@ -66,7 +66,7 @@ export async function searchSuppliers(req: Request, res: Response) {
     };
 
     console.log(
-      `api: supplier.api :: searchSuppliers - [error]: ${error.message}`,
+      `api: supplier.api :: listSuppliers - [error]: ${error.message}`,
     );
 
     return res.status(error.status).json({
@@ -75,7 +75,7 @@ export async function searchSuppliers(req: Request, res: Response) {
   }
 }
 
-export async function reviseSupplier(req: Request, res: Response) {
+export async function editSupplier(req: Request, res: Response) {
   try {
     console.log(
       `api: supplier.api :: updateSupplier - [req.body]: ${JSON.stringify(req.body)}`,
@@ -83,8 +83,6 @@ export async function reviseSupplier(req: Request, res: Response) {
 
     const filtro: Partial<Fornecedor> = {
       fornecedor_id: Number(req.query.fornecedor_id),
-      // ? Number(req.query.fornecedor_id)
-      // : null,
     };
 
     const supplier = await handlerUpdateSupplier(filtro, req.body);
@@ -93,7 +91,9 @@ export async function reviseSupplier(req: Request, res: Response) {
       `api: supplier.api :: updateSupplier - [success]: ${JSON.stringify(supplier)}`,
     );
 
-    return res.status(HTTP_STATUS.OK).send(supplier);
+    return res.status(HTTP_STATUS.OK).json({
+      fornecedor: supplier,
+    });
   } catch (err) {
     const error = {
       status: err instanceof AppError ? err.statusCode : Number(err),

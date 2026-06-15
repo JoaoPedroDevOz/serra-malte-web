@@ -40,10 +40,10 @@ export async function registerProduct(req: Request, res: Response) {
   }
 }
 
-export async function searchProducts(req: Request, res: Response) {
+export async function listProducts(req: Request, res: Response) {
   try {
     console.log(
-      `api: product.api :: searchProducts - [req.query]: ${JSON.stringify(req.query)}`,
+      `api: product.api :: listProducts - [req.query]: ${JSON.stringify(req.query)}`,
     );
 
     const filtros: Partial<Produto> = {
@@ -54,7 +54,7 @@ export async function searchProducts(req: Request, res: Response) {
     const productsList: Produto[] = await handlerSelectProducts(filtros);
 
     console.log(
-      `api: product.api :: searchProducts - [success]: ${JSON.stringify(productsList)}`,
+      `api: product.api :: listProducts - [success]: ${JSON.stringify(productsList)}`,
     );
 
     return res.status(201).send(productsList);
@@ -64,9 +64,7 @@ export async function searchProducts(req: Request, res: Response) {
       message: err instanceof AppError ? err.message : String(err),
     };
 
-    console.log(
-      `api: product.api :: searchProducts - [error]: ${error.message}`,
-    );
+    console.log(`api: product.api :: listProducts - [error]: ${error.message}`);
 
     return res.status(error.status).json({
       error: error,
@@ -74,7 +72,7 @@ export async function searchProducts(req: Request, res: Response) {
   }
 }
 
-export async function reviseProduct(req: Request, res: Response) {
+export async function editProduct(req: Request, res: Response) {
   try {
     console.log(
       `api: product.api :: updateProduct - [req.body]: ${JSON.stringify(req.body)}`,

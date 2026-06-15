@@ -1,6 +1,6 @@
 // HeroSection.jsx
 import { ChevronRight } from "lucide-react";
-import { scrollToSection } from "../../../shared/utils/scrollToSection";
+import { scrollToSection } from "../../../shared/utils/scrollToSection.util";
 
 export default function HeroSection() {
   return (

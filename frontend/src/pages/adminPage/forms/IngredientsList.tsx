@@ -71,16 +71,15 @@ export default function IngredientList({
         <h2 className="text-xl font-semibold text-gray-800">
           Ingredientes em Estoque
         </h2>
-        <button
+        <Button
           onClick={() => {
             setEditingIngredient(null);
             setFormData({ name: "", typeText: "", unitValue: 0 });
             setShowForm(true);
           }}
-          className="flex items-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700"
         >
           <Plus className="w-4 h-4" /> Novo Ingrediente
-        </button>
+        </Button>
       </div>
 
       {showForm && (
@@ -138,10 +137,7 @@ export default function IngredientList({
             </div>
           </div>
           <div className="flex gap-2 mt-4">
-            <Button
-              type="submit"
-              variant="primary"
-            >
+            <Button type="submit" variant="primary">
               Salvar
             </Button>
             <Button onClick={() => setShowForm(false)} variant="secondary">
@@ -165,13 +161,10 @@ export default function IngredientList({
               </div>
             </div>
             <div className="flex gap-2">
-              <button
-                onClick={() => handleEdit(ingredient)}
-                className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
-              >
+              <Button onClick={() => handleEdit(ingredient)} variant="editIcon">
                 <Edit2 className="w-4 h-4" />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() =>
                   setIngredients(
                     ingredients.filter(
@@ -179,10 +172,10 @@ export default function IngredientList({
                     ),
                   )
                 }
-                className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                variant="removeIcon"
               >
                 <Trash2 className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
         ))}

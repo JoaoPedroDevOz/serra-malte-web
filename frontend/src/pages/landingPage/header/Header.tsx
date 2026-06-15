@@ -1,5 +1,5 @@
 import { Beer, X, Menu } from "lucide-react";
-import { scrollToSection } from "../../../shared/utils/scrollToSection";
+import { scrollToSection } from "../../../shared/utils/scrollToSection.util";
 import React from "react";
 
 export function Header() {

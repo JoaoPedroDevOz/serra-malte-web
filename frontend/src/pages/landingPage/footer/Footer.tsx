@@ -1,5 +1,5 @@
 import { Beer } from "lucide-react";
-import { scrollToSection } from "../../../shared/utils/scrollToSection";
+import { scrollToSection } from "../../../shared/utils/scrollToSection.util";
 
 export function Footer() {
   return (

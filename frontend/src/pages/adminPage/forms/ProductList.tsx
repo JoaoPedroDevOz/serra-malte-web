@@ -3,7 +3,7 @@ import { Plus, Edit2, Trash2 } from "lucide-react";
 import { Product } from "../../../shared/models/interfaces/product.interface";
 import Input from "../../../components/Input";
 import Select from "../../../components/Select";
-import Button from "../../../components/Button";
+import Button from "./../../../components/Button";
 
 interface BeerListProps {
   beers: Product[];
@@ -62,7 +62,7 @@ export default function ProductList({ beers, setBeers }: BeerListProps) {
         <h2 className="text-xl font-semibold text-gray-800">
           Cervejas Cadastradas
         </h2>
-        <button
+        <Button
           onClick={() => {
             setEditingBeer(null);
             setFormData({
@@ -74,10 +74,9 @@ export default function ProductList({ beers, setBeers }: BeerListProps) {
             });
             setShowForm(true);
           }}
-          className="flex items-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700 transition-colors"
         >
           <Plus className="w-4 h-4" /> Nova Cerveja
-        </button>
+        </Button>
       </div>
 
       {showForm && (
@@ -191,18 +190,15 @@ export default function ProductList({ beers, setBeers }: BeerListProps) {
               </div>
             </div>
             <div className="flex gap-2">
-              <button
-                onClick={() => handleEdit(beer)}
-                className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
-              >
+              <Button onClick={() => handleEdit(beer)} variant="editIcon">
                 <Edit2 className="w-4 h-4" />
-              </button>
-              <button
+              </Button>
+              <Button
                 onClick={() => handleDelete(beer.productId)}
-                className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                variant="removeIcon"
               >
                 <Trash2 className="w-4 h-4" />
-              </button>
+              </Button>
             </div>
           </div>
         ))}

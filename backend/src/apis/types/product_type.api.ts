@@ -40,10 +40,10 @@ export async function registerProductType(req: Request, res: Response) {
   }
 }
 
-export async function searchProductsTypes(req: Request, res: Response) {
+export async function listProductsTypes(req: Request, res: Response) {
   try {
     console.log(
-      `api: product_type.api :: searchProductsTypes - [req.query]: ${JSON.stringify(req.query)}`,
+      `api: product_type.api :: listProductsTypes - [req.query]: ${JSON.stringify(req.query)}`,
     );
 
     const filtros: Partial<Produto> = {
@@ -57,7 +57,7 @@ export async function searchProductsTypes(req: Request, res: Response) {
       await handlerSelectProductsTypes(filtros);
 
     console.log(
-      `api: product_type.api :: searchProductsTypes - [success]: ${JSON.stringify(productsList)}`,
+      `api: product_type.api :: listProductsTypes - [success]: ${JSON.stringify(productsList)}`,
     );
 
     return res.status(201).send(productsList);
@@ -68,7 +68,7 @@ export async function searchProductsTypes(req: Request, res: Response) {
     };
 
     console.log(
-      `api: product_type.api :: searchProducts - [error]: ${error.message}`,
+      `api: product_type.api :: listProducts - [error]: ${error.message}`,
     );
 
     return res.status(error.status).json({
@@ -77,10 +77,10 @@ export async function searchProductsTypes(req: Request, res: Response) {
   }
 }
 
-export async function reviseProductType(req: Request, res: Response) {
+export async function editProductType(req: Request, res: Response) {
   try {
     console.log(
-      `api: product_type.api :: reviseProductType - [req.body]: ${JSON.stringify(req.body)}`,
+      `api: product_type.api :: editProductType - [req.body]: ${JSON.stringify(req.body)}`,
     );
 
     const filtro: Partial<Produto> = {
@@ -90,7 +90,7 @@ export async function reviseProductType(req: Request, res: Response) {
     const product = await handlerUpdateProductType(filtro, req.body);
 
     console.log(
-      `api: product_type.api :: reviseProductType - [success]: ${JSON.stringify(product)}`,
+      `api: product_type.api :: editProductType - [success]: ${JSON.stringify(product)}`,
     );
 
     return res.status(HTTP_STATUS.OK).send(product);
@@ -101,7 +101,7 @@ export async function reviseProductType(req: Request, res: Response) {
     };
 
     console.log(
-      `api: product_type.api :: reviseProductType - [error]: ${error.message}`,
+      `api: product_type.api :: editProductType - [error]: ${error.message}`,
     );
 
     return res.status(error.status).json({

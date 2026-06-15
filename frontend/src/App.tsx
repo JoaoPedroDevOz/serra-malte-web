@@ -8,7 +8,8 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <LandingPage />
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
@@ -22,7 +23,7 @@ function App() {
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </AuthProvider>
   );
 }

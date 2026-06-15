@@ -3,7 +3,7 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 
 // Tipos para as variantes do botão
-type ButtonVariant = "primary" | "secondary" | "outline" | "danger" | "success";
+type ButtonVariant = "primary" | "secondary" | "outline" | "danger" | "success" | "editIcon" | "removeIcon";
 type ButtonSize = "sm" | "md" | "lg";
 
 // Props do componente
@@ -29,6 +29,8 @@ const variantStyles: Record<ButtonVariant, string> = {
   outline:
     "border border-amber-600 text-amber-600 hover:bg-amber-50 focus:ring-amber-500",
   success: "bg-green-600 text-white hover:bg-green-700 focus:ring-green-500",
+  editIcon: "p-2 text-blue-600 hover:bg-blue-50 rounded-lg",
+  removeIcon: "p-2 text-red-600 hover:bg-red-50 rounded-lg"
 };
 
 // Configurações de tamanho

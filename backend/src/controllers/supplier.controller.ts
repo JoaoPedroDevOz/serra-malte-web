@@ -76,6 +76,13 @@ async function handlerUpdateSupplier(
   const messages = APP_ERRORS.SUPPLIER.UPDATE;
 
   try {
+    if (!req.fornecedor_id) {
+      throw new AppError({
+        message: "Número identificador do fornecedor não informado.",
+        status: 404,
+      });
+    }
+
     const suppliers = await handlerSelectSuppliers({
       registro_nacional: novoFornecedor.registro_nacional,
     });

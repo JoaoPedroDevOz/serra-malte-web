@@ -53,6 +53,10 @@ async function selectSuppliers(
       where: whereClause,
     });
 
+    console.error(
+      `sql: supplier.sql :: selectSuppliers - [success]: ${JSON.stringify(suppliersList)}`,
+    );
+
     return suppliersList as Fornecedor[];
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : String(err);
@@ -82,7 +86,7 @@ async function updateSupplier(
       data: req,
     });
 
-    console.log(`sql: supplier.sql :: updateSupplier - [success]: ${supplier}`);
+    console.log(`sql: supplier.sql :: updateSupplier - [success]: ${JSON.stringify(supplier)}`);
 
     return supplier as Fornecedor;
   } catch (err) {

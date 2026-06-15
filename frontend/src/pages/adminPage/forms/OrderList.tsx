@@ -4,6 +4,7 @@ import { Order } from "../../../shared/models/interfaces/order.interface";
 import { Product } from "../../../shared/models/interfaces/product.interface";
 import Input from "../../../components/Input";
 import Select from "../../../components/Select";
+import Button from "../../../components/Button";
 
 interface OrderListProps {
   orders: Order[];
@@ -82,15 +83,14 @@ export default function OrderList({
         <h2 className="text-xl font-semibold text-gray-800">
           Pedidos Registrados
         </h2>
-        <button
+        <Button
           onClick={() => {
             setEditingOrder(null);
             setShowForm(true);
           }}
-          className="flex items-center gap-2 bg-amber-600 text-white px-4 py-2 rounded-lg hover:bg-amber-700"
         >
           <Plus className="w-4 h-4" /> Novo Pedido
-        </button>
+        </Button>
       </div>
 
       {showForm && (
@@ -183,19 +183,10 @@ export default function OrderList({
             </div>
           </div>
           <div className="flex gap-2 mt-4">
-            <button
-              type="submit"
-              className="bg-amber-600 text-white px-4 py-2 rounded-lg"
-            >
-              Salvar
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowForm(false)}
-              className="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg"
-            >
+            <Button type="submit">Salvar</Button>
+            <Button onClick={() => setShowForm(false)} variant="secondary">
               Cancelar
-            </button>
+            </Button>
           </div>
         </form>
       )}
@@ -236,20 +227,17 @@ export default function OrderList({
                 </div>
               </div>
               <div className="flex gap-2">
-                <button
-                  onClick={() => handleEdit(order)}
-                  className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg"
-                >
+                <Button onClick={() => handleEdit(order)} variant="editIcon">
                   <Edit2 className="w-4 h-4" />
-                </button>
-                <button
+                </Button>
+                <Button
                   onClick={() =>
                     setOrders(orders.filter((o) => o.orderId !== order.orderId))
                   }
-                  className="p-2 text-red-600 hover:bg-red-50 rounded-lg"
+                  variant="removeIcon"
                 >
                   <Trash2 className="w-4 h-4" />
-                </button>
+                </Button>
               </div>
             </div>
           );
