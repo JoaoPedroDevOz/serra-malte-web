@@ -5,6 +5,7 @@ import {
   ProductApi,
   ProductTypeApi,
   SupplierApi,
+  SupplierItemApi,
 } from "./apis/index.api.ts";
 
 const route = Router();
@@ -54,4 +55,11 @@ route.delete("/api/ingrediente", IngredientApi.removeIngredient);
  */
 route.get("/api/ingrediente/tipos", IngredientTypeApi.listIngredientsTypes);
 
+/**
+ * Fornecedor Ingrediente
+ */
+route.post(
+  "/api/fornecedor/ingrediente",
+  SupplierItemApi.registerIngredientSupply,
+);
 export { route };

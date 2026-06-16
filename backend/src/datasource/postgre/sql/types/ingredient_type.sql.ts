@@ -3,7 +3,9 @@ import { Ingrediente } from "../../../../models/entities/ingrediente.entity.ts";
 import { treatDatabaseMessages } from "../../../../utils/messages.util.ts";
 import { prisma } from "../../index.ts";
 
-async function selectIngredientTypes(req: any): Promise<any[]> {
+async function selectIngredientTypes(
+  req: Partial<Ingrediente>,
+): Promise<any[]> {
   try {
     const whereClause: any = {};
 

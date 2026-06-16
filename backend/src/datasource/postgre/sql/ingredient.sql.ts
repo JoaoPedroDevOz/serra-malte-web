@@ -5,15 +5,11 @@ import { prisma } from "../index.ts";
 
 async function insertIngredient(req: Ingrediente): Promise<Ingrediente> {
   try {
-    // 1. Clonamos o objeto da requisição
     const insertData: any = { ...req };
-    
-    // 2. Removemos a PK antiga/vazia enviada pelo front-end
+
     delete insertData.ingrediente_id;
 
-    // 3. MAPEAMENTO DO RELACIONAMENTO:
-    // Se o objeto virtual 'tipo' existir, transformamos no formato que o Prisma exige
-    if (req.tipo && typeof req.tipo === 'object') {
+    if (req.tipo && typeof req.tipo === "object") {
       insertData.tbl_tipo_ingrediente = {
         connect: {
           tipo_ingrediente_id: req.tipo.tipo_ingrediente_id,
@@ -21,10 +17,8 @@ async function insertIngredient(req: Ingrediente): Promise<Ingrediente> {
       };
     }
 
-    // 4. SOLUÇÃO DO ERRO: Removemos o objeto 'tipo' original para o Prisma não rejeitar
     delete insertData.tipo;
 
-    // 5. Agora o Prisma roda o create perfeitamente com os argumentos corretos
     const ingredient = await prisma.tbl_ingrediente.create({
       data: insertData,
       include: {
@@ -38,7 +32,6 @@ async function insertIngredient(req: Ingrediente): Promise<Ingrediente> {
 
     const { tbl_tipo_ingrediente, ...resto } = ingredient;
 
-    // 6. Retornamos o padrão esperado pela sua aplicação e pelo front-end
     return {
       ...resto,
       valor_unitario: ingredient.valor_unitario
@@ -48,6 +41,7 @@ async function insertIngredient(req: Ingrediente): Promise<Ingrediente> {
         tipo_ingrediente_id: tbl_tipo_ingrediente?.tipo_ingrediente_id || 0,
         texto: tbl_tipo_ingrediente?.tipo || "",
       },
+      quantidade_estoque: ingredient.quantidade_estoque,
     } as unknown as Ingrediente;
   } catch (err) {
     const errorMessage = err instanceof Error ? err.message : String(err);

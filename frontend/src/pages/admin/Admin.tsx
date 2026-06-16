@@ -32,9 +32,6 @@ export default function Admin() {
           </button>
         </div>
       </div>
-      <p style={{ color: "#aaa", marginTop: "1rem" }}>
-        Bem-vindo, {user?.email}! Os CRUDs serão implementados aqui.
-      </p>
     </div>
   );
 }

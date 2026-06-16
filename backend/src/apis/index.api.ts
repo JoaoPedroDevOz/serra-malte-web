@@ -27,3 +27,9 @@ import * as IngredientTypeApi from "./types/ingredient_types.api.ts";
  * Ingredient Type / Tipo Ingrediente
  */
 export { IngredientTypeApi };
+
+import * as SupplierItemApi from "./rel/supplier-item.api.ts";
+/**
+ * Supplier Item  / Fornecedor Item
+ */
+export { SupplierItemApi };

@@ -6,4 +6,5 @@ export interface Ingrediente {
     texto: string;
   };
   valor_unitario: number;
+  quantidade_estoque: number;
 }

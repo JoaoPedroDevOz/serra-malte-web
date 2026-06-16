@@ -9,8 +9,9 @@ import {
   registerSupplier,
   removeSupplier,
 } from "../../../services/supplier.service";
+import { MessageListProps } from "../../../components/Message";
 
-export default function SupplierList() {
+export default function SupplierList({ onShowMessage }: MessageListProps) {
   const [suppliers, setSuppliers] = useState<Supplier[]>([]);
 
   const [showForm, setShowForm] = useState(false);
@@ -71,9 +72,10 @@ export default function SupplierList() {
         setSuppliers(
           suppliers.filter((s) => s.supplierId !== supplier.supplierId),
         );
+        onShowMessage("Fornecedor removido com sucesso!", "error");
       }
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      onShowMessage(`Erro ao remover fornecedor: ${error.message}`, "error");
     }
   };
 
@@ -97,10 +99,17 @@ export default function SupplierList() {
         setSuppliers([...suppliers, { ...formData, supplierId: newId }]);
       }
 
+      onShowMessage(
+        editingSupplier
+          ? "Fornecedor atualizado com sucesso!"
+          : "Fornecedor cadastrado com sucesso!",
+        "success",
+      );
+
       setShowForm(false);
       setEditingSupplier(null);
     } catch (error: any) {
-      alert(`${error.message}`);
+      onShowMessage(error.message, "error");
     }
   };
 

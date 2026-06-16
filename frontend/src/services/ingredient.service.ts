@@ -1,22 +1,25 @@
-import { Ingredient } from "../shared/models/interfaces/ingredient.interface";
+import {
+  Ingredient,
+  IngredientSupply,
+} from "../shared/models/interfaces/ingredient.interface";
 import { routeApi, URLS } from "../shared/utils/routes.util";
 
 export async function registerIngredient(
   ingredient: Ingredient,
 ): Promise<Ingredient> {
-  const body: Ingrediente = {
+  const body: any = {
     ingrediente_id: ingredient.ingredientId,
     tipo: {
-      tipo_ingrediente_id: 1,
+      tipo_ingrediente_id: ingredient.type.id,
       texto: ingredient.type.text,
     },
     nome: ingredient.name,
     valor_unitario: ingredient.unitValue,
+    quantidade_estoque: ingredient.quantity, // Mapeado corretamente para a API
   };
 
   try {
     const response = await routeApi(URLS.INGREDIENTE, "POST", body);
-
     const ingrediente = response.data.ingrediente || response.data;
 
     return {
@@ -29,17 +32,13 @@ export async function registerIngredient(
       },
       name: ingrediente.nome,
       unitValue: ingrediente.valor_unitario,
-      ibu: ingrediente.ibu,
-      abv: ingrediente.abv,
+      quantity: ingrediente.quantidade_estoque || 0,
     } as Ingredient;
   } catch (err: any) {
     const businessMessage = err?.response?.data?.error?.message;
-
     const finalMessage =
       businessMessage || err?.message || "Aconteceu um erro inesperado.";
-
     console.error("Erro capturado na service:", finalMessage);
-
     throw new Error(finalMessage);
   }
 }
@@ -47,53 +46,46 @@ export async function registerIngredient(
 export async function listIngredients(): Promise<Ingredient[]> {
   try {
     const response = await routeApi(URLS.INGREDIENTE, "GET");
-
     const data = Array.isArray(response.data) ? response.data : [];
 
-    return data.map((item: Ingrediente) => ({
+    return data.map((item: any) => ({
       ingredientId: item.ingrediente_id,
       type: {
-        id: item.tipo?.tipo_ingrediente_id,
+        id: item.tipo?.tipo_ingrediente_id || item.tipo_ingrediente_id,
         text: item.tipo?.texto || "",
       },
       name: item.nome,
       unitValue: item.valor_unitario,
+      quantity: item.quantidade_estoque || 0,
     })) as Ingredient[];
   } catch (err: any) {
     const businessMessage = err?.response?.data?.error?.message;
-
     const finalMessage =
       businessMessage || err?.message || "Aconteceu um erro inesperado.";
-
     console.error("Erro capturado na service:", finalMessage);
-
-    if (businessMessage) {
-      throw new Error(finalMessage);
-    } else {
-      return [];
-    }
+    return [];
   }
 }
 
 export async function editIngredient(
   ingredient: Ingredient,
 ): Promise<Ingredient> {
-  const body: Ingrediente = {
+  const body: any = {
     tipo: {
       tipo_ingrediente_id: ingredient.type.id,
       texto: ingredient.type.text,
     },
     nome: ingredient.name,
     valor_unitario: ingredient.unitValue,
+    quantidade_estoque: ingredient.quantity,
   };
 
-  const query: Partial<Ingrediente> = {
+  const query: Partial<any> = {
     ingrediente_id: ingredient.ingredientId,
   };
 
   try {
     const response = await routeApi(URLS.INGREDIENTE, "PATCH", body, query);
-
     const ingrediente = response.data.ingrediente || response.data;
 
     return {
@@ -106,38 +98,30 @@ export async function editIngredient(
       },
       name: ingrediente.nome,
       unitValue: ingrediente.valor_unitario,
+      quantity: ingrediente.quantidade_estoque || 0,
     } as Ingredient;
   } catch (err: any) {
     const businessMessage = err?.response?.data?.error?.message;
-
     const finalMessage =
       businessMessage || err?.message || "Aconteceu um erro inesperado.";
-
     console.error("Erro capturado na service:", finalMessage);
-
     throw new Error(finalMessage);
   }
 }
 
 export async function removeIngredient(ingredient: Partial<Ingredient>) {
   try {
-    const query: Partial<Ingrediente> = {
+    const query: Partial<any> = {
       ingrediente_id: ingredient.ingredientId,
     };
-
-    console.log(query);
     await routeApi(URLS.INGREDIENTE, "DELETE", {}, query);
-
     return;
   } catch (err: any) {
     const businessMessage = err?.response?.data?.error?.message;
-
     const finalMessage =
       businessMessage || err?.message || "Aconteceu um erro inesperado.";
-
     console.error("Erro capturado na service:", finalMessage);
-
-    throw new Error(`Erro atualizar dados do ingrediente. ${finalMessage}`);
+    throw new Error(`Erro ao remover ingrediente. ${finalMessage}`);
   }
 }
 
@@ -150,7 +134,6 @@ export interface IngredientTypeOption {
 export async function listIngredientTypes(): Promise<IngredientTypeOption[]> {
   try {
     const response = await routeApi(URLS.INGREDIENTE_TIPOS, "GET");
-
     const data = Array.isArray(response.data) ? response.data : [];
 
     return data.map((item: any) => ({
@@ -159,13 +142,33 @@ export async function listIngredientTypes(): Promise<IngredientTypeOption[]> {
       value: item.tipo,
     }));
   } catch (err: any) {
+    return [];
+  }
+}
+
+export async function registerIngredientSupply(
+  supplyIng: IngredientSupply,
+): Promise<any> {
+  const body = {
+    fornecedor_id: supplyIng.supplier.supplierId!,
+    ingrediente_id: supplyIng.ingredient.ingredientId,
+    quantidade: supplyIng.quantity,
+    valor_fornecimento: supplyIng.supplyValue,
+    data_hora_fornecimento: supplyIng.supplyDate || new Date(),
+  };
+
+  try {
+    const response = await routeApi(
+      URLS.FORNECIMENTO_INGREDIENTE,
+      "POST",
+      body,
+    );
+    return response.data.fornecimento || response.data;
+  } catch (err: any) {
     const businessMessage = err?.response?.data?.error?.message;
     const finalMessage =
-      businessMessage ||
-      err?.message ||
-      "Erro ao carregar tipos de ingredientes.";
-
-    console.error("Erro na service de tipos:", finalMessage);
-    return [];
+      businessMessage || err?.message || "Aconteceu um erro inesperado.";
+    console.error("Erro capturado na service de fornecimento:", finalMessage);
+    throw new Error(finalMessage);
   }
 }

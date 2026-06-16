@@ -1,144 +1,84 @@
 import { Beer, Package, Droplet, ShoppingCart } from "lucide-react";
 import { useState } from "react";
-import { Ingredient } from "../../shared/models/interfaces/ingredient.interface";
-import { Order } from "../../shared/models/interfaces/order.interface";
-import { Product } from "../../shared/models/interfaces/product.interface";
-import { Supplier } from "../../shared/models/interfaces/supplier.interface";
 import IngredientList from "./forms/IngredientsList";
-import OrderList from "./forms/OrderList";
-import OrderReport from "./forms/OrderReport";
 import SupplierList from "./forms/SupplierList";
 import ProductList from "./forms/ProductList";
+import Message from "../../components/Message";
 
 export default function BrewerySystem() {
   const [activeTab, setActiveTab] = useState<
     "beers" | "suppliers" | "ingredients" | "orders" | "reports"
   >("beers");
 
-  // MOCK DATA ADAPTADO PARA AS NOVAS INTERFACES
-  const [beers, setBeers] = useState<Product[]>([
-    {
-      productId: 1,
-      type: {
-        id: 1,
-        text: "IPA",
-      },
-      name: "IPA Tropical",
-      abv: 6.5,
-      ibu: 65,
-      unitValue: 18.9,
-    },
-    {
-      productId: 2,
-      type: {
-        id: 2,
-        text: "Pilsen",
-      },
-      name: "Pilsen Puro Malte",
-      abv: 4.8,
-      ibu: 25,
-      unitValue: 12.9,
-    },
-    {
-      productId: 3,
-      type: {
-        id: 2,
-        text: "Stout",
-      },
-      name: "Stout Imperial",
-      abv: 8.2,
-      ibu: 45,
-      unitValue: 22.9,
-    },
-  ]);
+  const [apiMessage, setApiMessage] = useState<{
+    text: string;
+    status: "success" | "warn" | "error";
+  } | null>(null);
 
-  // const [suppliers, setSuppliers] = useState<Supplier[]>([
+  const showSystemMessage = (
+    text: string,
+    status: "success" | "warn" | "error",
+  ) => {
+    setApiMessage({ text, status });
+  };
+
+  // const [orders, setOrders] = useState<Order[]>([
   //   {
-  //     supplierId: 1,
-  //     name: "Maltes Brasil",
-  //     contact: "João Silva",
-  //     email: "joao@maltesbrasil.com",
-  //     phone: "(11) 98765-4321",
-  //     nationalRegister: "71526455000193",
+  //     orderId: 1,
+  //     timeStampOrder: new Date("2026-05-10"),
+  //     status: { statusId: 3, statusText: "Entregue" },
+  //     client: {
+  //       clientId: 1,
+  //       typeClientId: 2,
+  //       nationalRegister: "123",
+  //       name: "Bar do Zé",
+  //     },
+  //     productList: [{ productId: 1, quantity: 24, unitValue: 18.9 }],
   //   },
   //   {
-  //     supplierId: 2,
-  //     name: "Lúpulos Premium",
-  //     contact: "Maria Santos",
-  //     email: "maria@lupulospremium.com",
-  //     phone: "(11) 97654-3210",
-  //     nationalRegister: "67328084000168",
+  //     orderId: 2,
+  //     timeStampOrder: new Date("2026-05-12"),
+  //     status: { statusId: 1, statusText: "Pendente" },
+  //     client: {
+  //       clientId: 2,
+  //       typeClientId: 2,
+  //       nationalRegister: "456",
+  //       name: "Restaurante Bom Sabor",
+  //     },
+  //     productList: [{ productId: 2, quantity: 48, unitValue: 12.9 }],
+  //   },
+  //   {
+  //     orderId: 3,
+  //     timeStampOrder: new Date("2026-05-13"),
+  //     status: { statusId: 2, statusText: "Em Produção" },
+  //     client: {
+  //       clientId: 3,
+  //       typeClientId: 2,
+  //       nationalRegister: "789",
+  //       name: "Empório da Cerveja",
+  //     },
+  //     productList: [{ productId: 3, quantity: 12, unitValue: 22.9 }],
   //   },
   // ]);
 
-  const [ingredients, setIngredients] = useState<Ingredient[]>([
-    {
-      ingredientId: 1,
-      name: "Malte Pilsen",
-      type: { id: 1, text: "Malte" },
-      unitValue: 500,
-    }, // Tratando unitValue como a quantidade/estoque para manter coerência visual
-    {
-      ingredientId: 2,
-      name: "Lúpulo Cascade",
-      type: { id: 2, text: "Lúpulo" },
-      unitValue: 50,
-    },
-    {
-      ingredientId: 3,
-      name: "Levedura Ale",
-      type: { id: 3, text: "Levedura" },
-      unitValue: 100,
-    },
-  ]);
-
-  const [orders, setOrders] = useState<Order[]>([
-    {
-      orderId: 1,
-      timeStampOrder: new Date("2026-05-10"),
-      status: { statusId: 3, statusText: "Entregue" },
-      client: {
-        clientId: 1,
-        typeClientId: 2,
-        nationalRegister: "123",
-        name: "Bar do Zé",
-      },
-      productList: [{ productId: 1, quantity: 24, unitValue: 18.9 }],
-    },
-    {
-      orderId: 2,
-      timeStampOrder: new Date("2026-05-12"),
-      status: { statusId: 1, statusText: "Pendente" },
-      client: {
-        clientId: 2,
-        typeClientId: 2,
-        nationalRegister: "456",
-        name: "Restaurante Bom Sabor",
-      },
-      productList: [{ productId: 2, quantity: 48, unitValue: 12.9 }],
-    },
-    {
-      orderId: 3,
-      timeStampOrder: new Date("2026-05-13"),
-      status: { statusId: 2, statusText: "Em Produção" },
-      client: {
-        clientId: 3,
-        typeClientId: 2,
-        nationalRegister: "789",
-        name: "Empório da Cerveja",
-      },
-      productList: [{ productId: 3, quantity: 12, unitValue: 22.9 }],
-    },
-  ]);
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
+    <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 relative">
+      {/* Componente Message isolado e flutuando no topo do sistema */}
+
       <a
         href="/"
         className="fixed top-4 right-4 z-50 bg-white text-gray-700 px-4 py-2 rounded-lg shadow-lg hover:bg-gray-50 transition-colors"
       >
         ← Voltar para o Site
       </a>
+
+      {apiMessage && (
+        <Message
+          text={apiMessage.text}
+          status={apiMessage.status}
+          onClose={() => setApiMessage(null)}
+        />
+      )}
 
       <div className="container mx-auto p-6">
         <div className="mb-8">
@@ -186,14 +126,16 @@ export default function BrewerySystem() {
         </div>
 
         {/* Conteúdo Dinâmico das Abas */}
-        {activeTab === "beers" && <ProductList />}
-        {activeTab === "suppliers" && <SupplierList />}
-        {activeTab === "ingredients" && <IngredientList />}
-        {activeTab === "orders" && (
-          <OrderList orders={orders} setOrders={setOrders} beers={beers} />
+        {activeTab === "beers" && (
+          <ProductList onShowMessage={showSystemMessage} />
         )}
-        {activeTab === "reports" && (
-          <OrderReport orders={orders} beers={beers} />
+        {activeTab === "suppliers" && (
+          <SupplierList onShowMessage={showSystemMessage} />
+        )}
+
+        {/* Passando a função de emitir mensagem para o componente de Ingredientes */}
+        {activeTab === "ingredients" && (
+          <IngredientList onShowMessage={showSystemMessage} />
         )}
       </div>
     </div>

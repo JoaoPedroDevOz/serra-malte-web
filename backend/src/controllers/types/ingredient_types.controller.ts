@@ -4,7 +4,7 @@ import { Ingrediente } from "../../models/entities/ingrediente.entity.ts";
 
 async function handlerSelectIngredientsTypes(
   req: Partial<Ingrediente>,
-): Promise<any[]> {
+): Promise<Partial<Ingrediente>[]> {
   try {
     return await selectIngredientTypes(req);
   } catch (err) {

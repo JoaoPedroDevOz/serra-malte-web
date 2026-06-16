@@ -13,6 +13,7 @@ import {
   validateInsertIngredient,
   validateUpdateIngredient,
 } from "../validators/ingredient.validator.ts";
+import { handlerSelectIngredientsTypes } from "./types/ingredient_types.controller.ts";
 
 const messagesIngredientTypes = APP_ERRORS.PRODUCT_TYPES;
 const messages = APP_ERRORS.PRODUCT;
@@ -23,13 +24,16 @@ async function handlerInsertIngredient(req: Ingrediente): Promise<Ingrediente> {
   try {
     validateInsertIngredient(ingrediente);
 
-    // const ingredientType = await handlerSelectIngredientsTypes({
-    //   tipo_ingrediente_id: ingrediente.tipo_ingrediente_id!,
-    // });
+    const ingredientType = await handlerSelectIngredientsTypes({
+      tipo: {
+        tipo_ingrediente_id: ingrediente.tipo.tipo_ingrediente_id,
+        texto: ingrediente.tipo.texto,
+      },
+    });
 
-    // if (ingredientType.length === 0) {
-    //   throw new AppError(messagesIngredientTypes.SELECT.NOT_FOUND);
-    // }
+    if (ingredientType.length === 0) {
+      throw new AppError(messagesIngredientTypes.SELECT.NOT_FOUND);
+    }
 
     const ingredients = await handlerSelectIngredients({
       nome: ingrediente.nome,
@@ -107,13 +111,13 @@ async function handlerUpdateIngredient(
       throw new AppError(messages.MULTIPLE.ALREADY_EXISTS_NAME);
     }
 
-    // if (novoIngrediente.tipo_ingrediente_id) {
-    //   const ingredientType =
-    //     await handlerSelectIngredientsTypes(novoIngrediente);
-    //   if (ingredientType.length === 0) {
-    //     throw new AppError(messagesIngredientTypes.SELECT.NOT_FOUND);
-    //   }
-    // }
+    if (novoIngrediente.tipo.tipo_ingrediente_id) {
+      const ingredientType =
+        await handlerSelectIngredientsTypes(novoIngrediente);
+      if (ingredientType.length === 0) {
+        throw new AppError(messagesIngredientTypes.SELECT.NOT_FOUND);
+      }
+    }
 
     return await updateIngredient(ingrediente, novoIngrediente);
   } catch (err) {

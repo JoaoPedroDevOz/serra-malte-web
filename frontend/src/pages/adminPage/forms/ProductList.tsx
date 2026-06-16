@@ -10,8 +10,9 @@ import {
   editProduct,
   removeProduct,
 } from "../../../services/product.service";
+import Message, { MessageListProps } from "../../../components/Message";
 
-export default function ProductList() {
+export default function ProductList({ onShowMessage }: MessageListProps) {
   const [products, setProducts] = useState<Product[]>([]);
 
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
@@ -29,6 +30,11 @@ export default function ProductList() {
     ibu: 0,
   };
   const [formData, setFormData] = useState(formDataNState);
+
+  const [apiMessage, setApiMessage] = useState<{
+    text: string;
+    status: "success" | "warn" | "error";
+  } | null>(null);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -76,9 +82,10 @@ export default function ProductList() {
         await removeProduct(product);
 
         setProducts(products.filter((s) => s.productId !== product.productId));
+        onShowMessage("Produto removido com sucesso!", "error");
       }
-    } catch (error) {
-      throw error;
+    } catch (error: any) {
+      onShowMessage(`Erro ao remover produto: ${error.message}`, "error");
     }
   };
 
@@ -86,6 +93,16 @@ export default function ProductList() {
     e.preventDefault();
 
     try {
+      {
+        apiMessage && (
+          <Message
+            text={apiMessage.text}
+            status={apiMessage.status}
+            onClose={() => setApiMessage(null)}
+          />
+        );
+      }
+
       if (editingProduct) {
         const updatedProduct = await handleUpdate(formData);
         if (updatedProduct) {
@@ -102,10 +119,17 @@ export default function ProductList() {
         setProducts([...products, { ...formData, productId: newId }]);
       }
 
+      setApiMessage({
+        text: editingProduct
+          ? "Produto atualizado com sucesso!"
+          : "Produto cadastrado com sucesso!",
+        status: "success",
+      });
+
       setShowForm(false);
       setEditingProduct(null);
     } catch (error: any) {
-      alert(`${error.message}`);
+      onShowMessage(error.message, "error");
     }
   };
 
