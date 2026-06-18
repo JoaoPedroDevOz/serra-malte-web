@@ -1,4 +1,4 @@
--- Geração de Modelo físico
+-- Geraï¿½ï¿½o de Modelo fï¿½sico
 -- Sql ANSI 2003 - brModelo.
 
 
@@ -44,6 +44,7 @@ nome VARCHAR(100),
 valor_unitario DECIMAL(10, 2),
 ibu DECIMAL(5, 2),
 abv DECIMAL(4, 2),
+quantidade_estoque INTEGER,
 FOREIGN KEY(tipo_produto_id) REFERENCES tbl_tipo_produto (tipo_produto_id)
 )
 
@@ -84,6 +85,7 @@ CREATE TABLE tbl_ingrediente (
 ingrediente_id INTEGER PRIMARY KEY,
 tipo_ingrediente_id INTEGER,
 nome VARCHAR(50),
+quantidade_estoque INTEGER,
 FOREIGN KEY(tipo_ingrediente_id) REFERENCES tbl_tipo_ingrediente (tipo_ingrediente_id)
 )
 

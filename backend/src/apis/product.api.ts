@@ -24,7 +24,7 @@ export async function registerProduct(req: Request, res: Response) {
     return res.status(HTTP_STATUS.OK).send({ produto: product });
   } catch (err) {
     const error = {
-      status: err instanceof AppError ? err.statusCode : Number(err),
+      status: err instanceof AppError ? err.statusCode : 500,
       message: err instanceof AppError ? err.message : String(err),
     };
 
@@ -32,9 +32,7 @@ export async function registerProduct(req: Request, res: Response) {
       `api: product.api :: registerProduct - [error]: ${error.message}`,
     );
 
-    return res.status(error.status).json({
-      error: error,
-    });
+    return res.status(error.status).json({ error });
   }
 }
 
@@ -55,18 +53,17 @@ export async function listProducts(req: Request, res: Response) {
       `api: product.api :: listProducts - [success]: ${JSON.stringify(productsList)}`,
     );
 
-    return res.status(201).send(productsList);
+    // CORREÇÃO: Mudado de 201 para 200 OK para rotas de listagem GET
+    return res.status(HTTP_STATUS.OK).send(productsList);
   } catch (err) {
     const error = {
-      status: err instanceof AppError ? err.statusCode : Number(err),
+      status: err instanceof AppError ? err.statusCode : 500,
       message: err instanceof AppError ? err.message : String(err),
     };
 
     console.log(`api: product.api :: listProducts - [error]: ${error.message}`);
 
-    return res.status(error.status).json({
-      error: error,
-    });
+    return res.status(error.status).json({ error });
   }
 }
 
@@ -93,7 +90,7 @@ export async function editProduct(req: Request, res: Response) {
     return res.status(HTTP_STATUS.OK).send({ produto: product });
   } catch (err) {
     const error = {
-      status: err instanceof AppError ? err.statusCode : Number(err),
+      status: err instanceof AppError ? err.statusCode : 500,
       message: err instanceof AppError ? err.message : String(err),
     };
 
@@ -101,9 +98,7 @@ export async function editProduct(req: Request, res: Response) {
       `api: product.api :: updateProduct - [error]: ${error.message}`,
     );
 
-    return res.status(error.status).json({
-      error: error,
-    });
+    return res.status(error.status).json({ error });
   }
 }
 
@@ -113,8 +108,9 @@ export async function removeProduct(req: Request, res: Response) {
       `api: product.api :: removeProduct - [req.query]: ${JSON.stringify(req.query)}`,
     );
 
+    // BUG CORRIGIDO: Estava mapeando req.query.fornecedor_id por engano
     const filtro: Partial<Produto> = {
-      produto_id: Number(req.query.fornecedor_id || 0),
+      produto_id: Number(req.query.produto_id || 0),
     };
 
     const product = await handlerDeleteProduct(filtro);
@@ -128,7 +124,7 @@ export async function removeProduct(req: Request, res: Response) {
     });
   } catch (err) {
     const error = {
-      status: err instanceof AppError ? err.statusCode : Number(err),
+      status: err instanceof AppError ? err.statusCode : 500,
       message: err instanceof AppError ? err.message : String(err),
     };
 
@@ -136,8 +132,6 @@ export async function removeProduct(req: Request, res: Response) {
       `api: product.api :: removeProduct - [error]: ${error.message}`,
     );
 
-    return res.status(error.status).json({
-      error: error,
-    });
+    return res.status(error.status).json({ error });
   }
 }

@@ -24,11 +24,9 @@ async function listIngredientsTypes(req: Request, res: Response) {
       `api: Ingredient_type.api :: listIngredientsTypes - [success]: ${JSON.stringify(IngredientsList)}`,
     );
 
-    // CORREÇÃO: Status 200 para consultas GET
     return res.status(200).send(IngredientsList);
   } catch (err) {
     const error = {
-      // CORREÇÃO: Evita mandar NaN para o res.status()
       status: err instanceof AppError ? err.statusCode : 500,
       message: err instanceof AppError ? err.message : String(err),
     };

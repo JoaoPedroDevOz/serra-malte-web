@@ -19,18 +19,17 @@ import { listSuppliers } from "../../../services/supplier.service";
 import Select, { SelectOption } from "../../../components/Select";
 import { MessageListProps } from "../../../components/Message";
 
-
-
 export default function IngredientList({ onShowMessage }: MessageListProps) {
-  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+  // Constantes do formulário e controle de fluxo
+  const [ingredients, setIngredients] = useState<Ingredient[]>([]); // lista de ingredientes
   const [editingIngredient, setEditingIngredient] = useState<Ingredient | null>(
     null,
-  );
+  ); // booleano para abrir formulário de edição
   const [ingredientTypes, setIngredientTypes] = useState<
     IngredientTypeOption[]
-  >([]);
-  const [suppliers, setSuppliers] = useState<SelectOption[]>([]);
-  const [showForm, setShowForm] = useState(false);
+  >([]); // carrega lista de tipos de ingredientes
+  const [suppliers, setSuppliers] = useState<SelectOption[]>([]); // lista de fornecedores
+  const [showForm, setShowForm] = useState(false); // mostrar formulário
 
   const formDataNState: IngredientSupply = {
     ingredient: {
@@ -51,6 +50,8 @@ export default function IngredientList({ onShowMessage }: MessageListProps) {
   const [formData, setFormData] = useState<IngredientSupply>(formDataNState);
 
   useEffect(() => {
+    // Carrega a lista de ingredientes na página e a lista de
+    // fornecedores e tipos de ingredenties nos seletores.
     async function loadInitialData() {
       try {
         const [ingredientsData, typesData, suppliersData] = await Promise.all([
@@ -58,6 +59,7 @@ export default function IngredientList({ onShowMessage }: MessageListProps) {
           listIngredientTypes(),
           listSuppliers(),
         ]);
+        // De forma paralela, chama as apis para capturar do banco de dados.
 
         setIngredients(ingredientsData);
         setIngredientTypes(typesData);
@@ -66,9 +68,9 @@ export default function IngredientList({ onShowMessage }: MessageListProps) {
           value: sup.supplierId,
           label: sup.name,
         }));
-        setSuppliers(mappedSuppliers);
+        setSuppliers(mappedSuppliers); // Passa no seletor os fornecedores
       } catch (error: any) {
-        alert(`Erro ao inicializar dados: ${error.message}`);
+        onShowMessage(`Erro ao inicializar dados: ${error.message}`, "error");
       }
     }
     loadInitialData();
@@ -95,12 +97,12 @@ export default function IngredientList({ onShowMessage }: MessageListProps) {
   const handleRemove = async (ingredient: Ingredient) => {
     try {
       if (window.confirm("Deseja realmente excluir este ingrediente?")) {
-        await removeIngredient(ingredient);
+        await removeIngredient(ingredient); // Remoção no banco de dados
         setIngredients(
           ingredients.filter((s) => s.ingredientId !== ingredient.ingredientId),
-        );
+        ); // Remoção do valor na lista
 
-        onShowMessage("Ingrediente removido com sucesso!", "error");
+        onShowMessage("Ingrediente removido com sucesso!", "success");
       }
     } catch (error: any) {
       onShowMessage(`Erro ao remover ingrediente: ${error.message}`, "error");
@@ -109,6 +111,7 @@ export default function IngredientList({ onShowMessage }: MessageListProps) {
 
   const handleSelectTypeChange = (value: string) => {
     const selectedOption = ingredientTypes.find((opt) => opt.value === value);
+    // Seleção do tipo de ingrediente na lista
     if (selectedOption) {
       setFormData({
         ...formData,
@@ -140,6 +143,9 @@ export default function IngredientList({ onShowMessage }: MessageListProps) {
         savedIngredient = await registerIngredient(formData.ingredient);
       }
 
+      // Após o ingrediente ser atualizado ou registrado
+      // Será feito o relacionamento com o fornecedor criado
+      // Caso o usuário opte por isso
       if (formData.supplier.supplierId && formData.supplier.supplierId > 0) {
         const supplyPayload: IngredientSupply = {
           ...formData,

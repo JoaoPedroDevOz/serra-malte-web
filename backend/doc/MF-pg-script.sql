@@ -39,6 +39,7 @@ nome VARCHAR(100) NOT NULL,
 valor_unitario DECIMAL(10, 2) NOT NULL,
 ibu NUMERIC(5,2) CHECK (ibu >= 0),
 abv NUMERIC(4,2) CHECK (abv >= 0 AND abv <= 100),
+quantidade_estoque INT,
 FOREIGN KEY(tipo_produto_id) REFERENCES tbl_tipo_produto (tipo_produto_id)
 );
 
@@ -79,6 +80,7 @@ CREATE TABLE tbl_ingrediente (
 ingrediente_id SERIAL PRIMARY KEY,
 tipo_ingrediente_id INT NOT NULL,
 nome VARCHAR(50) NOT NULL UNIQUE,
+quantidade_estoque INT,
 FOREIGN KEY(tipo_ingrediente_id) REFERENCES tbl_tipo_ingrediente (tipo_ingrediente_id)
 );
 
@@ -117,3 +119,4 @@ ALTER TABLE tbl_cliente ADD FOREIGN KEY(tipo_pessoa_id) REFERENCES tbl_tipo_pess
 ALTER TABLE tbl_pedido ADD FOREIGN KEY(status_pedido_id) REFERENCES tbl_status_pedido (status_pedido_id);
 ALTER TABLE rel_produto_ingrediente ADD FOREIGN KEY(ingrediente_id) REFERENCES tbl_ingrediente (ingrediente_id);
 ALTER TABLE rel_produto_fornecedor ADD FOREIGN KEY(fornecedor_id) REFERENCES tbl_fornecedor (fornecedor_id);
+

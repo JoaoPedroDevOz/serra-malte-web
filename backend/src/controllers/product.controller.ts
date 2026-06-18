@@ -25,8 +25,11 @@ async function handlerInsertProduct(req: Produto): Promise<Produto> {
     validateInsertProduct(produto);
 
     const productType = await handlerSelectProductsTypes({
-      tipo_produto_id: produto.tipo_produto_id!,
-    });
+      tipo: {
+        tipo_produto_id: produto.tipo.tipo_produto_id,
+        tipo: produto.tipo,
+      },
+    } as any);
 
     if (productType.length === 0) {
       throw new AppError(messagesProductTypes.SELECT.NOT_FOUND);
@@ -108,7 +111,8 @@ async function handlerUpdateProduct(
       throw new AppError(messages.MULTIPLE.ALREADY_EXISTS_NAME);
     }
 
-    if (novoProduto.tipo_produto_id) {
+    // Modificado para verificar a propriedade dentro de novoProduto.tipo
+    if (novoProduto.tipo && novoProduto.tipo.tipo_produto_id) {
       const productType = await handlerSelectProductsTypes(novoProduto);
       if (productType.length === 0) {
         throw new AppError(messagesProductTypes.SELECT.NOT_FOUND);

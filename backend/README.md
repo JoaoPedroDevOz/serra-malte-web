@@ -103,6 +103,16 @@ npx tsc --init
 npx prisma init
 ```
 
+## Geração do Banco de dados
+
+```direto pelo postgreSql
+copiar e colar no terminal do pg:
+(MF-pg-script.sql)[backend\doc\MF-pg-script.sql]
+
+Caso deseje a geração do banco com dados inseridos previamente:
+(MF-prisma-pg-script)[backend\doc\MF-prisma-pg-script.sql]
+```
+
 ---
 
 # 🗄️ Configuração do Prisma

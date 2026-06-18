@@ -83,7 +83,10 @@ async function handlerUpdateProductType(
     validateUpdateProductType(tipoProduto, novoTipoProduto);
 
     const productTypeById = await handlerSelectProductsTypes({
-      tipo_produto_id: tipoProduto.tipo_produto_id!,
+      tipo: {
+        tipo_produto_id: tipoProduto.tipo?.tipo_produto_id!,
+        texto: "",
+      },
     });
 
     if (productTypeById.length === 0) {
@@ -95,14 +98,15 @@ async function handlerUpdateProductType(
     });
 
     const alreadyExists = productTypes.some(
-      (produto) => produto?.tipo !== produto?.tipo,
+      (p) => p!.tipo?.tipo_produto_id !== tipoProduto.tipo?.tipo_produto_id,
     );
 
     if (alreadyExists) {
       throw new AppError(messages.MULTIPLE.ALREADY_EXISTS_TYPE);
     }
 
-    return await updateProductType(tipoProduto, req);
+    // CORREÇÃO: Passar o novo payload para a atualização
+    return await updateProductType(tipoProduto, novoTipoProduto);
   } catch (err) {
     const error: Message = {
       status: err instanceof AppError ? err.statusCode : 500,
@@ -110,9 +114,7 @@ async function handlerUpdateProductType(
     };
 
     console.log(
-      `controller: product_type.controller :: handlerUpdateProduct - [error]: ${
-        error.message
-      }`,
+      `controller: product_type.controller :: handlerUpdateProductType - [error]: ${error.message}`,
     );
 
     throw new AppError(error);
@@ -126,14 +128,17 @@ async function handlerDeleteProductType(
 
   try {
     const productTypeById = await handlerSelectProductsTypes({
-      tipo_produto_id: tipoProduto.tipo_produto_id!,
+      tipo: {
+        tipo_produto_id: tipoProduto.tipo?.tipo_produto_id!,
+        texto: "",
+      },
     });
 
     if (productTypeById.length === 0) {
       throw new AppError(messages.SELECT.NOT_FOUND);
     }
 
-    if (!tipoProduto.tipo_produto_id) {
+    if (!tipoProduto.tipo?.tipo_produto_id) {
       throw new AppError(messages.DELETE.NO_ID);
     }
 
@@ -141,6 +146,7 @@ async function handlerDeleteProductType(
   } catch (err) {
     const error = {
       status: err instanceof AppError ? err.statusCode : 500,
+
       message: err instanceof AppError ? err.message : String(err),
     };
 

@@ -8,7 +8,7 @@ const messages = APP_ERRORS.PRODUCT;
 export function validateInsertProduct(produto: Produto) {
   validateRequiredFields(produto, [
     "nome",
-    "tipo_produto_id",
+    "tipo",
     "valor_unitario",
   ]);
 }

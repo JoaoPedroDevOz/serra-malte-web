@@ -47,33 +47,32 @@ export async function listProductsTypes(req: Request, res: Response) {
     );
 
     const filtros: Partial<Produto> = {
-      tipo_produto_id: req.query.tipo_produto_id
-        ? Number(req.query.tipo_produto_id)
-        : (undefined as unknown as number),
-      tipo: req.query.tipo as string,
+      tipo: {
+        tipo_produto_id: req.query.tipo_produto_id
+          ? Number(req.query.tipo_produto_id)
+          : 0,
+        texto: (req.query.texto as string) || "",
+      },
     };
 
-    const productsList: Partial<Produto[]> =
-      await handlerSelectProductsTypes(filtros);
+    const productsList = await handlerSelectProductsTypes(filtros);
 
     console.log(
       `api: product_type.api :: listProductsTypes - [success]: ${JSON.stringify(productsList)}`,
     );
 
-    return res.status(201).send(productsList);
+    return res.status(HTTP_STATUS.OK).send(productsList);
   } catch (err) {
     const error = {
-      status: err instanceof AppError ? err.statusCode : Number(err),
+      status: err instanceof AppError ? err.statusCode : 500,
       message: err instanceof AppError ? err.message : String(err),
     };
 
     console.log(
-      `api: product_type.api :: listProducts - [error]: ${error.message}`,
+      `api: product_type.api :: listProductsTypes - [error]: ${error.message}`,
     );
 
-    return res.status(error.status).json({
-      error: error,
-    });
+    return res.status(error.status).json({ error });
   }
 }
 
@@ -84,7 +83,10 @@ export async function editProductType(req: Request, res: Response) {
     );
 
     const filtro: Partial<Produto> = {
-      tipo_produto_id: Number(req.query.tipo_produto_id),
+      tipo: {
+        tipo_produto_id: Number(req.query.tipo_produto_id),
+        texto: "",
+      },
     };
 
     const product = await handlerUpdateProductType(filtro, req.body);
@@ -117,7 +119,10 @@ export async function removeProductType(req: Request, res: Response) {
     );
 
     const filtro: Partial<Produto> = {
-      tipo_produto_id: Number(req.query.tipo_produto_id),
+      tipo: {
+        tipo_produto_id: Number(req.query.tipo_produto_id),
+        texto: "",
+      },
     };
 
     const productType = await handlerDeleteProductType(filtro);

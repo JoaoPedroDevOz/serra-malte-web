@@ -176,13 +176,24 @@ async function deleteIngredient(
   req: Partial<Ingrediente>,
 ): Promise<Ingrediente> {
   try {
-    const ingredient = await prisma.tbl_ingrediente.delete({
-      where: {
-        ingrediente_id: req.ingrediente_id!,
-      },
-      include: {
-        tbl_tipo_ingrediente: true,
-      },
+    // Usamos $transaction para garantir consistência: ou apaga tudo, ou não apaga nada
+    const ingredient = await prisma.$transaction(async (tx) => {
+      // 1. Remove primeiro o histórico de fornecimento do ingrediente
+      await tx.rel_fornecedor_ingrediente.deleteMany({
+        where: {
+          ingrediente_id: req.ingrediente_id!,
+        },
+      });
+
+      // permite deletar o ingrediente sem violar a FK
+      return await tx.tbl_ingrediente.delete({
+        where: {
+          ingrediente_id: req.ingrediente_id!,
+        },
+        include: {
+          tbl_tipo_ingrediente: true,
+        },
+      });
     });
 
     const { tbl_tipo_ingrediente, ...resto } = ingredient;

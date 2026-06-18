@@ -200,32 +200,38 @@ export default function SupplierList({ onShowMessage }: MessageListProps) {
       )}
 
       <div className="grid gap-4">
-        {suppliers.map((supplier) => (
-          <div
-            key={supplier.supplierId}
-            className="bg-white p-8 rounded-lg shadow-sm flex justify-between items-center"
-          >
-            <div className="flex-1">
-              <h3 className="font-medium text-gray-900">{supplier.name}</h3>
-              <div className="flex gap-4 mt-2 text-sm text-gray-600">
-                <span>Contato: {supplier.contact}</span>
-                <span>Email: {supplier.email}</span>
-                <span>Telefone: {supplier.phone}</span>
+        {suppliers.length === 0 ? (
+          <p className="text-gray-500 text-sm text-center py-4">
+            Nenhum fornecedor cadastrado.
+          </p>
+        ) : (
+          suppliers.map((supplier) => (
+            <div
+              key={supplier.supplierId}
+              className="bg-white p-8 rounded-lg shadow-sm flex justify-between items-center"
+            >
+              <div className="flex-1">
+                <h3 className="font-medium text-gray-900">{supplier.name}</h3>
+                <div className="flex gap-4 mt-2 text-sm text-gray-600">
+                  <span>Contato: {supplier.contact}</span>
+                  <span>Email: {supplier.email}</span>
+                  <span>Telefone: {supplier.phone}</span>
+                </div>
+              </div>
+              <div className="flex gap-2">
+                <Button onClick={() => handleEdit(supplier)} variant="editIcon">
+                  <Edit2 className="w-4 h-4" />
+                </Button>
+                <Button
+                  onClick={async () => handleRemove(supplier)}
+                  variant="removeIcon"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
               </div>
             </div>
-            <div className="flex gap-2">
-              <Button onClick={() => handleEdit(supplier)} variant="editIcon">
-                <Edit2 className="w-4 h-4" />
-              </Button>
-              <Button
-                onClick={async () => handleRemove(supplier)}
-                variant="removeIcon"
-              >
-                <Trash2 className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

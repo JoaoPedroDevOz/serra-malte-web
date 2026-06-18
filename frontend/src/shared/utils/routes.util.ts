@@ -19,6 +19,7 @@ export const URLS = {
   BASE: "http://localhost:3030/api/",
   FORNECEDOR: "fornecedor/",
   PRODUTO: "produto/",
+  PRODUTO_TIPOS: "produto/tipos",
   FORNECEDOR_PRODUTO: "fornecedor/produto/",
   FORNECIMENTO_INGREDIENTE: "fornecedor/ingrediente/",
   INGREDIENTE: "ingrediente/",

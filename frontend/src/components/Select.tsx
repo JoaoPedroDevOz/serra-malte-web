@@ -52,7 +52,7 @@ export default function Select({
           id={selectId}
           value={value}
           className={`w-full px-3 py-2 p-2 border rounded-lg bg-white focus:ring-2 focus:border-transparent outline-none transition-all cursor-pointer appearance-none ${
-            showClearButton ? "pr-10" : "pr-8" // Dá um espaço extra à direita se o botão de limpar existir
+            showClearButton ? "pr-10" : "pr-8" 
           } ${
             error
               ? "border-red-500 focus:ring-red-200"

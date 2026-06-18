@@ -9,11 +9,14 @@ import {
   registerProduct,
   editProduct,
   removeProduct,
+  listProductTypes,
+  ProductTypeOption,
 } from "../../../services/product.service";
 import Message, { MessageListProps } from "../../../components/Message";
 
 export default function ProductList({ onShowMessage }: MessageListProps) {
   const [products, setProducts] = useState<Product[]>([]);
+  const [productTypes, setProductTypes] = useState<ProductTypeOption[]>([]);
 
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
   const [showForm, setShowForm] = useState(false);
@@ -37,11 +40,17 @@ export default function ProductList({ onShowMessage }: MessageListProps) {
   } | null>(null);
 
   useEffect(() => {
-    async function fetchProducts() {
-      const data = await listProducts();
-      setProducts(data);
+    async function fetchInitialData() {
+      const [productsData, typesData] = await Promise.all([
+        listProducts(),
+        listProductTypes(),
+      ]);
+
+      setProducts(productsData);
+      setProductTypes(typesData);
     }
-    fetchProducts();
+
+    fetchInitialData();
   }, []);
 
   const handleEdit = (s: Product) => {
@@ -73,6 +82,23 @@ export default function ProductList({ onShowMessage }: MessageListProps) {
       return await editProduct(product);
     } catch (error) {
       throw error;
+    }
+  };
+
+  const handleSelectTypeChange = (selectedValue: string) => {
+    const selectedOption = productTypes.find(
+      (opt) =>
+        String(opt.id) === selectedValue || String(opt.value) === selectedValue,
+    );
+
+    if (selectedOption) {
+      setFormData({
+        ...formData,
+        type: {
+          id: selectedOption.id,
+          text: selectedOption.label,
+        },
+      });
     }
   };
 
@@ -174,22 +200,17 @@ export default function ProductList({ onShowMessage }: MessageListProps) {
             <div>
               <Select
                 label="Tipo"
-                placeholder="Selecione"
-                required
-                value={formData.type.id}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    type: { id: parseInt(e.target.value), text: "" },
-                  })
+                placeholder={
+                  productTypes.length === 0 ? "Carregando..." : "Selecione"
                 }
-                options={[
-                  {
-                    label: "Malte",
-                    value: "Malte",
-                  },
-                ]}
-              ></Select>
+                required
+                value={formData.type.id || ""}
+                onChange={(e) => handleSelectTypeChange(e.target.value)}
+                options={productTypes.map((type) => ({
+                  label: type.label,
+                  value: String(type.id),
+                }))}
+              />
             </div>
             <div>
               <Input
