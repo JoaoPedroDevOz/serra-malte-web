@@ -4,6 +4,7 @@ import IngredientList from "./forms/IngredientsList";
 import SupplierList from "./forms/SupplierList";
 import ProductList from "./forms/ProductList";
 import Message from "../../components/Message";
+import OrderList from "./forms/OrderList";
 
 export default function BrewerySystem() {
   const [activeTab, setActiveTab] = useState<
@@ -133,10 +134,12 @@ export default function BrewerySystem() {
           <SupplierList onShowMessage={showSystemMessage} />
         )}
 
-        {/* Passando a função de emitir mensagem para o componente de Ingredientes */}
+{/* Passando a função de emitir mensagem para o componente de Ingredientes */}
         {activeTab === "ingredients" && (
           <IngredientList onShowMessage={showSystemMessage} />
         )}
+
+        {activeTab === "orders" && <OrderList />}
       </div>
     </div>
   );

@@ -1,4 +1,9 @@
+import { useState } from "react";
+import { useCart } from "../../../Context/CartContext";
+
 export default function BeersSection() {
+  const { addItem } = useCart();
+
   const beers = [
     {
       id: 1,
@@ -38,9 +43,8 @@ export default function BeersSection() {
     },
   ];
 
-  const handleOrder = (beerName: string) => {
-    console.log(`Encomendar ${beerName}`);
-    // Aqui você pode adicionar a lógica de pedido
+  const handleOrder = (beer: any) => {
+    addItem(beer.id, beer.name, beer.price);
   };
 
   return (
@@ -87,8 +91,11 @@ export default function BeersSection() {
                 <div className="text-2xl font-bold text-amber-600 mb-4">
                   {beer.price}
                 </div>
-                <button className="w-full bg-amber-600 text-white py-3 rounded-full hover:bg-amber-700 transition-colors">
-                  Encomendar
+                <button
+                  onClick={() => handleOrder(beer)}
+                  className="w-full bg-amber-600 text-white py-3 rounded-full hover:bg-amber-700 transition-colors"
+                >
+                  Adicionar ao carrinho
                 </button>
               </div>
             </div>

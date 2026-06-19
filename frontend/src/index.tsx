@@ -8,16 +8,26 @@ import AdminPage from "./pages/adminPage/adminPage";
 import Login from "./pages/login/Login";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./Context/AuthContext";
+import { OrdersProvider } from "./Context/OrdersContext";
+import { CartProvider } from "./Context/CartContext";
+import CartDrawer from "./components/CartDrawer";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Navigate to="/login" replace />,
   },
-  {
-    path: "/home",
-    element: <App />,
-  },
+ {
+  path: "/home",
+  element: (
+    <OrdersProvider>
+      <CartProvider>
+        <App />
+        <CartDrawer />
+      </CartProvider>
+    </OrdersProvider>
+  ),
+},
   {
     path: "/login",
     element: (
@@ -30,9 +40,11 @@ const router = createBrowserRouter([
     path: "/admin",
     element: (
       <AuthProvider>
-        <PrivateRoute>
-          <AdminPage />
-        </PrivateRoute>
+        <OrdersProvider>
+          <PrivateRoute>
+            <AdminPage />
+          </PrivateRoute>
+        </OrdersProvider>
       </AuthProvider>
     ),
   },
