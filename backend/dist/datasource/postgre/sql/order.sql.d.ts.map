@@ -1,1 +1,1 @@
-{"version":3,"file":"order.sql.d.ts","sourceRoot":"","sources":["../../../../src/datasource/postgre/sql/order.sql.ts"],"names":[],"mappings":""}
+{"version":3,"file":"order.sql.d.ts","sourceRoot":"","sources":["../../../../src/datasource/postgre/sql/order.sql.ts"],"names":[],"mappings":"AACA,OAAO,EACL,oBAAoB,EACpB,oBAAoB,EACrB,MAAM,2CAA2C,CAAC;AAKnD,wBAAsB,WAAW,CAAC,GAAG,EAAE,oBAAoB,gBA+B1D;AAED,wBAAsB,YAAY,CAAC,GAAG,EAAE,oBAAoB,gBAiC3D"}

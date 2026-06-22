@@ -148,9 +148,9 @@ export type tbl_pedidoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 };
 export type Tbl_pedidoGroupByOutputType = {
     pedido_id: number;
-    status_pedido_id: number | null;
+    status_pedido_id: number;
     cliente_id: number;
-    data_hora_pedido: Date | null;
+    data_hora_pedido: Date;
     _count: Tbl_pedidoCountAggregateOutputType | null;
     _avg: Tbl_pedidoAvgAggregateOutputType | null;
     _sum: Tbl_pedidoSumAggregateOutputType | null;
@@ -165,18 +165,18 @@ export type tbl_pedidoWhereInput = {
     OR?: Prisma.tbl_pedidoWhereInput[];
     NOT?: Prisma.tbl_pedidoWhereInput | Prisma.tbl_pedidoWhereInput[];
     pedido_id?: Prisma.IntFilter<"tbl_pedido"> | number;
-    status_pedido_id?: Prisma.IntNullableFilter<"tbl_pedido"> | number | null;
+    status_pedido_id?: Prisma.IntFilter<"tbl_pedido"> | number;
     cliente_id?: Prisma.IntFilter<"tbl_pedido"> | number;
-    data_hora_pedido?: Prisma.DateTimeNullableFilter<"tbl_pedido"> | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFilter<"tbl_pedido"> | Date | string;
     rel_pedido_produto?: Prisma.Rel_pedido_produtoListRelationFilter;
     tbl_cliente?: Prisma.XOR<Prisma.Tbl_clienteScalarRelationFilter, Prisma.tbl_clienteWhereInput>;
-    tbl_status_pedido?: Prisma.XOR<Prisma.Tbl_status_pedidoNullableScalarRelationFilter, Prisma.tbl_status_pedidoWhereInput> | null;
+    tbl_status_pedido?: Prisma.XOR<Prisma.Tbl_status_pedidoScalarRelationFilter, Prisma.tbl_status_pedidoWhereInput>;
 };
 export type tbl_pedidoOrderByWithRelationInput = {
     pedido_id?: Prisma.SortOrder;
-    status_pedido_id?: Prisma.SortOrderInput | Prisma.SortOrder;
+    status_pedido_id?: Prisma.SortOrder;
     cliente_id?: Prisma.SortOrder;
-    data_hora_pedido?: Prisma.SortOrderInput | Prisma.SortOrder;
+    data_hora_pedido?: Prisma.SortOrder;
     rel_pedido_produto?: Prisma.rel_pedido_produtoOrderByRelationAggregateInput;
     tbl_cliente?: Prisma.tbl_clienteOrderByWithRelationInput;
     tbl_status_pedido?: Prisma.tbl_status_pedidoOrderByWithRelationInput;
@@ -186,18 +186,18 @@ export type tbl_pedidoWhereUniqueInput = Prisma.AtLeast<{
     AND?: Prisma.tbl_pedidoWhereInput | Prisma.tbl_pedidoWhereInput[];
     OR?: Prisma.tbl_pedidoWhereInput[];
     NOT?: Prisma.tbl_pedidoWhereInput | Prisma.tbl_pedidoWhereInput[];
-    status_pedido_id?: Prisma.IntNullableFilter<"tbl_pedido"> | number | null;
+    status_pedido_id?: Prisma.IntFilter<"tbl_pedido"> | number;
     cliente_id?: Prisma.IntFilter<"tbl_pedido"> | number;
-    data_hora_pedido?: Prisma.DateTimeNullableFilter<"tbl_pedido"> | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFilter<"tbl_pedido"> | Date | string;
     rel_pedido_produto?: Prisma.Rel_pedido_produtoListRelationFilter;
     tbl_cliente?: Prisma.XOR<Prisma.Tbl_clienteScalarRelationFilter, Prisma.tbl_clienteWhereInput>;
-    tbl_status_pedido?: Prisma.XOR<Prisma.Tbl_status_pedidoNullableScalarRelationFilter, Prisma.tbl_status_pedidoWhereInput> | null;
+    tbl_status_pedido?: Prisma.XOR<Prisma.Tbl_status_pedidoScalarRelationFilter, Prisma.tbl_status_pedidoWhereInput>;
 }, "pedido_id">;
 export type tbl_pedidoOrderByWithAggregationInput = {
     pedido_id?: Prisma.SortOrder;
-    status_pedido_id?: Prisma.SortOrderInput | Prisma.SortOrder;
+    status_pedido_id?: Prisma.SortOrder;
     cliente_id?: Prisma.SortOrder;
-    data_hora_pedido?: Prisma.SortOrderInput | Prisma.SortOrder;
+    data_hora_pedido?: Prisma.SortOrder;
     _count?: Prisma.tbl_pedidoCountOrderByAggregateInput;
     _avg?: Prisma.tbl_pedidoAvgOrderByAggregateInput;
     _max?: Prisma.tbl_pedidoMaxOrderByAggregateInput;
@@ -209,50 +209,50 @@ export type tbl_pedidoScalarWhereWithAggregatesInput = {
     OR?: Prisma.tbl_pedidoScalarWhereWithAggregatesInput[];
     NOT?: Prisma.tbl_pedidoScalarWhereWithAggregatesInput | Prisma.tbl_pedidoScalarWhereWithAggregatesInput[];
     pedido_id?: Prisma.IntWithAggregatesFilter<"tbl_pedido"> | number;
-    status_pedido_id?: Prisma.IntNullableWithAggregatesFilter<"tbl_pedido"> | number | null;
+    status_pedido_id?: Prisma.IntWithAggregatesFilter<"tbl_pedido"> | number;
     cliente_id?: Prisma.IntWithAggregatesFilter<"tbl_pedido"> | number;
-    data_hora_pedido?: Prisma.DateTimeNullableWithAggregatesFilter<"tbl_pedido"> | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeWithAggregatesFilter<"tbl_pedido"> | Date | string;
 };
 export type tbl_pedidoCreateInput = {
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoCreateNestedManyWithoutTbl_pedidoInput;
     tbl_cliente?: Prisma.tbl_clienteCreateNestedOneWithoutTbl_pedidoInput;
-    tbl_status_pedido?: Prisma.tbl_status_pedidoCreateNestedOneWithoutTbl_pedidoInput;
+    tbl_status_pedido: Prisma.tbl_status_pedidoCreateNestedOneWithoutTbl_pedidoInput;
 };
 export type tbl_pedidoUncheckedCreateInput = {
     pedido_id?: number;
-    status_pedido_id?: number | null;
+    status_pedido_id: number;
     cliente_id?: number;
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedCreateNestedManyWithoutTbl_pedidoInput;
 };
 export type tbl_pedidoUpdateInput = {
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUpdateManyWithoutTbl_pedidoNestedInput;
     tbl_cliente?: Prisma.tbl_clienteUpdateOneRequiredWithoutTbl_pedidoNestedInput;
-    tbl_status_pedido?: Prisma.tbl_status_pedidoUpdateOneWithoutTbl_pedidoNestedInput;
+    tbl_status_pedido?: Prisma.tbl_status_pedidoUpdateOneRequiredWithoutTbl_pedidoNestedInput;
 };
 export type tbl_pedidoUncheckedUpdateInput = {
     pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status_pedido_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedUpdateManyWithoutTbl_pedidoNestedInput;
 };
 export type tbl_pedidoCreateManyInput = {
     pedido_id?: number;
-    status_pedido_id?: number | null;
+    status_pedido_id: number;
     cliente_id?: number;
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
 };
 export type tbl_pedidoUpdateManyMutationInput = {
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type tbl_pedidoUncheckedUpdateManyInput = {
     pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status_pedido_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type Tbl_pedidoScalarRelationFilter = {
     is?: Prisma.tbl_pedidoWhereInput;
@@ -344,9 +344,6 @@ export type tbl_pedidoUncheckedUpdateManyWithoutTbl_clienteNestedInput = {
     updateMany?: Prisma.tbl_pedidoUpdateManyWithWhereWithoutTbl_clienteInput | Prisma.tbl_pedidoUpdateManyWithWhereWithoutTbl_clienteInput[];
     deleteMany?: Prisma.tbl_pedidoScalarWhereInput | Prisma.tbl_pedidoScalarWhereInput[];
 };
-export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null;
-};
 export type tbl_pedidoCreateNestedManyWithoutTbl_status_pedidoInput = {
     create?: Prisma.XOR<Prisma.tbl_pedidoCreateWithoutTbl_status_pedidoInput, Prisma.tbl_pedidoUncheckedCreateWithoutTbl_status_pedidoInput> | Prisma.tbl_pedidoCreateWithoutTbl_status_pedidoInput[] | Prisma.tbl_pedidoUncheckedCreateWithoutTbl_status_pedidoInput[];
     connectOrCreate?: Prisma.tbl_pedidoCreateOrConnectWithoutTbl_status_pedidoInput | Prisma.tbl_pedidoCreateOrConnectWithoutTbl_status_pedidoInput[];
@@ -386,15 +383,15 @@ export type tbl_pedidoUncheckedUpdateManyWithoutTbl_status_pedidoNestedInput = {
     deleteMany?: Prisma.tbl_pedidoScalarWhereInput | Prisma.tbl_pedidoScalarWhereInput[];
 };
 export type tbl_pedidoCreateWithoutRel_pedido_produtoInput = {
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
     tbl_cliente?: Prisma.tbl_clienteCreateNestedOneWithoutTbl_pedidoInput;
-    tbl_status_pedido?: Prisma.tbl_status_pedidoCreateNestedOneWithoutTbl_pedidoInput;
+    tbl_status_pedido: Prisma.tbl_status_pedidoCreateNestedOneWithoutTbl_pedidoInput;
 };
 export type tbl_pedidoUncheckedCreateWithoutRel_pedido_produtoInput = {
     pedido_id?: number;
-    status_pedido_id?: number | null;
+    status_pedido_id: number;
     cliente_id?: number;
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
 };
 export type tbl_pedidoCreateOrConnectWithoutRel_pedido_produtoInput = {
     where: Prisma.tbl_pedidoWhereUniqueInput;
@@ -410,25 +407,25 @@ export type tbl_pedidoUpdateToOneWithWhereWithoutRel_pedido_produtoInput = {
     data: Prisma.XOR<Prisma.tbl_pedidoUpdateWithoutRel_pedido_produtoInput, Prisma.tbl_pedidoUncheckedUpdateWithoutRel_pedido_produtoInput>;
 };
 export type tbl_pedidoUpdateWithoutRel_pedido_produtoInput = {
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     tbl_cliente?: Prisma.tbl_clienteUpdateOneRequiredWithoutTbl_pedidoNestedInput;
-    tbl_status_pedido?: Prisma.tbl_status_pedidoUpdateOneWithoutTbl_pedidoNestedInput;
+    tbl_status_pedido?: Prisma.tbl_status_pedidoUpdateOneRequiredWithoutTbl_pedidoNestedInput;
 };
 export type tbl_pedidoUncheckedUpdateWithoutRel_pedido_produtoInput = {
     pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status_pedido_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type tbl_pedidoCreateWithoutTbl_clienteInput = {
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoCreateNestedManyWithoutTbl_pedidoInput;
-    tbl_status_pedido?: Prisma.tbl_status_pedidoCreateNestedOneWithoutTbl_pedidoInput;
+    tbl_status_pedido: Prisma.tbl_status_pedidoCreateNestedOneWithoutTbl_pedidoInput;
 };
 export type tbl_pedidoUncheckedCreateWithoutTbl_clienteInput = {
     pedido_id?: number;
-    status_pedido_id?: number | null;
-    data_hora_pedido?: Date | string | null;
+    status_pedido_id: number;
+    data_hora_pedido: Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedCreateNestedManyWithoutTbl_pedidoInput;
 };
 export type tbl_pedidoCreateOrConnectWithoutTbl_clienteInput = {
@@ -457,19 +454,19 @@ export type tbl_pedidoScalarWhereInput = {
     OR?: Prisma.tbl_pedidoScalarWhereInput[];
     NOT?: Prisma.tbl_pedidoScalarWhereInput | Prisma.tbl_pedidoScalarWhereInput[];
     pedido_id?: Prisma.IntFilter<"tbl_pedido"> | number;
-    status_pedido_id?: Prisma.IntNullableFilter<"tbl_pedido"> | number | null;
+    status_pedido_id?: Prisma.IntFilter<"tbl_pedido"> | number;
     cliente_id?: Prisma.IntFilter<"tbl_pedido"> | number;
-    data_hora_pedido?: Prisma.DateTimeNullableFilter<"tbl_pedido"> | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFilter<"tbl_pedido"> | Date | string;
 };
 export type tbl_pedidoCreateWithoutTbl_status_pedidoInput = {
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoCreateNestedManyWithoutTbl_pedidoInput;
     tbl_cliente?: Prisma.tbl_clienteCreateNestedOneWithoutTbl_pedidoInput;
 };
 export type tbl_pedidoUncheckedCreateWithoutTbl_status_pedidoInput = {
     pedido_id?: number;
     cliente_id?: number;
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedCreateNestedManyWithoutTbl_pedidoInput;
 };
 export type tbl_pedidoCreateOrConnectWithoutTbl_status_pedidoInput = {
@@ -495,45 +492,45 @@ export type tbl_pedidoUpdateManyWithWhereWithoutTbl_status_pedidoInput = {
 };
 export type tbl_pedidoCreateManyTbl_clienteInput = {
     pedido_id?: number;
-    status_pedido_id?: number | null;
-    data_hora_pedido?: Date | string | null;
+    status_pedido_id: number;
+    data_hora_pedido: Date | string;
 };
 export type tbl_pedidoUpdateWithoutTbl_clienteInput = {
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUpdateManyWithoutTbl_pedidoNestedInput;
-    tbl_status_pedido?: Prisma.tbl_status_pedidoUpdateOneWithoutTbl_pedidoNestedInput;
+    tbl_status_pedido?: Prisma.tbl_status_pedidoUpdateOneRequiredWithoutTbl_pedidoNestedInput;
 };
 export type tbl_pedidoUncheckedUpdateWithoutTbl_clienteInput = {
     pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status_pedido_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedUpdateManyWithoutTbl_pedidoNestedInput;
 };
 export type tbl_pedidoUncheckedUpdateManyWithoutTbl_clienteInput = {
     pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status_pedido_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 export type tbl_pedidoCreateManyTbl_status_pedidoInput = {
     pedido_id?: number;
     cliente_id?: number;
-    data_hora_pedido?: Date | string | null;
+    data_hora_pedido: Date | string;
 };
 export type tbl_pedidoUpdateWithoutTbl_status_pedidoInput = {
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUpdateManyWithoutTbl_pedidoNestedInput;
     tbl_cliente?: Prisma.tbl_clienteUpdateOneRequiredWithoutTbl_pedidoNestedInput;
 };
 export type tbl_pedidoUncheckedUpdateWithoutTbl_status_pedidoInput = {
     pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedUpdateManyWithoutTbl_pedidoNestedInput;
 };
 export type tbl_pedidoUncheckedUpdateManyWithoutTbl_status_pedidoInput = {
     pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    data_hora_pedido?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null;
+    data_hora_pedido?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
 };
 /**
  * Count Type Tbl_pedidoCountOutputType
@@ -566,7 +563,7 @@ export type tbl_pedidoSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
     data_hora_pedido?: boolean;
     rel_pedido_produto?: boolean | Prisma.tbl_pedido$rel_pedido_produtoArgs<ExtArgs>;
     tbl_cliente?: boolean | Prisma.tbl_clienteDefaultArgs<ExtArgs>;
-    tbl_status_pedido?: boolean | Prisma.tbl_pedido$tbl_status_pedidoArgs<ExtArgs>;
+    tbl_status_pedido?: boolean | Prisma.tbl_status_pedidoDefaultArgs<ExtArgs>;
     _count?: boolean | Prisma.Tbl_pedidoCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["tbl_pedido"]>;
 export type tbl_pedidoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -575,7 +572,7 @@ export type tbl_pedidoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
     cliente_id?: boolean;
     data_hora_pedido?: boolean;
     tbl_cliente?: boolean | Prisma.tbl_clienteDefaultArgs<ExtArgs>;
-    tbl_status_pedido?: boolean | Prisma.tbl_pedido$tbl_status_pedidoArgs<ExtArgs>;
+    tbl_status_pedido?: boolean | Prisma.tbl_status_pedidoDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["tbl_pedido"]>;
 export type tbl_pedidoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     pedido_id?: boolean;
@@ -583,7 +580,7 @@ export type tbl_pedidoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
     cliente_id?: boolean;
     data_hora_pedido?: boolean;
     tbl_cliente?: boolean | Prisma.tbl_clienteDefaultArgs<ExtArgs>;
-    tbl_status_pedido?: boolean | Prisma.tbl_pedido$tbl_status_pedidoArgs<ExtArgs>;
+    tbl_status_pedido?: boolean | Prisma.tbl_status_pedidoDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["tbl_pedido"]>;
 export type tbl_pedidoSelectScalar = {
     pedido_id?: boolean;
@@ -595,29 +592,29 @@ export type tbl_pedidoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type tbl_pedidoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     rel_pedido_produto?: boolean | Prisma.tbl_pedido$rel_pedido_produtoArgs<ExtArgs>;
     tbl_cliente?: boolean | Prisma.tbl_clienteDefaultArgs<ExtArgs>;
-    tbl_status_pedido?: boolean | Prisma.tbl_pedido$tbl_status_pedidoArgs<ExtArgs>;
+    tbl_status_pedido?: boolean | Prisma.tbl_status_pedidoDefaultArgs<ExtArgs>;
     _count?: boolean | Prisma.Tbl_pedidoCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type tbl_pedidoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     tbl_cliente?: boolean | Prisma.tbl_clienteDefaultArgs<ExtArgs>;
-    tbl_status_pedido?: boolean | Prisma.tbl_pedido$tbl_status_pedidoArgs<ExtArgs>;
+    tbl_status_pedido?: boolean | Prisma.tbl_status_pedidoDefaultArgs<ExtArgs>;
 };
 export type tbl_pedidoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     tbl_cliente?: boolean | Prisma.tbl_clienteDefaultArgs<ExtArgs>;
-    tbl_status_pedido?: boolean | Prisma.tbl_pedido$tbl_status_pedidoArgs<ExtArgs>;
+    tbl_status_pedido?: boolean | Prisma.tbl_status_pedidoDefaultArgs<ExtArgs>;
 };
 export type $tbl_pedidoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "tbl_pedido";
     objects: {
         rel_pedido_produto: Prisma.$rel_pedido_produtoPayload<ExtArgs>[];
         tbl_cliente: Prisma.$tbl_clientePayload<ExtArgs>;
-        tbl_status_pedido: Prisma.$tbl_status_pedidoPayload<ExtArgs> | null;
+        tbl_status_pedido: Prisma.$tbl_status_pedidoPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         pedido_id: number;
-        status_pedido_id: number | null;
+        status_pedido_id: number;
         cliente_id: number;
-        data_hora_pedido: Date | null;
+        data_hora_pedido: Date;
     }, ExtArgs["result"]["tbl_pedido"]>;
     composites: {};
 };
@@ -949,7 +946,7 @@ export interface Prisma__tbl_pedidoClient<T, Null = never, ExtArgs extends runti
     readonly [Symbol.toStringTag]: "PrismaPromise";
     rel_pedido_produto<T extends Prisma.tbl_pedido$rel_pedido_produtoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_pedido$rel_pedido_produtoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$rel_pedido_produtoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     tbl_cliente<T extends Prisma.tbl_clienteDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_clienteDefaultArgs<ExtArgs>>): Prisma.Prisma__tbl_clienteClient<runtime.Types.Result.GetResult<Prisma.$tbl_clientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
-    tbl_status_pedido<T extends Prisma.tbl_pedido$tbl_status_pedidoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_pedido$tbl_status_pedidoArgs<ExtArgs>>): Prisma.Prisma__tbl_status_pedidoClient<runtime.Types.Result.GetResult<Prisma.$tbl_status_pedidoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    tbl_status_pedido<T extends Prisma.tbl_status_pedidoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_status_pedidoDefaultArgs<ExtArgs>>): Prisma.Prisma__tbl_status_pedidoClient<runtime.Types.Result.GetResult<Prisma.$tbl_status_pedidoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1384,24 +1381,6 @@ export type tbl_pedido$rel_pedido_produtoArgs<ExtArgs extends runtime.Types.Exte
     take?: number;
     skip?: number;
     distinct?: Prisma.Rel_pedido_produtoScalarFieldEnum | Prisma.Rel_pedido_produtoScalarFieldEnum[];
-};
-/**
- * tbl_pedido.tbl_status_pedido
- */
-export type tbl_pedido$tbl_status_pedidoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the tbl_status_pedido
-     */
-    select?: Prisma.tbl_status_pedidoSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the tbl_status_pedido
-     */
-    omit?: Prisma.tbl_status_pedidoOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.tbl_status_pedidoInclude<ExtArgs> | null;
-    where?: Prisma.tbl_status_pedidoWhereInput;
 };
 /**
  * tbl_pedido without action

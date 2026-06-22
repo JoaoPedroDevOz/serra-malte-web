@@ -16,27 +16,31 @@ export type Tbl_produtoAvgAggregateOutputType = {
     produto_id: number | null;
     tipo_produto_id: number | null;
     valor_unitario: runtime.Decimal | null;
+    ibu: number | null;
+    abv: runtime.Decimal | null;
 };
 export type Tbl_produtoSumAggregateOutputType = {
     produto_id: number | null;
     tipo_produto_id: number | null;
     valor_unitario: runtime.Decimal | null;
+    ibu: number | null;
+    abv: runtime.Decimal | null;
 };
 export type Tbl_produtoMinAggregateOutputType = {
     produto_id: number | null;
     tipo_produto_id: number | null;
     nome: string | null;
     valor_unitario: runtime.Decimal | null;
-    ibu: string | null;
-    abv: string | null;
+    ibu: number | null;
+    abv: runtime.Decimal | null;
 };
 export type Tbl_produtoMaxAggregateOutputType = {
     produto_id: number | null;
     tipo_produto_id: number | null;
     nome: string | null;
     valor_unitario: runtime.Decimal | null;
-    ibu: string | null;
-    abv: string | null;
+    ibu: number | null;
+    abv: runtime.Decimal | null;
 };
 export type Tbl_produtoCountAggregateOutputType = {
     produto_id: number;
@@ -51,11 +55,15 @@ export type Tbl_produtoAvgAggregateInputType = {
     produto_id?: true;
     tipo_produto_id?: true;
     valor_unitario?: true;
+    ibu?: true;
+    abv?: true;
 };
 export type Tbl_produtoSumAggregateInputType = {
     produto_id?: true;
     tipo_produto_id?: true;
     valor_unitario?: true;
+    ibu?: true;
+    abv?: true;
 };
 export type Tbl_produtoMinAggregateInputType = {
     produto_id?: true;
@@ -160,11 +168,11 @@ export type tbl_produtoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 };
 export type Tbl_produtoGroupByOutputType = {
     produto_id: number;
-    tipo_produto_id: number | null;
-    nome: string | null;
-    valor_unitario: runtime.Decimal | null;
-    ibu: string | null;
-    abv: string | null;
+    tipo_produto_id: number;
+    nome: string;
+    valor_unitario: runtime.Decimal;
+    ibu: number | null;
+    abv: runtime.Decimal | null;
     _count: Tbl_produtoCountAggregateOutputType | null;
     _avg: Tbl_produtoAvgAggregateOutputType | null;
     _sum: Tbl_produtoSumAggregateOutputType | null;
@@ -179,21 +187,21 @@ export type tbl_produtoWhereInput = {
     OR?: Prisma.tbl_produtoWhereInput[];
     NOT?: Prisma.tbl_produtoWhereInput | Prisma.tbl_produtoWhereInput[];
     produto_id?: Prisma.IntFilter<"tbl_produto"> | number;
-    tipo_produto_id?: Prisma.IntNullableFilter<"tbl_produto"> | number | null;
-    nome?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
-    valor_unitario?: Prisma.DecimalNullableFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
-    abv?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
+    tipo_produto_id?: Prisma.IntFilter<"tbl_produto"> | number;
+    nome?: Prisma.StringFilter<"tbl_produto"> | string;
+    valor_unitario?: Prisma.DecimalFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.IntNullableFilter<"tbl_produto"> | number | null;
+    abv?: Prisma.DecimalNullableFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.Rel_fornecedor_produtoListRelationFilter;
     rel_pedido_produto?: Prisma.Rel_pedido_produtoListRelationFilter;
     rel_produto_ingrediente?: Prisma.Rel_produto_ingredienteListRelationFilter;
-    tbl_tipo_produto?: Prisma.XOR<Prisma.Tbl_tipo_produtoNullableScalarRelationFilter, Prisma.tbl_tipo_produtoWhereInput> | null;
+    tbl_tipo_produto?: Prisma.XOR<Prisma.Tbl_tipo_produtoScalarRelationFilter, Prisma.tbl_tipo_produtoWhereInput>;
 };
 export type tbl_produtoOrderByWithRelationInput = {
     produto_id?: Prisma.SortOrder;
-    tipo_produto_id?: Prisma.SortOrderInput | Prisma.SortOrder;
-    nome?: Prisma.SortOrderInput | Prisma.SortOrder;
-    valor_unitario?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo_produto_id?: Prisma.SortOrder;
+    nome?: Prisma.SortOrder;
+    valor_unitario?: Prisma.SortOrder;
     ibu?: Prisma.SortOrderInput | Prisma.SortOrder;
     abv?: Prisma.SortOrderInput | Prisma.SortOrder;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoOrderByRelationAggregateInput;
@@ -206,21 +214,21 @@ export type tbl_produtoWhereUniqueInput = Prisma.AtLeast<{
     AND?: Prisma.tbl_produtoWhereInput | Prisma.tbl_produtoWhereInput[];
     OR?: Prisma.tbl_produtoWhereInput[];
     NOT?: Prisma.tbl_produtoWhereInput | Prisma.tbl_produtoWhereInput[];
-    tipo_produto_id?: Prisma.IntNullableFilter<"tbl_produto"> | number | null;
-    nome?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
-    valor_unitario?: Prisma.DecimalNullableFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
-    abv?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
+    tipo_produto_id?: Prisma.IntFilter<"tbl_produto"> | number;
+    nome?: Prisma.StringFilter<"tbl_produto"> | string;
+    valor_unitario?: Prisma.DecimalFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.IntNullableFilter<"tbl_produto"> | number | null;
+    abv?: Prisma.DecimalNullableFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.Rel_fornecedor_produtoListRelationFilter;
     rel_pedido_produto?: Prisma.Rel_pedido_produtoListRelationFilter;
     rel_produto_ingrediente?: Prisma.Rel_produto_ingredienteListRelationFilter;
-    tbl_tipo_produto?: Prisma.XOR<Prisma.Tbl_tipo_produtoNullableScalarRelationFilter, Prisma.tbl_tipo_produtoWhereInput> | null;
+    tbl_tipo_produto?: Prisma.XOR<Prisma.Tbl_tipo_produtoScalarRelationFilter, Prisma.tbl_tipo_produtoWhereInput>;
 }, "produto_id">;
 export type tbl_produtoOrderByWithAggregationInput = {
     produto_id?: Prisma.SortOrder;
-    tipo_produto_id?: Prisma.SortOrderInput | Prisma.SortOrder;
-    nome?: Prisma.SortOrderInput | Prisma.SortOrder;
-    valor_unitario?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo_produto_id?: Prisma.SortOrder;
+    nome?: Prisma.SortOrder;
+    valor_unitario?: Prisma.SortOrder;
     ibu?: Prisma.SortOrderInput | Prisma.SortOrder;
     abv?: Prisma.SortOrderInput | Prisma.SortOrder;
     _count?: Prisma.tbl_produtoCountOrderByAggregateInput;
@@ -234,75 +242,75 @@ export type tbl_produtoScalarWhereWithAggregatesInput = {
     OR?: Prisma.tbl_produtoScalarWhereWithAggregatesInput[];
     NOT?: Prisma.tbl_produtoScalarWhereWithAggregatesInput | Prisma.tbl_produtoScalarWhereWithAggregatesInput[];
     produto_id?: Prisma.IntWithAggregatesFilter<"tbl_produto"> | number;
-    tipo_produto_id?: Prisma.IntNullableWithAggregatesFilter<"tbl_produto"> | number | null;
-    nome?: Prisma.StringNullableWithAggregatesFilter<"tbl_produto"> | string | null;
-    valor_unitario?: Prisma.DecimalNullableWithAggregatesFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.StringNullableWithAggregatesFilter<"tbl_produto"> | string | null;
-    abv?: Prisma.StringNullableWithAggregatesFilter<"tbl_produto"> | string | null;
+    tipo_produto_id?: Prisma.IntWithAggregatesFilter<"tbl_produto"> | number;
+    nome?: Prisma.StringWithAggregatesFilter<"tbl_produto"> | string;
+    valor_unitario?: Prisma.DecimalWithAggregatesFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.IntNullableWithAggregatesFilter<"tbl_produto"> | number | null;
+    abv?: Prisma.DecimalNullableWithAggregatesFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
 };
 export type tbl_produtoCreateInput = {
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoCreateNestedManyWithoutTbl_produtoInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoCreateNestedManyWithoutTbl_produtoInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteCreateNestedManyWithoutTbl_produtoInput;
-    tbl_tipo_produto?: Prisma.tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput;
+    tbl_tipo_produto: Prisma.tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput;
 };
 export type tbl_produtoUncheckedCreateInput = {
     produto_id?: number;
-    tipo_produto_id?: number | null;
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    tipo_produto_id: number;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedCreateNestedManyWithoutTbl_produtoInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedCreateNestedManyWithoutTbl_produtoInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUncheckedCreateNestedManyWithoutTbl_produtoInput;
 };
 export type tbl_produtoUpdateInput = {
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUpdateManyWithoutTbl_produtoNestedInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUpdateManyWithoutTbl_produtoNestedInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUpdateManyWithoutTbl_produtoNestedInput;
-    tbl_tipo_produto?: Prisma.tbl_tipo_produtoUpdateOneWithoutTbl_produtoNestedInput;
+    tbl_tipo_produto?: Prisma.tbl_tipo_produtoUpdateOneRequiredWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoUncheckedUpdateInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_produto_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUncheckedUpdateManyWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoCreateManyInput = {
     produto_id?: number;
-    tipo_produto_id?: number | null;
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    tipo_produto_id: number;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
 };
 export type tbl_produtoUpdateManyMutationInput = {
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
 };
 export type tbl_produtoUncheckedUpdateManyInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_produto_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
 };
 export type Tbl_produtoScalarRelationFilter = {
     is?: Prisma.tbl_produtoWhereInput;
@@ -320,6 +328,8 @@ export type tbl_produtoAvgOrderByAggregateInput = {
     produto_id?: Prisma.SortOrder;
     tipo_produto_id?: Prisma.SortOrder;
     valor_unitario?: Prisma.SortOrder;
+    ibu?: Prisma.SortOrder;
+    abv?: Prisma.SortOrder;
 };
 export type tbl_produtoMaxOrderByAggregateInput = {
     produto_id?: Prisma.SortOrder;
@@ -341,6 +351,8 @@ export type tbl_produtoSumOrderByAggregateInput = {
     produto_id?: Prisma.SortOrder;
     tipo_produto_id?: Prisma.SortOrder;
     valor_unitario?: Prisma.SortOrder;
+    ibu?: Prisma.SortOrder;
+    abv?: Prisma.SortOrder;
 };
 export type Tbl_produtoListRelationFilter = {
     every?: Prisma.tbl_produtoWhereInput;
@@ -425,21 +437,21 @@ export type tbl_produtoUncheckedUpdateManyWithoutTbl_tipo_produtoNestedInput = {
     deleteMany?: Prisma.tbl_produtoScalarWhereInput | Prisma.tbl_produtoScalarWhereInput[];
 };
 export type tbl_produtoCreateWithoutRel_fornecedor_produtoInput = {
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_pedido_produto?: Prisma.rel_pedido_produtoCreateNestedManyWithoutTbl_produtoInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteCreateNestedManyWithoutTbl_produtoInput;
-    tbl_tipo_produto?: Prisma.tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput;
+    tbl_tipo_produto: Prisma.tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput;
 };
 export type tbl_produtoUncheckedCreateWithoutRel_fornecedor_produtoInput = {
     produto_id?: number;
-    tipo_produto_id?: number | null;
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    tipo_produto_id: number;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedCreateNestedManyWithoutTbl_produtoInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUncheckedCreateNestedManyWithoutTbl_produtoInput;
 };
@@ -457,40 +469,40 @@ export type tbl_produtoUpdateToOneWithWhereWithoutRel_fornecedor_produtoInput = 
     data: Prisma.XOR<Prisma.tbl_produtoUpdateWithoutRel_fornecedor_produtoInput, Prisma.tbl_produtoUncheckedUpdateWithoutRel_fornecedor_produtoInput>;
 };
 export type tbl_produtoUpdateWithoutRel_fornecedor_produtoInput = {
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUpdateManyWithoutTbl_produtoNestedInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUpdateManyWithoutTbl_produtoNestedInput;
-    tbl_tipo_produto?: Prisma.tbl_tipo_produtoUpdateOneWithoutTbl_produtoNestedInput;
+    tbl_tipo_produto?: Prisma.tbl_tipo_produtoUpdateOneRequiredWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoUncheckedUpdateWithoutRel_fornecedor_produtoInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_produto_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUncheckedUpdateManyWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoCreateWithoutRel_pedido_produtoInput = {
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoCreateNestedManyWithoutTbl_produtoInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteCreateNestedManyWithoutTbl_produtoInput;
-    tbl_tipo_produto?: Prisma.tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput;
+    tbl_tipo_produto: Prisma.tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput;
 };
 export type tbl_produtoUncheckedCreateWithoutRel_pedido_produtoInput = {
     produto_id?: number;
-    tipo_produto_id?: number | null;
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    tipo_produto_id: number;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedCreateNestedManyWithoutTbl_produtoInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUncheckedCreateNestedManyWithoutTbl_produtoInput;
 };
@@ -508,40 +520,40 @@ export type tbl_produtoUpdateToOneWithWhereWithoutRel_pedido_produtoInput = {
     data: Prisma.XOR<Prisma.tbl_produtoUpdateWithoutRel_pedido_produtoInput, Prisma.tbl_produtoUncheckedUpdateWithoutRel_pedido_produtoInput>;
 };
 export type tbl_produtoUpdateWithoutRel_pedido_produtoInput = {
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUpdateManyWithoutTbl_produtoNestedInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUpdateManyWithoutTbl_produtoNestedInput;
-    tbl_tipo_produto?: Prisma.tbl_tipo_produtoUpdateOneWithoutTbl_produtoNestedInput;
+    tbl_tipo_produto?: Prisma.tbl_tipo_produtoUpdateOneRequiredWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoUncheckedUpdateWithoutRel_pedido_produtoInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_produto_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUncheckedUpdateManyWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoCreateWithoutRel_produto_ingredienteInput = {
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoCreateNestedManyWithoutTbl_produtoInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoCreateNestedManyWithoutTbl_produtoInput;
-    tbl_tipo_produto?: Prisma.tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput;
+    tbl_tipo_produto: Prisma.tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput;
 };
 export type tbl_produtoUncheckedCreateWithoutRel_produto_ingredienteInput = {
     produto_id?: number;
-    tipo_produto_id?: number | null;
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    tipo_produto_id: number;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedCreateNestedManyWithoutTbl_produtoInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedCreateNestedManyWithoutTbl_produtoInput;
 };
@@ -559,39 +571,39 @@ export type tbl_produtoUpdateToOneWithWhereWithoutRel_produto_ingredienteInput =
     data: Prisma.XOR<Prisma.tbl_produtoUpdateWithoutRel_produto_ingredienteInput, Prisma.tbl_produtoUncheckedUpdateWithoutRel_produto_ingredienteInput>;
 };
 export type tbl_produtoUpdateWithoutRel_produto_ingredienteInput = {
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUpdateManyWithoutTbl_produtoNestedInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUpdateManyWithoutTbl_produtoNestedInput;
-    tbl_tipo_produto?: Prisma.tbl_tipo_produtoUpdateOneWithoutTbl_produtoNestedInput;
+    tbl_tipo_produto?: Prisma.tbl_tipo_produtoUpdateOneRequiredWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoUncheckedUpdateWithoutRel_produto_ingredienteInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_produto_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoCreateWithoutTbl_tipo_produtoInput = {
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoCreateNestedManyWithoutTbl_produtoInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoCreateNestedManyWithoutTbl_produtoInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteCreateNestedManyWithoutTbl_produtoInput;
 };
 export type tbl_produtoUncheckedCreateWithoutTbl_tipo_produtoInput = {
     produto_id?: number;
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedCreateNestedManyWithoutTbl_produtoInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedCreateNestedManyWithoutTbl_produtoInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUncheckedCreateNestedManyWithoutTbl_produtoInput;
@@ -622,44 +634,44 @@ export type tbl_produtoScalarWhereInput = {
     OR?: Prisma.tbl_produtoScalarWhereInput[];
     NOT?: Prisma.tbl_produtoScalarWhereInput | Prisma.tbl_produtoScalarWhereInput[];
     produto_id?: Prisma.IntFilter<"tbl_produto"> | number;
-    tipo_produto_id?: Prisma.IntNullableFilter<"tbl_produto"> | number | null;
-    nome?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
-    valor_unitario?: Prisma.DecimalNullableFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
-    abv?: Prisma.StringNullableFilter<"tbl_produto"> | string | null;
+    tipo_produto_id?: Prisma.IntFilter<"tbl_produto"> | number;
+    nome?: Prisma.StringFilter<"tbl_produto"> | string;
+    valor_unitario?: Prisma.DecimalFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.IntNullableFilter<"tbl_produto"> | number | null;
+    abv?: Prisma.DecimalNullableFilter<"tbl_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
 };
 export type tbl_produtoCreateManyTbl_tipo_produtoInput = {
     produto_id?: number;
-    nome?: string | null;
-    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: string | null;
-    abv?: string | null;
+    nome: string;
+    valor_unitario?: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: number | null;
+    abv?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
 };
 export type tbl_produtoUpdateWithoutTbl_tipo_produtoInput = {
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUpdateManyWithoutTbl_produtoNestedInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUpdateManyWithoutTbl_produtoNestedInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUpdateManyWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoUncheckedUpdateWithoutTbl_tipo_produtoInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInput;
     rel_pedido_produto?: Prisma.rel_pedido_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInput;
     rel_produto_ingrediente?: Prisma.rel_produto_ingredienteUncheckedUpdateManyWithoutTbl_produtoNestedInput;
 };
 export type tbl_produtoUncheckedUpdateManyWithoutTbl_tipo_produtoInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    valor_unitario?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    ibu?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    abv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    valor_unitario?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    ibu?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    abv?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
 };
 /**
  * Count Type Tbl_produtoCountOutputType
@@ -711,7 +723,7 @@ export type tbl_produtoSelect<ExtArgs extends runtime.Types.Extensions.InternalA
     rel_fornecedor_produto?: boolean | Prisma.tbl_produto$rel_fornecedor_produtoArgs<ExtArgs>;
     rel_pedido_produto?: boolean | Prisma.tbl_produto$rel_pedido_produtoArgs<ExtArgs>;
     rel_produto_ingrediente?: boolean | Prisma.tbl_produto$rel_produto_ingredienteArgs<ExtArgs>;
-    tbl_tipo_produto?: boolean | Prisma.tbl_produto$tbl_tipo_produtoArgs<ExtArgs>;
+    tbl_tipo_produto?: boolean | Prisma.tbl_tipo_produtoDefaultArgs<ExtArgs>;
     _count?: boolean | Prisma.Tbl_produtoCountOutputTypeDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["tbl_produto"]>;
 export type tbl_produtoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -721,7 +733,7 @@ export type tbl_produtoSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
     valor_unitario?: boolean;
     ibu?: boolean;
     abv?: boolean;
-    tbl_tipo_produto?: boolean | Prisma.tbl_produto$tbl_tipo_produtoArgs<ExtArgs>;
+    tbl_tipo_produto?: boolean | Prisma.tbl_tipo_produtoDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["tbl_produto"]>;
 export type tbl_produtoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     produto_id?: boolean;
@@ -730,7 +742,7 @@ export type tbl_produtoSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
     valor_unitario?: boolean;
     ibu?: boolean;
     abv?: boolean;
-    tbl_tipo_produto?: boolean | Prisma.tbl_produto$tbl_tipo_produtoArgs<ExtArgs>;
+    tbl_tipo_produto?: boolean | Prisma.tbl_tipo_produtoDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["tbl_produto"]>;
 export type tbl_produtoSelectScalar = {
     produto_id?: boolean;
@@ -745,14 +757,14 @@ export type tbl_produtoInclude<ExtArgs extends runtime.Types.Extensions.Internal
     rel_fornecedor_produto?: boolean | Prisma.tbl_produto$rel_fornecedor_produtoArgs<ExtArgs>;
     rel_pedido_produto?: boolean | Prisma.tbl_produto$rel_pedido_produtoArgs<ExtArgs>;
     rel_produto_ingrediente?: boolean | Prisma.tbl_produto$rel_produto_ingredienteArgs<ExtArgs>;
-    tbl_tipo_produto?: boolean | Prisma.tbl_produto$tbl_tipo_produtoArgs<ExtArgs>;
+    tbl_tipo_produto?: boolean | Prisma.tbl_tipo_produtoDefaultArgs<ExtArgs>;
     _count?: boolean | Prisma.Tbl_produtoCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type tbl_produtoIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    tbl_tipo_produto?: boolean | Prisma.tbl_produto$tbl_tipo_produtoArgs<ExtArgs>;
+    tbl_tipo_produto?: boolean | Prisma.tbl_tipo_produtoDefaultArgs<ExtArgs>;
 };
 export type tbl_produtoIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    tbl_tipo_produto?: boolean | Prisma.tbl_produto$tbl_tipo_produtoArgs<ExtArgs>;
+    tbl_tipo_produto?: boolean | Prisma.tbl_tipo_produtoDefaultArgs<ExtArgs>;
 };
 export type $tbl_produtoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "tbl_produto";
@@ -760,15 +772,15 @@ export type $tbl_produtoPayload<ExtArgs extends runtime.Types.Extensions.Interna
         rel_fornecedor_produto: Prisma.$rel_fornecedor_produtoPayload<ExtArgs>[];
         rel_pedido_produto: Prisma.$rel_pedido_produtoPayload<ExtArgs>[];
         rel_produto_ingrediente: Prisma.$rel_produto_ingredientePayload<ExtArgs>[];
-        tbl_tipo_produto: Prisma.$tbl_tipo_produtoPayload<ExtArgs> | null;
+        tbl_tipo_produto: Prisma.$tbl_tipo_produtoPayload<ExtArgs>;
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         produto_id: number;
-        tipo_produto_id: number | null;
-        nome: string | null;
-        valor_unitario: runtime.Decimal | null;
-        ibu: string | null;
-        abv: string | null;
+        tipo_produto_id: number;
+        nome: string;
+        valor_unitario: runtime.Decimal;
+        ibu: number | null;
+        abv: runtime.Decimal | null;
     }, ExtArgs["result"]["tbl_produto"]>;
     composites: {};
 };
@@ -1101,7 +1113,7 @@ export interface Prisma__tbl_produtoClient<T, Null = never, ExtArgs extends runt
     rel_fornecedor_produto<T extends Prisma.tbl_produto$rel_fornecedor_produtoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_produto$rel_fornecedor_produtoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$rel_fornecedor_produtoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     rel_pedido_produto<T extends Prisma.tbl_produto$rel_pedido_produtoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_produto$rel_pedido_produtoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$rel_pedido_produtoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     rel_produto_ingrediente<T extends Prisma.tbl_produto$rel_produto_ingredienteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_produto$rel_produto_ingredienteArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$rel_produto_ingredientePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
-    tbl_tipo_produto<T extends Prisma.tbl_produto$tbl_tipo_produtoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_produto$tbl_tipo_produtoArgs<ExtArgs>>): Prisma.Prisma__tbl_tipo_produtoClient<runtime.Types.Result.GetResult<Prisma.$tbl_tipo_produtoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    tbl_tipo_produto<T extends Prisma.tbl_tipo_produtoDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_tipo_produtoDefaultArgs<ExtArgs>>): Prisma.Prisma__tbl_tipo_produtoClient<runtime.Types.Result.GetResult<Prisma.$tbl_tipo_produtoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1131,8 +1143,8 @@ export interface tbl_produtoFieldRefs {
     readonly tipo_produto_id: Prisma.FieldRef<"tbl_produto", 'Int'>;
     readonly nome: Prisma.FieldRef<"tbl_produto", 'String'>;
     readonly valor_unitario: Prisma.FieldRef<"tbl_produto", 'Decimal'>;
-    readonly ibu: Prisma.FieldRef<"tbl_produto", 'String'>;
-    readonly abv: Prisma.FieldRef<"tbl_produto", 'String'>;
+    readonly ibu: Prisma.FieldRef<"tbl_produto", 'Int'>;
+    readonly abv: Prisma.FieldRef<"tbl_produto", 'Decimal'>;
 }
 /**
  * tbl_produto findUnique
@@ -1348,7 +1360,7 @@ export type tbl_produtoCreateArgs<ExtArgs extends runtime.Types.Extensions.Inter
     /**
      * The data needed to create a tbl_produto.
      */
-    data?: Prisma.XOR<Prisma.tbl_produtoCreateInput, Prisma.tbl_produtoUncheckedCreateInput>;
+    data: Prisma.XOR<Prisma.tbl_produtoCreateInput, Prisma.tbl_produtoUncheckedCreateInput>;
 };
 /**
  * tbl_produto createMany
@@ -1584,24 +1596,6 @@ export type tbl_produto$rel_produto_ingredienteArgs<ExtArgs extends runtime.Type
     take?: number;
     skip?: number;
     distinct?: Prisma.Rel_produto_ingredienteScalarFieldEnum | Prisma.Rel_produto_ingredienteScalarFieldEnum[];
-};
-/**
- * tbl_produto.tbl_tipo_produto
- */
-export type tbl_produto$tbl_tipo_produtoArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the tbl_tipo_produto
-     */
-    select?: Prisma.tbl_tipo_produtoSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the tbl_tipo_produto
-     */
-    omit?: Prisma.tbl_tipo_produtoOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.tbl_tipo_produtoInclude<ExtArgs> | null;
-    where?: Prisma.tbl_tipo_produtoWhereInput;
 };
 /**
  * tbl_produto without action

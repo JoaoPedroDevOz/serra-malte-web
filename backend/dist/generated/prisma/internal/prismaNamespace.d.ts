@@ -1394,6 +1394,8 @@ export declare const Tbl_ingredienteScalarFieldEnum: {
     readonly ingrediente_id: "ingrediente_id";
     readonly tipo_ingrediente_id: "tipo_ingrediente_id";
     readonly nome: "nome";
+    readonly valor_unitario: "valor_unitario";
+    readonly quantidade_estoque: "quantidade_estoque";
 };
 export type Tbl_ingredienteScalarFieldEnum = (typeof Tbl_ingredienteScalarFieldEnum)[keyof typeof Tbl_ingredienteScalarFieldEnum];
 export declare const Tbl_pedidoScalarFieldEnum: {
@@ -1437,16 +1439,16 @@ export declare const SortOrder: {
     readonly desc: "desc";
 };
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder];
-export declare const NullsOrder: {
-    readonly first: "first";
-    readonly last: "last";
-};
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 export declare const QueryMode: {
     readonly default: "default";
     readonly insensitive: "insensitive";
 };
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode];
+export declare const NullsOrder: {
+    readonly first: "first";
+    readonly last: "last";
+};
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder];
 /**
  * Field references
  */

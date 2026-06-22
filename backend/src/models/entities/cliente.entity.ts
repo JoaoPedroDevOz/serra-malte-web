@@ -1,4 +1,4 @@
-interface Cliente {
+export interface Cliente {
   tipo_pessoa_id: number;
   registro_nacional: string;
   nome: string;

@@ -132,7 +132,7 @@ export type tbl_tipo_pessoaGroupByArgs<ExtArgs extends runtime.Types.Extensions.
 };
 export type Tbl_tipo_pessoaGroupByOutputType = {
     tipo_pessoa_id: number;
-    tipo: number | null;
+    tipo: number;
     _count: Tbl_tipo_pessoaCountAggregateOutputType | null;
     _avg: Tbl_tipo_pessoaAvgAggregateOutputType | null;
     _sum: Tbl_tipo_pessoaSumAggregateOutputType | null;
@@ -147,12 +147,12 @@ export type tbl_tipo_pessoaWhereInput = {
     OR?: Prisma.tbl_tipo_pessoaWhereInput[];
     NOT?: Prisma.tbl_tipo_pessoaWhereInput | Prisma.tbl_tipo_pessoaWhereInput[];
     tipo_pessoa_id?: Prisma.IntFilter<"tbl_tipo_pessoa"> | number;
-    tipo?: Prisma.IntNullableFilter<"tbl_tipo_pessoa"> | number | null;
+    tipo?: Prisma.IntFilter<"tbl_tipo_pessoa"> | number;
     tbl_cliente?: Prisma.Tbl_clienteListRelationFilter;
 };
 export type tbl_tipo_pessoaOrderByWithRelationInput = {
     tipo_pessoa_id?: Prisma.SortOrder;
-    tipo?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo?: Prisma.SortOrder;
     tbl_cliente?: Prisma.tbl_clienteOrderByRelationAggregateInput;
 };
 export type tbl_tipo_pessoaWhereUniqueInput = Prisma.AtLeast<{
@@ -160,12 +160,12 @@ export type tbl_tipo_pessoaWhereUniqueInput = Prisma.AtLeast<{
     AND?: Prisma.tbl_tipo_pessoaWhereInput | Prisma.tbl_tipo_pessoaWhereInput[];
     OR?: Prisma.tbl_tipo_pessoaWhereInput[];
     NOT?: Prisma.tbl_tipo_pessoaWhereInput | Prisma.tbl_tipo_pessoaWhereInput[];
-    tipo?: Prisma.IntNullableFilter<"tbl_tipo_pessoa"> | number | null;
+    tipo?: Prisma.IntFilter<"tbl_tipo_pessoa"> | number;
     tbl_cliente?: Prisma.Tbl_clienteListRelationFilter;
 }, "tipo_pessoa_id">;
 export type tbl_tipo_pessoaOrderByWithAggregationInput = {
     tipo_pessoa_id?: Prisma.SortOrder;
-    tipo?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo?: Prisma.SortOrder;
     _count?: Prisma.tbl_tipo_pessoaCountOrderByAggregateInput;
     _avg?: Prisma.tbl_tipo_pessoaAvgOrderByAggregateInput;
     _max?: Prisma.tbl_tipo_pessoaMaxOrderByAggregateInput;
@@ -177,43 +177,43 @@ export type tbl_tipo_pessoaScalarWhereWithAggregatesInput = {
     OR?: Prisma.tbl_tipo_pessoaScalarWhereWithAggregatesInput[];
     NOT?: Prisma.tbl_tipo_pessoaScalarWhereWithAggregatesInput | Prisma.tbl_tipo_pessoaScalarWhereWithAggregatesInput[];
     tipo_pessoa_id?: Prisma.IntWithAggregatesFilter<"tbl_tipo_pessoa"> | number;
-    tipo?: Prisma.IntNullableWithAggregatesFilter<"tbl_tipo_pessoa"> | number | null;
+    tipo?: Prisma.IntWithAggregatesFilter<"tbl_tipo_pessoa"> | number;
 };
 export type tbl_tipo_pessoaCreateInput = {
     tipo_pessoa_id: number;
-    tipo?: number | null;
+    tipo: number;
     tbl_cliente?: Prisma.tbl_clienteCreateNestedManyWithoutTbl_tipo_pessoaInput;
 };
 export type tbl_tipo_pessoaUncheckedCreateInput = {
     tipo_pessoa_id: number;
-    tipo?: number | null;
+    tipo: number;
     tbl_cliente?: Prisma.tbl_clienteUncheckedCreateNestedManyWithoutTbl_tipo_pessoaInput;
 };
 export type tbl_tipo_pessoaUpdateInput = {
     tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    tipo?: Prisma.IntFieldUpdateOperationsInput | number;
     tbl_cliente?: Prisma.tbl_clienteUpdateManyWithoutTbl_tipo_pessoaNestedInput;
 };
 export type tbl_tipo_pessoaUncheckedUpdateInput = {
     tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    tipo?: Prisma.IntFieldUpdateOperationsInput | number;
     tbl_cliente?: Prisma.tbl_clienteUncheckedUpdateManyWithoutTbl_tipo_pessoaNestedInput;
 };
 export type tbl_tipo_pessoaCreateManyInput = {
     tipo_pessoa_id: number;
-    tipo?: number | null;
+    tipo: number;
 };
 export type tbl_tipo_pessoaUpdateManyMutationInput = {
     tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    tipo?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type tbl_tipo_pessoaUncheckedUpdateManyInput = {
     tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    tipo?: Prisma.IntFieldUpdateOperationsInput | number;
 };
-export type Tbl_tipo_pessoaNullableScalarRelationFilter = {
-    is?: Prisma.tbl_tipo_pessoaWhereInput | null;
-    isNot?: Prisma.tbl_tipo_pessoaWhereInput | null;
+export type Tbl_tipo_pessoaScalarRelationFilter = {
+    is?: Prisma.tbl_tipo_pessoaWhereInput;
+    isNot?: Prisma.tbl_tipo_pessoaWhereInput;
 };
 export type tbl_tipo_pessoaCountOrderByAggregateInput = {
     tipo_pessoa_id?: Prisma.SortOrder;
@@ -240,22 +240,20 @@ export type tbl_tipo_pessoaCreateNestedOneWithoutTbl_clienteInput = {
     connectOrCreate?: Prisma.tbl_tipo_pessoaCreateOrConnectWithoutTbl_clienteInput;
     connect?: Prisma.tbl_tipo_pessoaWhereUniqueInput;
 };
-export type tbl_tipo_pessoaUpdateOneWithoutTbl_clienteNestedInput = {
+export type tbl_tipo_pessoaUpdateOneRequiredWithoutTbl_clienteNestedInput = {
     create?: Prisma.XOR<Prisma.tbl_tipo_pessoaCreateWithoutTbl_clienteInput, Prisma.tbl_tipo_pessoaUncheckedCreateWithoutTbl_clienteInput>;
     connectOrCreate?: Prisma.tbl_tipo_pessoaCreateOrConnectWithoutTbl_clienteInput;
     upsert?: Prisma.tbl_tipo_pessoaUpsertWithoutTbl_clienteInput;
-    disconnect?: Prisma.tbl_tipo_pessoaWhereInput | boolean;
-    delete?: Prisma.tbl_tipo_pessoaWhereInput | boolean;
     connect?: Prisma.tbl_tipo_pessoaWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.tbl_tipo_pessoaUpdateToOneWithWhereWithoutTbl_clienteInput, Prisma.tbl_tipo_pessoaUpdateWithoutTbl_clienteInput>, Prisma.tbl_tipo_pessoaUncheckedUpdateWithoutTbl_clienteInput>;
 };
 export type tbl_tipo_pessoaCreateWithoutTbl_clienteInput = {
     tipo_pessoa_id: number;
-    tipo?: number | null;
+    tipo: number;
 };
 export type tbl_tipo_pessoaUncheckedCreateWithoutTbl_clienteInput = {
     tipo_pessoa_id: number;
-    tipo?: number | null;
+    tipo: number;
 };
 export type tbl_tipo_pessoaCreateOrConnectWithoutTbl_clienteInput = {
     where: Prisma.tbl_tipo_pessoaWhereUniqueInput;
@@ -272,11 +270,11 @@ export type tbl_tipo_pessoaUpdateToOneWithWhereWithoutTbl_clienteInput = {
 };
 export type tbl_tipo_pessoaUpdateWithoutTbl_clienteInput = {
     tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    tipo?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type tbl_tipo_pessoaUncheckedUpdateWithoutTbl_clienteInput = {
     tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    tipo?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 /**
  * Count Type Tbl_tipo_pessoaCountOutputType
@@ -334,7 +332,7 @@ export type $tbl_tipo_pessoaPayload<ExtArgs extends runtime.Types.Extensions.Int
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         tipo_pessoa_id: number;
-        tipo: number | null;
+        tipo: number;
     }, ExtArgs["result"]["tbl_tipo_pessoa"]>;
     composites: {};
 };

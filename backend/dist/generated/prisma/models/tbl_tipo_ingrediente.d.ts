@@ -128,7 +128,7 @@ export type tbl_tipo_ingredienteGroupByArgs<ExtArgs extends runtime.Types.Extens
 };
 export type Tbl_tipo_ingredienteGroupByOutputType = {
     tipo_ingrediente_id: number;
-    tipo: string | null;
+    tipo: string;
     _count: Tbl_tipo_ingredienteCountAggregateOutputType | null;
     _avg: Tbl_tipo_ingredienteAvgAggregateOutputType | null;
     _sum: Tbl_tipo_ingredienteSumAggregateOutputType | null;
@@ -143,12 +143,12 @@ export type tbl_tipo_ingredienteWhereInput = {
     OR?: Prisma.tbl_tipo_ingredienteWhereInput[];
     NOT?: Prisma.tbl_tipo_ingredienteWhereInput | Prisma.tbl_tipo_ingredienteWhereInput[];
     tipo_ingrediente_id?: Prisma.IntFilter<"tbl_tipo_ingrediente"> | number;
-    tipo?: Prisma.StringNullableFilter<"tbl_tipo_ingrediente"> | string | null;
+    tipo?: Prisma.StringFilter<"tbl_tipo_ingrediente"> | string;
     tbl_ingrediente?: Prisma.Tbl_ingredienteListRelationFilter;
 };
 export type tbl_tipo_ingredienteOrderByWithRelationInput = {
     tipo_ingrediente_id?: Prisma.SortOrder;
-    tipo?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo?: Prisma.SortOrder;
     tbl_ingrediente?: Prisma.tbl_ingredienteOrderByRelationAggregateInput;
 };
 export type tbl_tipo_ingredienteWhereUniqueInput = Prisma.AtLeast<{
@@ -156,12 +156,12 @@ export type tbl_tipo_ingredienteWhereUniqueInput = Prisma.AtLeast<{
     AND?: Prisma.tbl_tipo_ingredienteWhereInput | Prisma.tbl_tipo_ingredienteWhereInput[];
     OR?: Prisma.tbl_tipo_ingredienteWhereInput[];
     NOT?: Prisma.tbl_tipo_ingredienteWhereInput | Prisma.tbl_tipo_ingredienteWhereInput[];
-    tipo?: Prisma.StringNullableFilter<"tbl_tipo_ingrediente"> | string | null;
+    tipo?: Prisma.StringFilter<"tbl_tipo_ingrediente"> | string;
     tbl_ingrediente?: Prisma.Tbl_ingredienteListRelationFilter;
 }, "tipo_ingrediente_id">;
 export type tbl_tipo_ingredienteOrderByWithAggregationInput = {
     tipo_ingrediente_id?: Prisma.SortOrder;
-    tipo?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo?: Prisma.SortOrder;
     _count?: Prisma.tbl_tipo_ingredienteCountOrderByAggregateInput;
     _avg?: Prisma.tbl_tipo_ingredienteAvgOrderByAggregateInput;
     _max?: Prisma.tbl_tipo_ingredienteMaxOrderByAggregateInput;
@@ -173,43 +173,40 @@ export type tbl_tipo_ingredienteScalarWhereWithAggregatesInput = {
     OR?: Prisma.tbl_tipo_ingredienteScalarWhereWithAggregatesInput[];
     NOT?: Prisma.tbl_tipo_ingredienteScalarWhereWithAggregatesInput | Prisma.tbl_tipo_ingredienteScalarWhereWithAggregatesInput[];
     tipo_ingrediente_id?: Prisma.IntWithAggregatesFilter<"tbl_tipo_ingrediente"> | number;
-    tipo?: Prisma.StringNullableWithAggregatesFilter<"tbl_tipo_ingrediente"> | string | null;
+    tipo?: Prisma.StringWithAggregatesFilter<"tbl_tipo_ingrediente"> | string;
 };
 export type tbl_tipo_ingredienteCreateInput = {
-    tipo_ingrediente_id: number;
-    tipo?: string | null;
+    tipo: string;
     tbl_ingrediente?: Prisma.tbl_ingredienteCreateNestedManyWithoutTbl_tipo_ingredienteInput;
 };
 export type tbl_tipo_ingredienteUncheckedCreateInput = {
-    tipo_ingrediente_id: number;
-    tipo?: string | null;
+    tipo_ingrediente_id?: number;
+    tipo: string;
     tbl_ingrediente?: Prisma.tbl_ingredienteUncheckedCreateNestedManyWithoutTbl_tipo_ingredienteInput;
 };
 export type tbl_tipo_ingredienteUpdateInput = {
-    tipo_ingrediente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
     tbl_ingrediente?: Prisma.tbl_ingredienteUpdateManyWithoutTbl_tipo_ingredienteNestedInput;
 };
 export type tbl_tipo_ingredienteUncheckedUpdateInput = {
     tipo_ingrediente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
     tbl_ingrediente?: Prisma.tbl_ingredienteUncheckedUpdateManyWithoutTbl_tipo_ingredienteNestedInput;
 };
 export type tbl_tipo_ingredienteCreateManyInput = {
-    tipo_ingrediente_id: number;
-    tipo?: string | null;
+    tipo_ingrediente_id?: number;
+    tipo: string;
 };
 export type tbl_tipo_ingredienteUpdateManyMutationInput = {
-    tipo_ingrediente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_tipo_ingredienteUncheckedUpdateManyInput = {
     tipo_ingrediente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
 };
-export type Tbl_tipo_ingredienteNullableScalarRelationFilter = {
-    is?: Prisma.tbl_tipo_ingredienteWhereInput | null;
-    isNot?: Prisma.tbl_tipo_ingredienteWhereInput | null;
+export type Tbl_tipo_ingredienteScalarRelationFilter = {
+    is?: Prisma.tbl_tipo_ingredienteWhereInput;
+    isNot?: Prisma.tbl_tipo_ingredienteWhereInput;
 };
 export type tbl_tipo_ingredienteCountOrderByAggregateInput = {
     tipo_ingrediente_id?: Prisma.SortOrder;
@@ -234,22 +231,19 @@ export type tbl_tipo_ingredienteCreateNestedOneWithoutTbl_ingredienteInput = {
     connectOrCreate?: Prisma.tbl_tipo_ingredienteCreateOrConnectWithoutTbl_ingredienteInput;
     connect?: Prisma.tbl_tipo_ingredienteWhereUniqueInput;
 };
-export type tbl_tipo_ingredienteUpdateOneWithoutTbl_ingredienteNestedInput = {
+export type tbl_tipo_ingredienteUpdateOneRequiredWithoutTbl_ingredienteNestedInput = {
     create?: Prisma.XOR<Prisma.tbl_tipo_ingredienteCreateWithoutTbl_ingredienteInput, Prisma.tbl_tipo_ingredienteUncheckedCreateWithoutTbl_ingredienteInput>;
     connectOrCreate?: Prisma.tbl_tipo_ingredienteCreateOrConnectWithoutTbl_ingredienteInput;
     upsert?: Prisma.tbl_tipo_ingredienteUpsertWithoutTbl_ingredienteInput;
-    disconnect?: Prisma.tbl_tipo_ingredienteWhereInput | boolean;
-    delete?: Prisma.tbl_tipo_ingredienteWhereInput | boolean;
     connect?: Prisma.tbl_tipo_ingredienteWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.tbl_tipo_ingredienteUpdateToOneWithWhereWithoutTbl_ingredienteInput, Prisma.tbl_tipo_ingredienteUpdateWithoutTbl_ingredienteInput>, Prisma.tbl_tipo_ingredienteUncheckedUpdateWithoutTbl_ingredienteInput>;
 };
 export type tbl_tipo_ingredienteCreateWithoutTbl_ingredienteInput = {
-    tipo_ingrediente_id: number;
-    tipo?: string | null;
+    tipo: string;
 };
 export type tbl_tipo_ingredienteUncheckedCreateWithoutTbl_ingredienteInput = {
-    tipo_ingrediente_id: number;
-    tipo?: string | null;
+    tipo_ingrediente_id?: number;
+    tipo: string;
 };
 export type tbl_tipo_ingredienteCreateOrConnectWithoutTbl_ingredienteInput = {
     where: Prisma.tbl_tipo_ingredienteWhereUniqueInput;
@@ -265,12 +259,11 @@ export type tbl_tipo_ingredienteUpdateToOneWithWhereWithoutTbl_ingredienteInput 
     data: Prisma.XOR<Prisma.tbl_tipo_ingredienteUpdateWithoutTbl_ingredienteInput, Prisma.tbl_tipo_ingredienteUncheckedUpdateWithoutTbl_ingredienteInput>;
 };
 export type tbl_tipo_ingredienteUpdateWithoutTbl_ingredienteInput = {
-    tipo_ingrediente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_tipo_ingredienteUncheckedUpdateWithoutTbl_ingredienteInput = {
     tipo_ingrediente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 /**
  * Count Type Tbl_tipo_ingredienteCountOutputType
@@ -328,7 +321,7 @@ export type $tbl_tipo_ingredientePayload<ExtArgs extends runtime.Types.Extension
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         tipo_ingrediente_id: number;
-        tipo: string | null;
+        tipo: string;
     }, ExtArgs["result"]["tbl_tipo_ingrediente"]>;
     composites: {};
 };

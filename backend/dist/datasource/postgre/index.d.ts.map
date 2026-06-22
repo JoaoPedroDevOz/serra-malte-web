@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/datasource/postgre/index.ts"],"names":[],"mappings":"AAOA,eAAO,MAAM,MAAM,wNAAgC,CAAC"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/datasource/postgre/index.ts"],"names":[],"mappings":"AAEA,OAAO,eAAe,CAAC;AAMvB,eAAO,MAAM,MAAM,wNAAgC,CAAC"}

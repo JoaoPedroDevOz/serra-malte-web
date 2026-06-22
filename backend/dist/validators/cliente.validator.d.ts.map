@@ -1,0 +1,1 @@
+{"version":3,"file":"cliente.validator.d.ts","sourceRoot":"","sources":["../../src/validators/cliente.validator.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,OAAO,EAAE,MAAM,sCAAsC,CAAC;AAE/D,wBAAgB,sBAAsB,CAAC,CAAC,SAAS,MAAM,EACrD,GAAG,EAAE,CAAC,EACN,cAAc,CAAC,EAAE,CAAC,MAAM,CAAC,CAAC,EAAE,GAC3B,IAAI,CAcN;AAED,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,QAErD"}

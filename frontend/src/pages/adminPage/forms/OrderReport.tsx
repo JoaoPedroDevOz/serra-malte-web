@@ -1,105 +1,125 @@
+import { useEffect, useState } from "react";
+import { listOrders } from "../../../services/order.service";
 import { Order } from "../../../shared/models/interfaces/order.interface";
-import { Product } from "../../../shared/models/interfaces/product.interface";
 
-interface OrderReportProps {
-  orders: Order[];
-  beers: Product[];
-}
+export default function OrderReport() {
+  const [orders, setOrders] = useState<Order[]>([]);
+  const [loading, setLoading] = useState(true);
 
-export default function OrderReport({ orders, beers }: OrderReportProps) {
-  // Simulação da junção dos dados baseado nas novas subestruturas de listas de produtos
-  const reportData = orders.map((order) => {
-    const product = order.productList[0]; // Mapeia o item atual
-    const beer = beers.find((b) => b.productId === product?.productId);
-    const quantity = product?.quantity || 0;
-    const unitPrice = product?.unitValue || beer?.unitValue || 0;
+  useEffect(() => {
+    async function fetchOrders() {
+      const data = await listOrders();
+      setOrders(data);
+      setLoading(false);
+    }
 
-    return {
-      id: order.orderId,
-      customerName: order.client.name,
-      beerName: beer?.name || "Desconhecida",
-      beerStyle: beer?.typeProductId === 1 ? "Pilsen" : "Especial", // Exemplo de fallback baseado em tipo
-      quantity: quantity,
-      price: unitPrice,
-      totalPrice: quantity * unitPrice,
-      date: order.timeStampOrder,
+    fetchOrders();
+  }, []);
+
+  const reportRows = orders.flatMap((order) =>
+    order.productList.map((item, itemIndex) => ({
+      key: `${order.orderId}-${item.productId}-${itemIndex}`,
+      orderId: order.orderId,
+      clientName: `${order.client.name}${order.client.surname ? ` ${order.client.surname}` : ""}`,
+      clientEmail: order.client.email || "-",
+      productName: item.name || "Desconhecido",
+      quantity: item.quantity,
+      unitPrice: item.unitValue,
+      totalPrice: item.quantity * item.unitValue,
+      orderDate: order.timeStampOrder,
       status: order.status.statusText,
-    };
-  });
+    })),
+  );
 
-  const grandTotal = reportData.reduce((sum, item) => sum + item.totalPrice, 0);
+  const grandTotal = reportRows.reduce((sum, row) => sum + row.totalPrice, 0);
+
+  if (loading) {
+    return (
+      <div className="bg-white rounded-lg shadow-sm p-8 text-center text-gray-600">
+        Carregando relatório de pedidos...
+      </div>
+    );
+  }
+
+  if (orders.length === 0) {
+    return (
+      <div className="bg-white rounded-lg shadow-sm p-8 text-center text-gray-500">
+        Ainda não há pedidos para exibir no relatório.
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h2 className="text-xl font-semibold text-gray-800 mb-4">
-        Relatório Detalhado de Pedidos (JOIN das Estruturas)
-      </h2>
-      <div className="bg-white rounded-lg shadow-sm overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800">
+            Relatório de Pedidos
+          </h2>
+          <p className="text-sm text-gray-600">
+            Todos os pedidos, cliente, produtos e informações de cada transação.
+          </p>
+        </div>
+        <div className="text-sm text-gray-700">
+          {orders.length} pedido(s) • Total geral: R$ {grandTotal.toFixed(2)}
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-sm overflow-x-auto">
+        <table className="w-full text-sm min-w-[900px]">
           <thead className="bg-amber-100 text-gray-700">
             <tr>
-              <th className="px-4 py-3 text-left">ID</th>
+              <th className="px-4 py-3 text-left">Pedido</th>
               <th className="px-4 py-3 text-left">Cliente</th>
-              <th className="px-4 py-3 text-left">Cerveja</th>
-              <th className="px-4 py-3 text-left">Estilo</th>
+              <th className="px-4 py-3 text-left">Email</th>
+              <th className="px-4 py-3 text-left">Produto</th>
               <th className="px-4 py-3 text-left">Quantidade</th>
               <th className="px-4 py-3 text-left">Preço Unit.</th>
-              <th className="px-4 py-3 text-left">Total</th>
+              <th className="px-4 py-3 text-left">Total Item</th>
               <th className="px-4 py-3 text-left">Data</th>
               <th className="px-4 py-3 text-left">Status</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
-            {reportData.map((item, index) => (
+            {reportRows.map((row, index) => (
               <tr
-                key={item.id}
+                key={row.key}
                 className={index % 2 === 0 ? "bg-white" : "bg-amber-50/40"}
               >
-                <td className="px-4 py-3 text-gray-600">{item.id}</td>
+                <td className="px-4 py-3 text-gray-600">#{row.orderId}</td>
                 <td className="px-4 py-3 font-medium text-gray-900">
-                  {item.customerName}
+                  {row.clientName}
                 </td>
+                <td className="px-4 py-3 text-gray-600">{row.clientEmail}</td>
                 <td className="px-4 py-3 font-medium text-gray-900">
-                  {item.beerName}
+                  {row.productName}
                 </td>
-                <td className="px-4 py-3 text-gray-600">{item.beerStyle}</td>
-                <td className="px-4 py-3 text-gray-600">{item.quantity}</td>
+                <td className="px-4 py-3 text-gray-600">{row.quantity}</td>
                 <td className="px-4 py-3 text-gray-600">
-                  R$ {item.price.toFixed(2)}
+                  R$ {row.unitPrice.toFixed(2)}
                 </td>
                 <td className="px-4 py-3 font-semibold text-amber-700">
-                  R$ {item.totalPrice.toFixed(2)}
+                  R$ {row.totalPrice.toFixed(2)}
                 </td>
                 <td className="px-4 py-3 text-gray-600">
-                  {new Date(item.date).toLocaleDateString("pt-BR")}
+                  {row.orderDate.toLocaleDateString("pt-BR")}
                 </td>
                 <td className="px-4 py-3">
                   <span
                     className={`px-2 py-1 rounded text-xs font-medium ${
-                      item.status === "Entregue"
+                      row.status === "Entregue"
                         ? "bg-green-100 text-green-700"
-                        : item.status === "Pendente"
+                        : row.status === "Pendente"
                           ? "bg-yellow-100 text-yellow-700"
                           : "bg-blue-100 text-blue-700"
                     }`}
                   >
-                    {item.status}
+                    {row.status}
                   </span>
                 </td>
               </tr>
             ))}
           </tbody>
-          <tfoot className="bg-amber-100 font-semibold text-gray-800">
-            <tr>
-              <td colSpan={6} className="px-4 py-3 text-right">
-                Total Geral:
-              </td>
-              <td className="px-4 py-3 text-amber-700 font-bold text-base">
-                R$ {grandTotal.toFixed(2)}
-              </td>
-              <td colSpan={2}></td>
-            </tr>
-          </tfoot>
         </table>
       </div>
     </div>

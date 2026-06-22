@@ -24,4 +24,6 @@ export const URLS = {
   FORNECIMENTO_INGREDIENTE: "fornecedor/ingrediente/",
   INGREDIENTE: "ingrediente/",
   INGREDIENTE_TIPOS: "ingrediente/tipos/",
+  PEDIDO: "pedido/",
+  CLIENTE: "cliente/",
 };

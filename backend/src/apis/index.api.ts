@@ -33,3 +33,15 @@ import * as SupplierItemApi from "./rel/supplier-item.api.ts";
  * Supplier Item  / Fornecedor Item
  */
 export { SupplierItemApi };
+
+import * as ClienteApi from "./cliente.api.ts";
+/**
+ * Cliente / Cliente
+ */
+export { ClienteApi };
+
+import * as OrdersApi from "./orders.api.ts";
+/**
+ * Pedido Type / Tipo Pedido
+ */
+export { OrdersApi };

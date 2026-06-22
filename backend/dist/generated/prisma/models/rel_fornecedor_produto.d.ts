@@ -160,8 +160,8 @@ export type Rel_fornecedor_produtoGroupByOutputType = {
     fornecedor_id: number;
     produto_id: number;
     data_hora_fornecimento: Date;
-    valor_fornecimento: runtime.Decimal | null;
-    quantidade: number | null;
+    valor_fornecimento: runtime.Decimal;
+    quantidade: number;
     _count: Rel_fornecedor_produtoCountAggregateOutputType | null;
     _avg: Rel_fornecedor_produtoAvgAggregateOutputType | null;
     _sum: Rel_fornecedor_produtoSumAggregateOutputType | null;
@@ -178,8 +178,8 @@ export type rel_fornecedor_produtoWhereInput = {
     fornecedor_id?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
     produto_id?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
     data_hora_fornecimento?: Prisma.DateTimeFilter<"rel_fornecedor_produto"> | Date | string;
-    valor_fornecimento?: Prisma.DecimalNullableFilter<"rel_fornecedor_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.IntNullableFilter<"rel_fornecedor_produto"> | number | null;
+    valor_fornecimento?: Prisma.DecimalFilter<"rel_fornecedor_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
     tbl_fornecedor?: Prisma.XOR<Prisma.Tbl_fornecedorScalarRelationFilter, Prisma.tbl_fornecedorWhereInput>;
     tbl_produto?: Prisma.XOR<Prisma.Tbl_produtoScalarRelationFilter, Prisma.tbl_produtoWhereInput>;
 };
@@ -187,8 +187,8 @@ export type rel_fornecedor_produtoOrderByWithRelationInput = {
     fornecedor_id?: Prisma.SortOrder;
     produto_id?: Prisma.SortOrder;
     data_hora_fornecimento?: Prisma.SortOrder;
-    valor_fornecimento?: Prisma.SortOrderInput | Prisma.SortOrder;
-    quantidade?: Prisma.SortOrderInput | Prisma.SortOrder;
+    valor_fornecimento?: Prisma.SortOrder;
+    quantidade?: Prisma.SortOrder;
     tbl_fornecedor?: Prisma.tbl_fornecedorOrderByWithRelationInput;
     tbl_produto?: Prisma.tbl_produtoOrderByWithRelationInput;
 };
@@ -200,8 +200,8 @@ export type rel_fornecedor_produtoWhereUniqueInput = Prisma.AtLeast<{
     fornecedor_id?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
     produto_id?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
     data_hora_fornecimento?: Prisma.DateTimeFilter<"rel_fornecedor_produto"> | Date | string;
-    valor_fornecimento?: Prisma.DecimalNullableFilter<"rel_fornecedor_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.IntNullableFilter<"rel_fornecedor_produto"> | number | null;
+    valor_fornecimento?: Prisma.DecimalFilter<"rel_fornecedor_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
     tbl_fornecedor?: Prisma.XOR<Prisma.Tbl_fornecedorScalarRelationFilter, Prisma.tbl_fornecedorWhereInput>;
     tbl_produto?: Prisma.XOR<Prisma.Tbl_produtoScalarRelationFilter, Prisma.tbl_produtoWhereInput>;
 }, "fornecedor_id_produto_id_data_hora_fornecimento">;
@@ -209,8 +209,8 @@ export type rel_fornecedor_produtoOrderByWithAggregationInput = {
     fornecedor_id?: Prisma.SortOrder;
     produto_id?: Prisma.SortOrder;
     data_hora_fornecimento?: Prisma.SortOrder;
-    valor_fornecimento?: Prisma.SortOrderInput | Prisma.SortOrder;
-    quantidade?: Prisma.SortOrderInput | Prisma.SortOrder;
+    valor_fornecimento?: Prisma.SortOrder;
+    quantidade?: Prisma.SortOrder;
     _count?: Prisma.rel_fornecedor_produtoCountOrderByAggregateInput;
     _avg?: Prisma.rel_fornecedor_produtoAvgOrderByAggregateInput;
     _max?: Prisma.rel_fornecedor_produtoMaxOrderByAggregateInput;
@@ -224,13 +224,13 @@ export type rel_fornecedor_produtoScalarWhereWithAggregatesInput = {
     fornecedor_id?: Prisma.IntWithAggregatesFilter<"rel_fornecedor_produto"> | number;
     produto_id?: Prisma.IntWithAggregatesFilter<"rel_fornecedor_produto"> | number;
     data_hora_fornecimento?: Prisma.DateTimeWithAggregatesFilter<"rel_fornecedor_produto"> | Date | string;
-    valor_fornecimento?: Prisma.DecimalNullableWithAggregatesFilter<"rel_fornecedor_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.IntNullableWithAggregatesFilter<"rel_fornecedor_produto"> | number | null;
+    valor_fornecimento?: Prisma.DecimalWithAggregatesFilter<"rel_fornecedor_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntWithAggregatesFilter<"rel_fornecedor_produto"> | number;
 };
 export type rel_fornecedor_produtoCreateInput = {
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
     tbl_fornecedor?: Prisma.tbl_fornecedorCreateNestedOneWithoutRel_fornecedor_produtoInput;
     tbl_produto?: Prisma.tbl_produtoCreateNestedOneWithoutRel_fornecedor_produtoInput;
 };
@@ -238,13 +238,13 @@ export type rel_fornecedor_produtoUncheckedCreateInput = {
     fornecedor_id?: number;
     produto_id?: number;
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
 };
 export type rel_fornecedor_produtoUpdateInput = {
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
     tbl_fornecedor?: Prisma.tbl_fornecedorUpdateOneRequiredWithoutRel_fornecedor_produtoNestedInput;
     tbl_produto?: Prisma.tbl_produtoUpdateOneRequiredWithoutRel_fornecedor_produtoNestedInput;
 };
@@ -252,27 +252,27 @@ export type rel_fornecedor_produtoUncheckedUpdateInput = {
     fornecedor_id?: Prisma.IntFieldUpdateOperationsInput | number;
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type rel_fornecedor_produtoCreateManyInput = {
     fornecedor_id?: number;
     produto_id?: number;
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
 };
 export type rel_fornecedor_produtoUpdateManyMutationInput = {
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type rel_fornecedor_produtoUncheckedUpdateManyInput = {
     fornecedor_id?: Prisma.IntFieldUpdateOperationsInput | number;
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type rel_fornecedor_produtoFornecedor_idProduto_idData_hora_fornecimentoCompoundUniqueInput = {
     fornecedor_id: number;
@@ -398,15 +398,15 @@ export type rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_produtoNestedInp
 };
 export type rel_fornecedor_produtoCreateWithoutTbl_fornecedorInput = {
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
     tbl_produto?: Prisma.tbl_produtoCreateNestedOneWithoutRel_fornecedor_produtoInput;
 };
 export type rel_fornecedor_produtoUncheckedCreateWithoutTbl_fornecedorInput = {
     produto_id?: number;
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
 };
 export type rel_fornecedor_produtoCreateOrConnectWithoutTbl_fornecedorInput = {
     where: Prisma.rel_fornecedor_produtoWhereUniqueInput;
@@ -436,20 +436,20 @@ export type rel_fornecedor_produtoScalarWhereInput = {
     fornecedor_id?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
     produto_id?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
     data_hora_fornecimento?: Prisma.DateTimeFilter<"rel_fornecedor_produto"> | Date | string;
-    valor_fornecimento?: Prisma.DecimalNullableFilter<"rel_fornecedor_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.IntNullableFilter<"rel_fornecedor_produto"> | number | null;
+    valor_fornecimento?: Prisma.DecimalFilter<"rel_fornecedor_produto"> | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFilter<"rel_fornecedor_produto"> | number;
 };
 export type rel_fornecedor_produtoCreateWithoutTbl_produtoInput = {
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
     tbl_fornecedor?: Prisma.tbl_fornecedorCreateNestedOneWithoutRel_fornecedor_produtoInput;
 };
 export type rel_fornecedor_produtoUncheckedCreateWithoutTbl_produtoInput = {
     fornecedor_id?: number;
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
 };
 export type rel_fornecedor_produtoCreateOrConnectWithoutTbl_produtoInput = {
     where: Prisma.rel_fornecedor_produtoWhereUniqueInput;
@@ -475,50 +475,50 @@ export type rel_fornecedor_produtoUpdateManyWithWhereWithoutTbl_produtoInput = {
 export type rel_fornecedor_produtoCreateManyTbl_fornecedorInput = {
     produto_id?: number;
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
 };
 export type rel_fornecedor_produtoUpdateWithoutTbl_fornecedorInput = {
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
     tbl_produto?: Prisma.tbl_produtoUpdateOneRequiredWithoutRel_fornecedor_produtoNestedInput;
 };
 export type rel_fornecedor_produtoUncheckedUpdateWithoutTbl_fornecedorInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_fornecedorInput = {
     produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type rel_fornecedor_produtoCreateManyTbl_produtoInput = {
     fornecedor_id?: number;
     data_hora_fornecimento: Date | string;
-    valor_fornecimento?: runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: number | null;
+    valor_fornecimento: runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: number;
 };
 export type rel_fornecedor_produtoUpdateWithoutTbl_produtoInput = {
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
     tbl_fornecedor?: Prisma.tbl_fornecedorUpdateOneRequiredWithoutRel_fornecedor_produtoNestedInput;
 };
 export type rel_fornecedor_produtoUncheckedUpdateWithoutTbl_produtoInput = {
     fornecedor_id?: Prisma.IntFieldUpdateOperationsInput | number;
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_produtoInput = {
     fornecedor_id?: Prisma.IntFieldUpdateOperationsInput | number;
     data_hora_fornecimento?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string;
-    valor_fornecimento?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null;
-    quantidade?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
+    valor_fornecimento?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string;
+    quantidade?: Prisma.IntFieldUpdateOperationsInput | number;
 };
 export type rel_fornecedor_produtoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     fornecedor_id?: boolean;
@@ -577,8 +577,8 @@ export type $rel_fornecedor_produtoPayload<ExtArgs extends runtime.Types.Extensi
         fornecedor_id: number;
         produto_id: number;
         data_hora_fornecimento: Date;
-        valor_fornecimento: runtime.Decimal | null;
-        quantidade: number | null;
+        valor_fornecimento: runtime.Decimal;
+        quantidade: number;
     }, ExtArgs["result"]["rel_fornecedor_produto"]>;
     composites: {};
 };

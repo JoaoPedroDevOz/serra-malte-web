@@ -128,7 +128,7 @@ export type tbl_tipo_produtoGroupByArgs<ExtArgs extends runtime.Types.Extensions
 };
 export type Tbl_tipo_produtoGroupByOutputType = {
     tipo_produto_id: number;
-    tipo: string | null;
+    tipo: string;
     _count: Tbl_tipo_produtoCountAggregateOutputType | null;
     _avg: Tbl_tipo_produtoAvgAggregateOutputType | null;
     _sum: Tbl_tipo_produtoSumAggregateOutputType | null;
@@ -143,12 +143,12 @@ export type tbl_tipo_produtoWhereInput = {
     OR?: Prisma.tbl_tipo_produtoWhereInput[];
     NOT?: Prisma.tbl_tipo_produtoWhereInput | Prisma.tbl_tipo_produtoWhereInput[];
     tipo_produto_id?: Prisma.IntFilter<"tbl_tipo_produto"> | number;
-    tipo?: Prisma.StringNullableFilter<"tbl_tipo_produto"> | string | null;
+    tipo?: Prisma.StringFilter<"tbl_tipo_produto"> | string;
     tbl_produto?: Prisma.Tbl_produtoListRelationFilter;
 };
 export type tbl_tipo_produtoOrderByWithRelationInput = {
     tipo_produto_id?: Prisma.SortOrder;
-    tipo?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo?: Prisma.SortOrder;
     tbl_produto?: Prisma.tbl_produtoOrderByRelationAggregateInput;
 };
 export type tbl_tipo_produtoWhereUniqueInput = Prisma.AtLeast<{
@@ -156,12 +156,12 @@ export type tbl_tipo_produtoWhereUniqueInput = Prisma.AtLeast<{
     AND?: Prisma.tbl_tipo_produtoWhereInput | Prisma.tbl_tipo_produtoWhereInput[];
     OR?: Prisma.tbl_tipo_produtoWhereInput[];
     NOT?: Prisma.tbl_tipo_produtoWhereInput | Prisma.tbl_tipo_produtoWhereInput[];
-    tipo?: Prisma.StringNullableFilter<"tbl_tipo_produto"> | string | null;
+    tipo?: Prisma.StringFilter<"tbl_tipo_produto"> | string;
     tbl_produto?: Prisma.Tbl_produtoListRelationFilter;
 }, "tipo_produto_id">;
 export type tbl_tipo_produtoOrderByWithAggregationInput = {
     tipo_produto_id?: Prisma.SortOrder;
-    tipo?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo?: Prisma.SortOrder;
     _count?: Prisma.tbl_tipo_produtoCountOrderByAggregateInput;
     _avg?: Prisma.tbl_tipo_produtoAvgOrderByAggregateInput;
     _max?: Prisma.tbl_tipo_produtoMaxOrderByAggregateInput;
@@ -173,43 +173,40 @@ export type tbl_tipo_produtoScalarWhereWithAggregatesInput = {
     OR?: Prisma.tbl_tipo_produtoScalarWhereWithAggregatesInput[];
     NOT?: Prisma.tbl_tipo_produtoScalarWhereWithAggregatesInput | Prisma.tbl_tipo_produtoScalarWhereWithAggregatesInput[];
     tipo_produto_id?: Prisma.IntWithAggregatesFilter<"tbl_tipo_produto"> | number;
-    tipo?: Prisma.StringNullableWithAggregatesFilter<"tbl_tipo_produto"> | string | null;
+    tipo?: Prisma.StringWithAggregatesFilter<"tbl_tipo_produto"> | string;
 };
 export type tbl_tipo_produtoCreateInput = {
-    tipo_produto_id: number;
-    tipo?: string | null;
+    tipo: string;
     tbl_produto?: Prisma.tbl_produtoCreateNestedManyWithoutTbl_tipo_produtoInput;
 };
 export type tbl_tipo_produtoUncheckedCreateInput = {
-    tipo_produto_id: number;
-    tipo?: string | null;
+    tipo_produto_id?: number;
+    tipo: string;
     tbl_produto?: Prisma.tbl_produtoUncheckedCreateNestedManyWithoutTbl_tipo_produtoInput;
 };
 export type tbl_tipo_produtoUpdateInput = {
-    tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
     tbl_produto?: Prisma.tbl_produtoUpdateManyWithoutTbl_tipo_produtoNestedInput;
 };
 export type tbl_tipo_produtoUncheckedUpdateInput = {
     tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
     tbl_produto?: Prisma.tbl_produtoUncheckedUpdateManyWithoutTbl_tipo_produtoNestedInput;
 };
 export type tbl_tipo_produtoCreateManyInput = {
-    tipo_produto_id: number;
-    tipo?: string | null;
+    tipo_produto_id?: number;
+    tipo: string;
 };
 export type tbl_tipo_produtoUpdateManyMutationInput = {
-    tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_tipo_produtoUncheckedUpdateManyInput = {
     tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
 };
-export type Tbl_tipo_produtoNullableScalarRelationFilter = {
-    is?: Prisma.tbl_tipo_produtoWhereInput | null;
-    isNot?: Prisma.tbl_tipo_produtoWhereInput | null;
+export type Tbl_tipo_produtoScalarRelationFilter = {
+    is?: Prisma.tbl_tipo_produtoWhereInput;
+    isNot?: Prisma.tbl_tipo_produtoWhereInput;
 };
 export type tbl_tipo_produtoCountOrderByAggregateInput = {
     tipo_produto_id?: Prisma.SortOrder;
@@ -234,22 +231,19 @@ export type tbl_tipo_produtoCreateNestedOneWithoutTbl_produtoInput = {
     connectOrCreate?: Prisma.tbl_tipo_produtoCreateOrConnectWithoutTbl_produtoInput;
     connect?: Prisma.tbl_tipo_produtoWhereUniqueInput;
 };
-export type tbl_tipo_produtoUpdateOneWithoutTbl_produtoNestedInput = {
+export type tbl_tipo_produtoUpdateOneRequiredWithoutTbl_produtoNestedInput = {
     create?: Prisma.XOR<Prisma.tbl_tipo_produtoCreateWithoutTbl_produtoInput, Prisma.tbl_tipo_produtoUncheckedCreateWithoutTbl_produtoInput>;
     connectOrCreate?: Prisma.tbl_tipo_produtoCreateOrConnectWithoutTbl_produtoInput;
     upsert?: Prisma.tbl_tipo_produtoUpsertWithoutTbl_produtoInput;
-    disconnect?: Prisma.tbl_tipo_produtoWhereInput | boolean;
-    delete?: Prisma.tbl_tipo_produtoWhereInput | boolean;
     connect?: Prisma.tbl_tipo_produtoWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.tbl_tipo_produtoUpdateToOneWithWhereWithoutTbl_produtoInput, Prisma.tbl_tipo_produtoUpdateWithoutTbl_produtoInput>, Prisma.tbl_tipo_produtoUncheckedUpdateWithoutTbl_produtoInput>;
 };
 export type tbl_tipo_produtoCreateWithoutTbl_produtoInput = {
-    tipo_produto_id: number;
-    tipo?: string | null;
+    tipo: string;
 };
 export type tbl_tipo_produtoUncheckedCreateWithoutTbl_produtoInput = {
-    tipo_produto_id: number;
-    tipo?: string | null;
+    tipo_produto_id?: number;
+    tipo: string;
 };
 export type tbl_tipo_produtoCreateOrConnectWithoutTbl_produtoInput = {
     where: Prisma.tbl_tipo_produtoWhereUniqueInput;
@@ -265,12 +259,11 @@ export type tbl_tipo_produtoUpdateToOneWithWhereWithoutTbl_produtoInput = {
     data: Prisma.XOR<Prisma.tbl_tipo_produtoUpdateWithoutTbl_produtoInput, Prisma.tbl_tipo_produtoUncheckedUpdateWithoutTbl_produtoInput>;
 };
 export type tbl_tipo_produtoUpdateWithoutTbl_produtoInput = {
-    tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_tipo_produtoUncheckedUpdateWithoutTbl_produtoInput = {
     tipo_produto_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 /**
  * Count Type Tbl_tipo_produtoCountOutputType
@@ -328,7 +321,7 @@ export type $tbl_tipo_produtoPayload<ExtArgs extends runtime.Types.Extensions.In
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         tipo_produto_id: number;
-        tipo: string | null;
+        tipo: string;
     }, ExtArgs["result"]["tbl_tipo_produto"]>;
     composites: {};
 };

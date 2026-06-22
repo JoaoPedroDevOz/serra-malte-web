@@ -163,11 +163,11 @@ export type tbl_enderecoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type Tbl_enderecoGroupByOutputType = {
     endereco_id: number;
     cliente_id: number;
-    pais: string | null;
+    pais: string;
     uf: string | null;
     complemento: string | null;
-    rua: string | null;
-    cod_postal: string | null;
+    rua: string;
+    cod_postal: string;
     _count: Tbl_enderecoCountAggregateOutputType | null;
     _avg: Tbl_enderecoAvgAggregateOutputType | null;
     _sum: Tbl_enderecoSumAggregateOutputType | null;
@@ -183,21 +183,21 @@ export type tbl_enderecoWhereInput = {
     NOT?: Prisma.tbl_enderecoWhereInput | Prisma.tbl_enderecoWhereInput[];
     endereco_id?: Prisma.IntFilter<"tbl_endereco"> | number;
     cliente_id?: Prisma.IntFilter<"tbl_endereco"> | number;
-    pais?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
+    pais?: Prisma.StringFilter<"tbl_endereco"> | string;
     uf?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
     complemento?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
-    rua?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
-    cod_postal?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
+    rua?: Prisma.StringFilter<"tbl_endereco"> | string;
+    cod_postal?: Prisma.StringFilter<"tbl_endereco"> | string;
     tbl_cliente?: Prisma.XOR<Prisma.Tbl_clienteScalarRelationFilter, Prisma.tbl_clienteWhereInput>;
 };
 export type tbl_enderecoOrderByWithRelationInput = {
     endereco_id?: Prisma.SortOrder;
     cliente_id?: Prisma.SortOrder;
-    pais?: Prisma.SortOrderInput | Prisma.SortOrder;
+    pais?: Prisma.SortOrder;
     uf?: Prisma.SortOrderInput | Prisma.SortOrder;
     complemento?: Prisma.SortOrderInput | Prisma.SortOrder;
-    rua?: Prisma.SortOrderInput | Prisma.SortOrder;
-    cod_postal?: Prisma.SortOrderInput | Prisma.SortOrder;
+    rua?: Prisma.SortOrder;
+    cod_postal?: Prisma.SortOrder;
     tbl_cliente?: Prisma.tbl_clienteOrderByWithRelationInput;
 };
 export type tbl_enderecoWhereUniqueInput = Prisma.AtLeast<{
@@ -206,21 +206,21 @@ export type tbl_enderecoWhereUniqueInput = Prisma.AtLeast<{
     OR?: Prisma.tbl_enderecoWhereInput[];
     NOT?: Prisma.tbl_enderecoWhereInput | Prisma.tbl_enderecoWhereInput[];
     cliente_id?: Prisma.IntFilter<"tbl_endereco"> | number;
-    pais?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
+    pais?: Prisma.StringFilter<"tbl_endereco"> | string;
     uf?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
     complemento?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
-    rua?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
-    cod_postal?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
+    rua?: Prisma.StringFilter<"tbl_endereco"> | string;
+    cod_postal?: Prisma.StringFilter<"tbl_endereco"> | string;
     tbl_cliente?: Prisma.XOR<Prisma.Tbl_clienteScalarRelationFilter, Prisma.tbl_clienteWhereInput>;
 }, "endereco_id">;
 export type tbl_enderecoOrderByWithAggregationInput = {
     endereco_id?: Prisma.SortOrder;
     cliente_id?: Prisma.SortOrder;
-    pais?: Prisma.SortOrderInput | Prisma.SortOrder;
+    pais?: Prisma.SortOrder;
     uf?: Prisma.SortOrderInput | Prisma.SortOrder;
     complemento?: Prisma.SortOrderInput | Prisma.SortOrder;
-    rua?: Prisma.SortOrderInput | Prisma.SortOrder;
-    cod_postal?: Prisma.SortOrderInput | Prisma.SortOrder;
+    rua?: Prisma.SortOrder;
+    cod_postal?: Prisma.SortOrder;
     _count?: Prisma.tbl_enderecoCountOrderByAggregateInput;
     _avg?: Prisma.tbl_enderecoAvgOrderByAggregateInput;
     _max?: Prisma.tbl_enderecoMaxOrderByAggregateInput;
@@ -233,70 +233,70 @@ export type tbl_enderecoScalarWhereWithAggregatesInput = {
     NOT?: Prisma.tbl_enderecoScalarWhereWithAggregatesInput | Prisma.tbl_enderecoScalarWhereWithAggregatesInput[];
     endereco_id?: Prisma.IntWithAggregatesFilter<"tbl_endereco"> | number;
     cliente_id?: Prisma.IntWithAggregatesFilter<"tbl_endereco"> | number;
-    pais?: Prisma.StringNullableWithAggregatesFilter<"tbl_endereco"> | string | null;
+    pais?: Prisma.StringWithAggregatesFilter<"tbl_endereco"> | string;
     uf?: Prisma.StringNullableWithAggregatesFilter<"tbl_endereco"> | string | null;
     complemento?: Prisma.StringNullableWithAggregatesFilter<"tbl_endereco"> | string | null;
-    rua?: Prisma.StringNullableWithAggregatesFilter<"tbl_endereco"> | string | null;
-    cod_postal?: Prisma.StringNullableWithAggregatesFilter<"tbl_endereco"> | string | null;
+    rua?: Prisma.StringWithAggregatesFilter<"tbl_endereco"> | string;
+    cod_postal?: Prisma.StringWithAggregatesFilter<"tbl_endereco"> | string;
 };
 export type tbl_enderecoCreateInput = {
-    pais?: string | null;
+    pais: string;
     uf?: string | null;
     complemento?: string | null;
-    rua?: string | null;
-    cod_postal?: string | null;
+    rua: string;
+    cod_postal: string;
     tbl_cliente?: Prisma.tbl_clienteCreateNestedOneWithoutTbl_enderecoInput;
 };
 export type tbl_enderecoUncheckedCreateInput = {
     endereco_id?: number;
     cliente_id?: number;
-    pais?: string | null;
+    pais: string;
     uf?: string | null;
     complemento?: string | null;
-    rua?: string | null;
-    cod_postal?: string | null;
+    rua: string;
+    cod_postal: string;
 };
 export type tbl_enderecoUpdateInput = {
-    pais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pais?: Prisma.StringFieldUpdateOperationsInput | string;
     uf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    rua?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    cod_postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    rua?: Prisma.StringFieldUpdateOperationsInput | string;
+    cod_postal?: Prisma.StringFieldUpdateOperationsInput | string;
     tbl_cliente?: Prisma.tbl_clienteUpdateOneRequiredWithoutTbl_enderecoNestedInput;
 };
 export type tbl_enderecoUncheckedUpdateInput = {
     endereco_id?: Prisma.IntFieldUpdateOperationsInput | number;
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    pais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pais?: Prisma.StringFieldUpdateOperationsInput | string;
     uf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    rua?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    cod_postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    rua?: Prisma.StringFieldUpdateOperationsInput | string;
+    cod_postal?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_enderecoCreateManyInput = {
     endereco_id?: number;
     cliente_id?: number;
-    pais?: string | null;
+    pais: string;
     uf?: string | null;
     complemento?: string | null;
-    rua?: string | null;
-    cod_postal?: string | null;
+    rua: string;
+    cod_postal: string;
 };
 export type tbl_enderecoUpdateManyMutationInput = {
-    pais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pais?: Prisma.StringFieldUpdateOperationsInput | string;
     uf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    rua?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    cod_postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    rua?: Prisma.StringFieldUpdateOperationsInput | string;
+    cod_postal?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_enderecoUncheckedUpdateManyInput = {
     endereco_id?: Prisma.IntFieldUpdateOperationsInput | number;
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    pais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pais?: Prisma.StringFieldUpdateOperationsInput | string;
     uf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    rua?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    cod_postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    rua?: Prisma.StringFieldUpdateOperationsInput | string;
+    cod_postal?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type Tbl_enderecoListRelationFilter = {
     every?: Prisma.tbl_enderecoWhereInput;
@@ -380,19 +380,19 @@ export type tbl_enderecoUncheckedUpdateManyWithoutTbl_clienteNestedInput = {
     deleteMany?: Prisma.tbl_enderecoScalarWhereInput | Prisma.tbl_enderecoScalarWhereInput[];
 };
 export type tbl_enderecoCreateWithoutTbl_clienteInput = {
-    pais?: string | null;
+    pais: string;
     uf?: string | null;
     complemento?: string | null;
-    rua?: string | null;
-    cod_postal?: string | null;
+    rua: string;
+    cod_postal: string;
 };
 export type tbl_enderecoUncheckedCreateWithoutTbl_clienteInput = {
     endereco_id?: number;
-    pais?: string | null;
+    pais: string;
     uf?: string | null;
     complemento?: string | null;
-    rua?: string | null;
-    cod_postal?: string | null;
+    rua: string;
+    cod_postal: string;
 };
 export type tbl_enderecoCreateOrConnectWithoutTbl_clienteInput = {
     where: Prisma.tbl_enderecoWhereUniqueInput;
@@ -421,42 +421,42 @@ export type tbl_enderecoScalarWhereInput = {
     NOT?: Prisma.tbl_enderecoScalarWhereInput | Prisma.tbl_enderecoScalarWhereInput[];
     endereco_id?: Prisma.IntFilter<"tbl_endereco"> | number;
     cliente_id?: Prisma.IntFilter<"tbl_endereco"> | number;
-    pais?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
+    pais?: Prisma.StringFilter<"tbl_endereco"> | string;
     uf?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
     complemento?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
-    rua?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
-    cod_postal?: Prisma.StringNullableFilter<"tbl_endereco"> | string | null;
+    rua?: Prisma.StringFilter<"tbl_endereco"> | string;
+    cod_postal?: Prisma.StringFilter<"tbl_endereco"> | string;
 };
 export type tbl_enderecoCreateManyTbl_clienteInput = {
     endereco_id?: number;
-    pais?: string | null;
+    pais: string;
     uf?: string | null;
     complemento?: string | null;
-    rua?: string | null;
-    cod_postal?: string | null;
+    rua: string;
+    cod_postal: string;
 };
 export type tbl_enderecoUpdateWithoutTbl_clienteInput = {
-    pais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pais?: Prisma.StringFieldUpdateOperationsInput | string;
     uf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    rua?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    cod_postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    rua?: Prisma.StringFieldUpdateOperationsInput | string;
+    cod_postal?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_enderecoUncheckedUpdateWithoutTbl_clienteInput = {
     endereco_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    pais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pais?: Prisma.StringFieldUpdateOperationsInput | string;
     uf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    rua?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    cod_postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    rua?: Prisma.StringFieldUpdateOperationsInput | string;
+    cod_postal?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_enderecoUncheckedUpdateManyWithoutTbl_clienteInput = {
     endereco_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    pais?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    pais?: Prisma.StringFieldUpdateOperationsInput | string;
     uf?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     complemento?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    rua?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    cod_postal?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    rua?: Prisma.StringFieldUpdateOperationsInput | string;
+    cod_postal?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_enderecoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     endereco_id?: boolean;
@@ -515,11 +515,11 @@ export type $tbl_enderecoPayload<ExtArgs extends runtime.Types.Extensions.Intern
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         endereco_id: number;
         cliente_id: number;
-        pais: string | null;
+        pais: string;
         uf: string | null;
         complemento: string | null;
-        rua: string | null;
-        cod_postal: string | null;
+        rua: string;
+        cod_postal: string;
     }, ExtArgs["result"]["tbl_endereco"]>;
     composites: {};
 };

@@ -168,9 +168,9 @@ export type tbl_clienteGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 };
 export type Tbl_clienteGroupByOutputType = {
     cliente_id: number;
-    tipo_pessoa_id: number | null;
-    registro_nacional: string | null;
-    nome: string | null;
+    tipo_pessoa_id: number;
+    registro_nacional: string;
+    nome: string;
     sobrenome: string | null;
     nome_fantasia: string | null;
     email: string | null;
@@ -189,22 +189,22 @@ export type tbl_clienteWhereInput = {
     OR?: Prisma.tbl_clienteWhereInput[];
     NOT?: Prisma.tbl_clienteWhereInput | Prisma.tbl_clienteWhereInput[];
     cliente_id?: Prisma.IntFilter<"tbl_cliente"> | number;
-    tipo_pessoa_id?: Prisma.IntNullableFilter<"tbl_cliente"> | number | null;
-    registro_nacional?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
-    nome?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
+    tipo_pessoa_id?: Prisma.IntFilter<"tbl_cliente"> | number;
+    registro_nacional?: Prisma.StringFilter<"tbl_cliente"> | string;
+    nome?: Prisma.StringFilter<"tbl_cliente"> | string;
     sobrenome?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
     nome_fantasia?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
     email?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
     telefone?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
-    tbl_tipo_pessoa?: Prisma.XOR<Prisma.Tbl_tipo_pessoaNullableScalarRelationFilter, Prisma.tbl_tipo_pessoaWhereInput> | null;
+    tbl_tipo_pessoa?: Prisma.XOR<Prisma.Tbl_tipo_pessoaScalarRelationFilter, Prisma.tbl_tipo_pessoaWhereInput>;
     tbl_endereco?: Prisma.Tbl_enderecoListRelationFilter;
     tbl_pedido?: Prisma.Tbl_pedidoListRelationFilter;
 };
 export type tbl_clienteOrderByWithRelationInput = {
     cliente_id?: Prisma.SortOrder;
-    tipo_pessoa_id?: Prisma.SortOrderInput | Prisma.SortOrder;
-    registro_nacional?: Prisma.SortOrderInput | Prisma.SortOrder;
-    nome?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo_pessoa_id?: Prisma.SortOrder;
+    registro_nacional?: Prisma.SortOrder;
+    nome?: Prisma.SortOrder;
     sobrenome?: Prisma.SortOrderInput | Prisma.SortOrder;
     nome_fantasia?: Prisma.SortOrderInput | Prisma.SortOrder;
     email?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -218,22 +218,22 @@ export type tbl_clienteWhereUniqueInput = Prisma.AtLeast<{
     AND?: Prisma.tbl_clienteWhereInput | Prisma.tbl_clienteWhereInput[];
     OR?: Prisma.tbl_clienteWhereInput[];
     NOT?: Prisma.tbl_clienteWhereInput | Prisma.tbl_clienteWhereInput[];
-    tipo_pessoa_id?: Prisma.IntNullableFilter<"tbl_cliente"> | number | null;
-    registro_nacional?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
-    nome?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
+    tipo_pessoa_id?: Prisma.IntFilter<"tbl_cliente"> | number;
+    registro_nacional?: Prisma.StringFilter<"tbl_cliente"> | string;
+    nome?: Prisma.StringFilter<"tbl_cliente"> | string;
     sobrenome?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
     nome_fantasia?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
     email?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
     telefone?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
-    tbl_tipo_pessoa?: Prisma.XOR<Prisma.Tbl_tipo_pessoaNullableScalarRelationFilter, Prisma.tbl_tipo_pessoaWhereInput> | null;
+    tbl_tipo_pessoa?: Prisma.XOR<Prisma.Tbl_tipo_pessoaScalarRelationFilter, Prisma.tbl_tipo_pessoaWhereInput>;
     tbl_endereco?: Prisma.Tbl_enderecoListRelationFilter;
     tbl_pedido?: Prisma.Tbl_pedidoListRelationFilter;
 }, "cliente_id">;
 export type tbl_clienteOrderByWithAggregationInput = {
     cliente_id?: Prisma.SortOrder;
-    tipo_pessoa_id?: Prisma.SortOrderInput | Prisma.SortOrder;
-    registro_nacional?: Prisma.SortOrderInput | Prisma.SortOrder;
-    nome?: Prisma.SortOrderInput | Prisma.SortOrder;
+    tipo_pessoa_id?: Prisma.SortOrder;
+    registro_nacional?: Prisma.SortOrder;
+    nome?: Prisma.SortOrder;
     sobrenome?: Prisma.SortOrderInput | Prisma.SortOrder;
     nome_fantasia?: Prisma.SortOrderInput | Prisma.SortOrder;
     email?: Prisma.SortOrderInput | Prisma.SortOrder;
@@ -249,30 +249,30 @@ export type tbl_clienteScalarWhereWithAggregatesInput = {
     OR?: Prisma.tbl_clienteScalarWhereWithAggregatesInput[];
     NOT?: Prisma.tbl_clienteScalarWhereWithAggregatesInput | Prisma.tbl_clienteScalarWhereWithAggregatesInput[];
     cliente_id?: Prisma.IntWithAggregatesFilter<"tbl_cliente"> | number;
-    tipo_pessoa_id?: Prisma.IntNullableWithAggregatesFilter<"tbl_cliente"> | number | null;
-    registro_nacional?: Prisma.StringNullableWithAggregatesFilter<"tbl_cliente"> | string | null;
-    nome?: Prisma.StringNullableWithAggregatesFilter<"tbl_cliente"> | string | null;
+    tipo_pessoa_id?: Prisma.IntWithAggregatesFilter<"tbl_cliente"> | number;
+    registro_nacional?: Prisma.StringWithAggregatesFilter<"tbl_cliente"> | string;
+    nome?: Prisma.StringWithAggregatesFilter<"tbl_cliente"> | string;
     sobrenome?: Prisma.StringNullableWithAggregatesFilter<"tbl_cliente"> | string | null;
     nome_fantasia?: Prisma.StringNullableWithAggregatesFilter<"tbl_cliente"> | string | null;
     email?: Prisma.StringNullableWithAggregatesFilter<"tbl_cliente"> | string | null;
     telefone?: Prisma.StringNullableWithAggregatesFilter<"tbl_cliente"> | string | null;
 };
 export type tbl_clienteCreateInput = {
-    registro_nacional?: string | null;
-    nome?: string | null;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
     telefone?: string | null;
-    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaCreateNestedOneWithoutTbl_clienteInput;
+    tbl_tipo_pessoa: Prisma.tbl_tipo_pessoaCreateNestedOneWithoutTbl_clienteInput;
     tbl_endereco?: Prisma.tbl_enderecoCreateNestedManyWithoutTbl_clienteInput;
     tbl_pedido?: Prisma.tbl_pedidoCreateNestedManyWithoutTbl_clienteInput;
 };
 export type tbl_clienteUncheckedCreateInput = {
     cliente_id?: number;
-    tipo_pessoa_id?: number | null;
-    registro_nacional?: string | null;
-    nome?: string | null;
+    tipo_pessoa_id: number;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
@@ -281,21 +281,21 @@ export type tbl_clienteUncheckedCreateInput = {
     tbl_pedido?: Prisma.tbl_pedidoUncheckedCreateNestedManyWithoutTbl_clienteInput;
 };
 export type tbl_clienteUpdateInput = {
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaUpdateOneWithoutTbl_clienteNestedInput;
+    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaUpdateOneRequiredWithoutTbl_clienteNestedInput;
     tbl_endereco?: Prisma.tbl_enderecoUpdateManyWithoutTbl_clienteNestedInput;
     tbl_pedido?: Prisma.tbl_pedidoUpdateManyWithoutTbl_clienteNestedInput;
 };
 export type tbl_clienteUncheckedUpdateInput = {
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_pessoa_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -305,17 +305,17 @@ export type tbl_clienteUncheckedUpdateInput = {
 };
 export type tbl_clienteCreateManyInput = {
     cliente_id?: number;
-    tipo_pessoa_id?: number | null;
-    registro_nacional?: string | null;
-    nome?: string | null;
+    tipo_pessoa_id: number;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
     telefone?: string | null;
 };
 export type tbl_clienteUpdateManyMutationInput = {
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -323,9 +323,9 @@ export type tbl_clienteUpdateManyMutationInput = {
 };
 export type tbl_clienteUncheckedUpdateManyInput = {
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_pessoa_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -380,6 +380,9 @@ export type Tbl_clienteListRelationFilter = {
 };
 export type tbl_clienteOrderByRelationAggregateInput = {
     _count?: Prisma.SortOrder;
+};
+export type StringFieldUpdateOperationsInput = {
+    set?: string;
 };
 export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null;
@@ -447,20 +450,20 @@ export type tbl_clienteUncheckedUpdateManyWithoutTbl_tipo_pessoaNestedInput = {
     deleteMany?: Prisma.tbl_clienteScalarWhereInput | Prisma.tbl_clienteScalarWhereInput[];
 };
 export type tbl_clienteCreateWithoutTbl_enderecoInput = {
-    registro_nacional?: string | null;
-    nome?: string | null;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
     telefone?: string | null;
-    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaCreateNestedOneWithoutTbl_clienteInput;
+    tbl_tipo_pessoa: Prisma.tbl_tipo_pessoaCreateNestedOneWithoutTbl_clienteInput;
     tbl_pedido?: Prisma.tbl_pedidoCreateNestedManyWithoutTbl_clienteInput;
 };
 export type tbl_clienteUncheckedCreateWithoutTbl_enderecoInput = {
     cliente_id?: number;
-    tipo_pessoa_id?: number | null;
-    registro_nacional?: string | null;
-    nome?: string | null;
+    tipo_pessoa_id: number;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
@@ -481,20 +484,20 @@ export type tbl_clienteUpdateToOneWithWhereWithoutTbl_enderecoInput = {
     data: Prisma.XOR<Prisma.tbl_clienteUpdateWithoutTbl_enderecoInput, Prisma.tbl_clienteUncheckedUpdateWithoutTbl_enderecoInput>;
 };
 export type tbl_clienteUpdateWithoutTbl_enderecoInput = {
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaUpdateOneWithoutTbl_clienteNestedInput;
+    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaUpdateOneRequiredWithoutTbl_clienteNestedInput;
     tbl_pedido?: Prisma.tbl_pedidoUpdateManyWithoutTbl_clienteNestedInput;
 };
 export type tbl_clienteUncheckedUpdateWithoutTbl_enderecoInput = {
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_pessoa_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -502,20 +505,20 @@ export type tbl_clienteUncheckedUpdateWithoutTbl_enderecoInput = {
     tbl_pedido?: Prisma.tbl_pedidoUncheckedUpdateManyWithoutTbl_clienteNestedInput;
 };
 export type tbl_clienteCreateWithoutTbl_pedidoInput = {
-    registro_nacional?: string | null;
-    nome?: string | null;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
     telefone?: string | null;
-    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaCreateNestedOneWithoutTbl_clienteInput;
+    tbl_tipo_pessoa: Prisma.tbl_tipo_pessoaCreateNestedOneWithoutTbl_clienteInput;
     tbl_endereco?: Prisma.tbl_enderecoCreateNestedManyWithoutTbl_clienteInput;
 };
 export type tbl_clienteUncheckedCreateWithoutTbl_pedidoInput = {
     cliente_id?: number;
-    tipo_pessoa_id?: number | null;
-    registro_nacional?: string | null;
-    nome?: string | null;
+    tipo_pessoa_id: number;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
@@ -536,20 +539,20 @@ export type tbl_clienteUpdateToOneWithWhereWithoutTbl_pedidoInput = {
     data: Prisma.XOR<Prisma.tbl_clienteUpdateWithoutTbl_pedidoInput, Prisma.tbl_clienteUncheckedUpdateWithoutTbl_pedidoInput>;
 };
 export type tbl_clienteUpdateWithoutTbl_pedidoInput = {
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaUpdateOneWithoutTbl_clienteNestedInput;
+    tbl_tipo_pessoa?: Prisma.tbl_tipo_pessoaUpdateOneRequiredWithoutTbl_clienteNestedInput;
     tbl_endereco?: Prisma.tbl_enderecoUpdateManyWithoutTbl_clienteNestedInput;
 };
 export type tbl_clienteUncheckedUpdateWithoutTbl_pedidoInput = {
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    tipo_pessoa_id?: Prisma.NullableIntFieldUpdateOperationsInput | number | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    tipo_pessoa_id?: Prisma.IntFieldUpdateOperationsInput | number;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -557,8 +560,8 @@ export type tbl_clienteUncheckedUpdateWithoutTbl_pedidoInput = {
     tbl_endereco?: Prisma.tbl_enderecoUncheckedUpdateManyWithoutTbl_clienteNestedInput;
 };
 export type tbl_clienteCreateWithoutTbl_tipo_pessoaInput = {
-    registro_nacional?: string | null;
-    nome?: string | null;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
@@ -568,8 +571,8 @@ export type tbl_clienteCreateWithoutTbl_tipo_pessoaInput = {
 };
 export type tbl_clienteUncheckedCreateWithoutTbl_tipo_pessoaInput = {
     cliente_id?: number;
-    registro_nacional?: string | null;
-    nome?: string | null;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
@@ -603,9 +606,9 @@ export type tbl_clienteScalarWhereInput = {
     OR?: Prisma.tbl_clienteScalarWhereInput[];
     NOT?: Prisma.tbl_clienteScalarWhereInput | Prisma.tbl_clienteScalarWhereInput[];
     cliente_id?: Prisma.IntFilter<"tbl_cliente"> | number;
-    tipo_pessoa_id?: Prisma.IntNullableFilter<"tbl_cliente"> | number | null;
-    registro_nacional?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
-    nome?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
+    tipo_pessoa_id?: Prisma.IntFilter<"tbl_cliente"> | number;
+    registro_nacional?: Prisma.StringFilter<"tbl_cliente"> | string;
+    nome?: Prisma.StringFilter<"tbl_cliente"> | string;
     sobrenome?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
     nome_fantasia?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
     email?: Prisma.StringNullableFilter<"tbl_cliente"> | string | null;
@@ -613,16 +616,16 @@ export type tbl_clienteScalarWhereInput = {
 };
 export type tbl_clienteCreateManyTbl_tipo_pessoaInput = {
     cliente_id?: number;
-    registro_nacional?: string | null;
-    nome?: string | null;
+    registro_nacional: string;
+    nome: string;
     sobrenome?: string | null;
     nome_fantasia?: string | null;
     email?: string | null;
     telefone?: string | null;
 };
 export type tbl_clienteUpdateWithoutTbl_tipo_pessoaInput = {
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -632,8 +635,8 @@ export type tbl_clienteUpdateWithoutTbl_tipo_pessoaInput = {
 };
 export type tbl_clienteUncheckedUpdateWithoutTbl_tipo_pessoaInput = {
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -643,8 +646,8 @@ export type tbl_clienteUncheckedUpdateWithoutTbl_tipo_pessoaInput = {
 };
 export type tbl_clienteUncheckedUpdateManyWithoutTbl_tipo_pessoaInput = {
     cliente_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
     sobrenome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     nome_fantasia?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
@@ -691,7 +694,7 @@ export type tbl_clienteSelect<ExtArgs extends runtime.Types.Extensions.InternalA
     nome_fantasia?: boolean;
     email?: boolean;
     telefone?: boolean;
-    tbl_tipo_pessoa?: boolean | Prisma.tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs>;
+    tbl_tipo_pessoa?: boolean | Prisma.tbl_tipo_pessoaDefaultArgs<ExtArgs>;
     tbl_endereco?: boolean | Prisma.tbl_cliente$tbl_enderecoArgs<ExtArgs>;
     tbl_pedido?: boolean | Prisma.tbl_cliente$tbl_pedidoArgs<ExtArgs>;
     _count?: boolean | Prisma.Tbl_clienteCountOutputTypeDefaultArgs<ExtArgs>;
@@ -705,7 +708,7 @@ export type tbl_clienteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
     nome_fantasia?: boolean;
     email?: boolean;
     telefone?: boolean;
-    tbl_tipo_pessoa?: boolean | Prisma.tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs>;
+    tbl_tipo_pessoa?: boolean | Prisma.tbl_tipo_pessoaDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["tbl_cliente"]>;
 export type tbl_clienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
     cliente_id?: boolean;
@@ -716,7 +719,7 @@ export type tbl_clienteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
     nome_fantasia?: boolean;
     email?: boolean;
     telefone?: boolean;
-    tbl_tipo_pessoa?: boolean | Prisma.tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs>;
+    tbl_tipo_pessoa?: boolean | Prisma.tbl_tipo_pessoaDefaultArgs<ExtArgs>;
 }, ExtArgs["result"]["tbl_cliente"]>;
 export type tbl_clienteSelectScalar = {
     cliente_id?: boolean;
@@ -730,29 +733,29 @@ export type tbl_clienteSelectScalar = {
 };
 export type tbl_clienteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"cliente_id" | "tipo_pessoa_id" | "registro_nacional" | "nome" | "sobrenome" | "nome_fantasia" | "email" | "telefone", ExtArgs["result"]["tbl_cliente"]>;
 export type tbl_clienteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    tbl_tipo_pessoa?: boolean | Prisma.tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs>;
+    tbl_tipo_pessoa?: boolean | Prisma.tbl_tipo_pessoaDefaultArgs<ExtArgs>;
     tbl_endereco?: boolean | Prisma.tbl_cliente$tbl_enderecoArgs<ExtArgs>;
     tbl_pedido?: boolean | Prisma.tbl_cliente$tbl_pedidoArgs<ExtArgs>;
     _count?: boolean | Prisma.Tbl_clienteCountOutputTypeDefaultArgs<ExtArgs>;
 };
 export type tbl_clienteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    tbl_tipo_pessoa?: boolean | Prisma.tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs>;
+    tbl_tipo_pessoa?: boolean | Prisma.tbl_tipo_pessoaDefaultArgs<ExtArgs>;
 };
 export type tbl_clienteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    tbl_tipo_pessoa?: boolean | Prisma.tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs>;
+    tbl_tipo_pessoa?: boolean | Prisma.tbl_tipo_pessoaDefaultArgs<ExtArgs>;
 };
 export type $tbl_clientePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
     name: "tbl_cliente";
     objects: {
-        tbl_tipo_pessoa: Prisma.$tbl_tipo_pessoaPayload<ExtArgs> | null;
+        tbl_tipo_pessoa: Prisma.$tbl_tipo_pessoaPayload<ExtArgs>;
         tbl_endereco: Prisma.$tbl_enderecoPayload<ExtArgs>[];
         tbl_pedido: Prisma.$tbl_pedidoPayload<ExtArgs>[];
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         cliente_id: number;
-        tipo_pessoa_id: number | null;
-        registro_nacional: string | null;
-        nome: string | null;
+        tipo_pessoa_id: number;
+        registro_nacional: string;
+        nome: string;
         sobrenome: string | null;
         nome_fantasia: string | null;
         email: string | null;
@@ -1086,7 +1089,7 @@ export interface tbl_clienteDelegate<ExtArgs extends runtime.Types.Extensions.In
  */
 export interface Prisma__tbl_clienteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise";
-    tbl_tipo_pessoa<T extends Prisma.tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs>>): Prisma.Prisma__tbl_tipo_pessoaClient<runtime.Types.Result.GetResult<Prisma.$tbl_tipo_pessoaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>;
+    tbl_tipo_pessoa<T extends Prisma.tbl_tipo_pessoaDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_tipo_pessoaDefaultArgs<ExtArgs>>): Prisma.Prisma__tbl_tipo_pessoaClient<runtime.Types.Result.GetResult<Prisma.$tbl_tipo_pessoaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>;
     tbl_endereco<T extends Prisma.tbl_cliente$tbl_enderecoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_cliente$tbl_enderecoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tbl_enderecoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     tbl_pedido<T extends Prisma.tbl_cliente$tbl_pedidoArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.tbl_cliente$tbl_pedidoArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$tbl_pedidoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>;
     /**
@@ -1337,7 +1340,7 @@ export type tbl_clienteCreateArgs<ExtArgs extends runtime.Types.Extensions.Inter
     /**
      * The data needed to create a tbl_cliente.
      */
-    data?: Prisma.XOR<Prisma.tbl_clienteCreateInput, Prisma.tbl_clienteUncheckedCreateInput>;
+    data: Prisma.XOR<Prisma.tbl_clienteCreateInput, Prisma.tbl_clienteUncheckedCreateInput>;
 };
 /**
  * tbl_cliente createMany
@@ -1504,24 +1507,6 @@ export type tbl_clienteDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
      * Limit how many tbl_clientes to delete.
      */
     limit?: number;
-};
-/**
- * tbl_cliente.tbl_tipo_pessoa
- */
-export type tbl_cliente$tbl_tipo_pessoaArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the tbl_tipo_pessoa
-     */
-    select?: Prisma.tbl_tipo_pessoaSelect<ExtArgs> | null;
-    /**
-     * Omit specific fields from the tbl_tipo_pessoa
-     */
-    omit?: Prisma.tbl_tipo_pessoaOmit<ExtArgs> | null;
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Prisma.tbl_tipo_pessoaInclude<ExtArgs> | null;
-    where?: Prisma.tbl_tipo_pessoaWhereInput;
 };
 /**
  * tbl_cliente.tbl_endereco

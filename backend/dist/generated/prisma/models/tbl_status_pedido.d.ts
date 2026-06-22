@@ -128,7 +128,7 @@ export type tbl_status_pedidoGroupByArgs<ExtArgs extends runtime.Types.Extension
 };
 export type Tbl_status_pedidoGroupByOutputType = {
     status_pedido_id: number;
-    status: string | null;
+    status: string;
     _count: Tbl_status_pedidoCountAggregateOutputType | null;
     _avg: Tbl_status_pedidoAvgAggregateOutputType | null;
     _sum: Tbl_status_pedidoSumAggregateOutputType | null;
@@ -143,12 +143,12 @@ export type tbl_status_pedidoWhereInput = {
     OR?: Prisma.tbl_status_pedidoWhereInput[];
     NOT?: Prisma.tbl_status_pedidoWhereInput | Prisma.tbl_status_pedidoWhereInput[];
     status_pedido_id?: Prisma.IntFilter<"tbl_status_pedido"> | number;
-    status?: Prisma.StringNullableFilter<"tbl_status_pedido"> | string | null;
+    status?: Prisma.StringFilter<"tbl_status_pedido"> | string;
     tbl_pedido?: Prisma.Tbl_pedidoListRelationFilter;
 };
 export type tbl_status_pedidoOrderByWithRelationInput = {
     status_pedido_id?: Prisma.SortOrder;
-    status?: Prisma.SortOrderInput | Prisma.SortOrder;
+    status?: Prisma.SortOrder;
     tbl_pedido?: Prisma.tbl_pedidoOrderByRelationAggregateInput;
 };
 export type tbl_status_pedidoWhereUniqueInput = Prisma.AtLeast<{
@@ -156,12 +156,12 @@ export type tbl_status_pedidoWhereUniqueInput = Prisma.AtLeast<{
     AND?: Prisma.tbl_status_pedidoWhereInput | Prisma.tbl_status_pedidoWhereInput[];
     OR?: Prisma.tbl_status_pedidoWhereInput[];
     NOT?: Prisma.tbl_status_pedidoWhereInput | Prisma.tbl_status_pedidoWhereInput[];
-    status?: Prisma.StringNullableFilter<"tbl_status_pedido"> | string | null;
+    status?: Prisma.StringFilter<"tbl_status_pedido"> | string;
     tbl_pedido?: Prisma.Tbl_pedidoListRelationFilter;
 }, "status_pedido_id">;
 export type tbl_status_pedidoOrderByWithAggregationInput = {
     status_pedido_id?: Prisma.SortOrder;
-    status?: Prisma.SortOrderInput | Prisma.SortOrder;
+    status?: Prisma.SortOrder;
     _count?: Prisma.tbl_status_pedidoCountOrderByAggregateInput;
     _avg?: Prisma.tbl_status_pedidoAvgOrderByAggregateInput;
     _max?: Prisma.tbl_status_pedidoMaxOrderByAggregateInput;
@@ -173,43 +173,43 @@ export type tbl_status_pedidoScalarWhereWithAggregatesInput = {
     OR?: Prisma.tbl_status_pedidoScalarWhereWithAggregatesInput[];
     NOT?: Prisma.tbl_status_pedidoScalarWhereWithAggregatesInput | Prisma.tbl_status_pedidoScalarWhereWithAggregatesInput[];
     status_pedido_id?: Prisma.IntWithAggregatesFilter<"tbl_status_pedido"> | number;
-    status?: Prisma.StringNullableWithAggregatesFilter<"tbl_status_pedido"> | string | null;
+    status?: Prisma.StringWithAggregatesFilter<"tbl_status_pedido"> | string;
 };
 export type tbl_status_pedidoCreateInput = {
     status_pedido_id: number;
-    status?: string | null;
+    status: string;
     tbl_pedido?: Prisma.tbl_pedidoCreateNestedManyWithoutTbl_status_pedidoInput;
 };
 export type tbl_status_pedidoUncheckedCreateInput = {
     status_pedido_id: number;
-    status?: string | null;
+    status: string;
     tbl_pedido?: Prisma.tbl_pedidoUncheckedCreateNestedManyWithoutTbl_status_pedidoInput;
 };
 export type tbl_status_pedidoUpdateInput = {
     status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
     tbl_pedido?: Prisma.tbl_pedidoUpdateManyWithoutTbl_status_pedidoNestedInput;
 };
 export type tbl_status_pedidoUncheckedUpdateInput = {
     status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
     tbl_pedido?: Prisma.tbl_pedidoUncheckedUpdateManyWithoutTbl_status_pedidoNestedInput;
 };
 export type tbl_status_pedidoCreateManyInput = {
     status_pedido_id: number;
-    status?: string | null;
+    status: string;
 };
 export type tbl_status_pedidoUpdateManyMutationInput = {
     status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_status_pedidoUncheckedUpdateManyInput = {
     status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
 };
-export type Tbl_status_pedidoNullableScalarRelationFilter = {
-    is?: Prisma.tbl_status_pedidoWhereInput | null;
-    isNot?: Prisma.tbl_status_pedidoWhereInput | null;
+export type Tbl_status_pedidoScalarRelationFilter = {
+    is?: Prisma.tbl_status_pedidoWhereInput;
+    isNot?: Prisma.tbl_status_pedidoWhereInput;
 };
 export type tbl_status_pedidoCountOrderByAggregateInput = {
     status_pedido_id?: Prisma.SortOrder;
@@ -234,22 +234,20 @@ export type tbl_status_pedidoCreateNestedOneWithoutTbl_pedidoInput = {
     connectOrCreate?: Prisma.tbl_status_pedidoCreateOrConnectWithoutTbl_pedidoInput;
     connect?: Prisma.tbl_status_pedidoWhereUniqueInput;
 };
-export type tbl_status_pedidoUpdateOneWithoutTbl_pedidoNestedInput = {
+export type tbl_status_pedidoUpdateOneRequiredWithoutTbl_pedidoNestedInput = {
     create?: Prisma.XOR<Prisma.tbl_status_pedidoCreateWithoutTbl_pedidoInput, Prisma.tbl_status_pedidoUncheckedCreateWithoutTbl_pedidoInput>;
     connectOrCreate?: Prisma.tbl_status_pedidoCreateOrConnectWithoutTbl_pedidoInput;
     upsert?: Prisma.tbl_status_pedidoUpsertWithoutTbl_pedidoInput;
-    disconnect?: Prisma.tbl_status_pedidoWhereInput | boolean;
-    delete?: Prisma.tbl_status_pedidoWhereInput | boolean;
     connect?: Prisma.tbl_status_pedidoWhereUniqueInput;
     update?: Prisma.XOR<Prisma.XOR<Prisma.tbl_status_pedidoUpdateToOneWithWhereWithoutTbl_pedidoInput, Prisma.tbl_status_pedidoUpdateWithoutTbl_pedidoInput>, Prisma.tbl_status_pedidoUncheckedUpdateWithoutTbl_pedidoInput>;
 };
 export type tbl_status_pedidoCreateWithoutTbl_pedidoInput = {
     status_pedido_id: number;
-    status?: string | null;
+    status: string;
 };
 export type tbl_status_pedidoUncheckedCreateWithoutTbl_pedidoInput = {
     status_pedido_id: number;
-    status?: string | null;
+    status: string;
 };
 export type tbl_status_pedidoCreateOrConnectWithoutTbl_pedidoInput = {
     where: Prisma.tbl_status_pedidoWhereUniqueInput;
@@ -266,11 +264,11 @@ export type tbl_status_pedidoUpdateToOneWithWhereWithoutTbl_pedidoInput = {
 };
 export type tbl_status_pedidoUpdateWithoutTbl_pedidoInput = {
     status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_status_pedidoUncheckedUpdateWithoutTbl_pedidoInput = {
     status_pedido_id?: Prisma.IntFieldUpdateOperationsInput | number;
-    status?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    status?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 /**
  * Count Type Tbl_status_pedidoCountOutputType
@@ -328,7 +326,7 @@ export type $tbl_status_pedidoPayload<ExtArgs extends runtime.Types.Extensions.I
     };
     scalars: runtime.Types.Extensions.GetPayloadResult<{
         status_pedido_id: number;
-        status: string | null;
+        status: string;
     }, ExtArgs["result"]["tbl_status_pedido"]>;
     composites: {};
 };

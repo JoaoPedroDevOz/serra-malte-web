@@ -1,0 +1,1 @@
+{"version":3,"file":"ingredient_type.sql.d.ts","sourceRoot":"","sources":["../../../../../src/datasource/postgre/sql/types/ingredient_type.sql.ts"],"names":[],"mappings":"AACA,OAAO,EAAE,WAAW,EAAE,MAAM,mDAAmD,CAAC;AAIhF,iBAAe,qBAAqB,CAClC,GAAG,EAAE,OAAO,CAAC,WAAW,CAAC,GACxB,OAAO,CAAC,GAAG,EAAE,CAAC,CAiChB;AAED,OAAO,EAAE,qBAAqB,EAAE,CAAC"}

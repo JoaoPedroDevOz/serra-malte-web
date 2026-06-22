@@ -3,6 +3,7 @@ import { PRODUCT_ERRORS } from "./product.error.ts";
 import { SUPPLIER_ERRORS } from "./supplier.error.ts";
 import { PRODUCT_TYPES_ERRORS } from "./types/product_types.error.ts";
 import { INGREDIENT_ERRORS } from "./ingredient.error.ts";
+import { ORDER_ERRORS } from "./order.error.ts";
 
 export const GENERIC_ERRORS = {
   INTERNAL: {
@@ -20,4 +21,5 @@ export const APP_ERRORS = {
   PRODUCT: PRODUCT_ERRORS,
   PRODUCT_TYPES: PRODUCT_TYPES_ERRORS,
   INGREDIENT: INGREDIENT_ERRORS,
+  PEDIDO: ORDER_ERRORS
 };

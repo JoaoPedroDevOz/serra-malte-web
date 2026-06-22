@@ -42,12 +42,12 @@ export function Header() {
             >
               Contato
             </button>
-            <button
+            {/* <button
               onClick={() => scrollToSection("contact")}
               className="bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition-colors"
             >
               Fazer Pedido
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}

@@ -1,1 +1,1 @@
-{"version":3,"file":"produto.entity.d.ts","sourceRoot":"","sources":["../../../src/models/entities/produto.entity.ts"],"names":[],"mappings":""}
+{"version":3,"file":"produto.entity.d.ts","sourceRoot":"","sources":["../../../src/models/entities/produto.entity.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,OAAO;IACtB,UAAU,EAAE,MAAM,CAAC;IACnB,IAAI,EAAE;QACJ,eAAe,EAAE,MAAM,CAAC;QACxB,KAAK,EAAE,MAAM,CAAC;KACf,CAAA;IACD,IAAI,EAAE,MAAM,CAAC;IACb,cAAc,EAAE,MAAM,CAAC;IACvB,GAAG,EAAE,MAAM,GAAG,IAAI,CAAC;IACnB,GAAG,EAAE,MAAM,GAAG,IAAI,CAAC;CACpB"}

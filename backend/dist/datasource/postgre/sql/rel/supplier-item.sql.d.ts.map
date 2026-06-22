@@ -1,0 +1,1 @@
+{"version":3,"file":"supplier-item.sql.d.ts","sourceRoot":"","sources":["../../../../../src/datasource/postgre/sql/rel/supplier-item.sql.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,4BAA4B,EAAE,MAAM,0EAA0E,CAAC;AAIxH,iBAAe,sBAAsB,CACnC,GAAG,EAAE,4BAA4B,GAChC,OAAO,CAAC,GAAG,CAAC,CAmFd;AAED,OAAO,EAAE,sBAAsB,EAAE,CAAC"}

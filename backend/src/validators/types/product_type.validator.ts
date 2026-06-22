@@ -13,10 +13,10 @@ export function validateUpdateProductType(
   tipoProduto: Partial<Produto>,
   req: Partial<Produto>,
 ) {
-  validateRequiredFields(tipoProduto, ["tipo_produto_id"]);
+  validateRequiredFields(tipoProduto, ["tipo"]);
   validateRequiredFields(req, ["tipo"]);
 
-  if (req.tipo_produto_id) {
+  if (req.tipo?.tipo_produto_id) {
     throw new AppError(messages.UPDATE.CANT_CHANGE_ID);
   }
 }

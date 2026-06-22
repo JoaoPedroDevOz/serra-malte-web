@@ -155,8 +155,8 @@ export type Tbl_fornecedorGroupByOutputType = {
     email: string | null;
     contato: string | null;
     telefone: string | null;
-    nome: string | null;
-    registro_nacional: string | null;
+    nome: string;
+    registro_nacional: string;
     _count: Tbl_fornecedorCountAggregateOutputType | null;
     _avg: Tbl_fornecedorAvgAggregateOutputType | null;
     _sum: Tbl_fornecedorSumAggregateOutputType | null;
@@ -174,8 +174,8 @@ export type tbl_fornecedorWhereInput = {
     email?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
     contato?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
     telefone?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
-    nome?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
-    registro_nacional?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
+    nome?: Prisma.StringFilter<"tbl_fornecedor"> | string;
+    registro_nacional?: Prisma.StringFilter<"tbl_fornecedor"> | string;
     rel_fornecedor_ingrediente?: Prisma.Rel_fornecedor_ingredienteListRelationFilter;
     rel_fornecedor_produto?: Prisma.Rel_fornecedor_produtoListRelationFilter;
 };
@@ -184,8 +184,8 @@ export type tbl_fornecedorOrderByWithRelationInput = {
     email?: Prisma.SortOrderInput | Prisma.SortOrder;
     contato?: Prisma.SortOrderInput | Prisma.SortOrder;
     telefone?: Prisma.SortOrderInput | Prisma.SortOrder;
-    nome?: Prisma.SortOrderInput | Prisma.SortOrder;
-    registro_nacional?: Prisma.SortOrderInput | Prisma.SortOrder;
+    nome?: Prisma.SortOrder;
+    registro_nacional?: Prisma.SortOrder;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteOrderByRelationAggregateInput;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoOrderByRelationAggregateInput;
 };
@@ -197,8 +197,8 @@ export type tbl_fornecedorWhereUniqueInput = Prisma.AtLeast<{
     email?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
     contato?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
     telefone?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
-    nome?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
-    registro_nacional?: Prisma.StringNullableFilter<"tbl_fornecedor"> | string | null;
+    nome?: Prisma.StringFilter<"tbl_fornecedor"> | string;
+    registro_nacional?: Prisma.StringFilter<"tbl_fornecedor"> | string;
     rel_fornecedor_ingrediente?: Prisma.Rel_fornecedor_ingredienteListRelationFilter;
     rel_fornecedor_produto?: Prisma.Rel_fornecedor_produtoListRelationFilter;
 }, "fornecedor_id">;
@@ -207,8 +207,8 @@ export type tbl_fornecedorOrderByWithAggregationInput = {
     email?: Prisma.SortOrderInput | Prisma.SortOrder;
     contato?: Prisma.SortOrderInput | Prisma.SortOrder;
     telefone?: Prisma.SortOrderInput | Prisma.SortOrder;
-    nome?: Prisma.SortOrderInput | Prisma.SortOrder;
-    registro_nacional?: Prisma.SortOrderInput | Prisma.SortOrder;
+    nome?: Prisma.SortOrder;
+    registro_nacional?: Prisma.SortOrder;
     _count?: Prisma.tbl_fornecedorCountOrderByAggregateInput;
     _avg?: Prisma.tbl_fornecedorAvgOrderByAggregateInput;
     _max?: Prisma.tbl_fornecedorMaxOrderByAggregateInput;
@@ -223,15 +223,15 @@ export type tbl_fornecedorScalarWhereWithAggregatesInput = {
     email?: Prisma.StringNullableWithAggregatesFilter<"tbl_fornecedor"> | string | null;
     contato?: Prisma.StringNullableWithAggregatesFilter<"tbl_fornecedor"> | string | null;
     telefone?: Prisma.StringNullableWithAggregatesFilter<"tbl_fornecedor"> | string | null;
-    nome?: Prisma.StringNullableWithAggregatesFilter<"tbl_fornecedor"> | string | null;
-    registro_nacional?: Prisma.StringNullableWithAggregatesFilter<"tbl_fornecedor"> | string | null;
+    nome?: Prisma.StringWithAggregatesFilter<"tbl_fornecedor"> | string;
+    registro_nacional?: Prisma.StringWithAggregatesFilter<"tbl_fornecedor"> | string;
 };
 export type tbl_fornecedorCreateInput = {
     email?: string | null;
     contato?: string | null;
     telefone?: string | null;
-    nome?: string | null;
-    registro_nacional?: string | null;
+    nome: string;
+    registro_nacional: string;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteCreateNestedManyWithoutTbl_fornecedorInput;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoCreateNestedManyWithoutTbl_fornecedorInput;
 };
@@ -240,8 +240,8 @@ export type tbl_fornecedorUncheckedCreateInput = {
     email?: string | null;
     contato?: string | null;
     telefone?: string | null;
-    nome?: string | null;
-    registro_nacional?: string | null;
+    nome: string;
+    registro_nacional: string;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteUncheckedCreateNestedManyWithoutTbl_fornecedorInput;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedCreateNestedManyWithoutTbl_fornecedorInput;
 };
@@ -249,8 +249,8 @@ export type tbl_fornecedorUpdateInput = {
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     contato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteUpdateManyWithoutTbl_fornecedorNestedInput;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUpdateManyWithoutTbl_fornecedorNestedInput;
 };
@@ -259,8 +259,8 @@ export type tbl_fornecedorUncheckedUpdateInput = {
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     contato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteUncheckedUpdateManyWithoutTbl_fornecedorNestedInput;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_fornecedorNestedInput;
 };
@@ -269,23 +269,23 @@ export type tbl_fornecedorCreateManyInput = {
     email?: string | null;
     contato?: string | null;
     telefone?: string | null;
-    nome?: string | null;
-    registro_nacional?: string | null;
+    nome: string;
+    registro_nacional: string;
 };
 export type tbl_fornecedorUpdateManyMutationInput = {
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     contato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type tbl_fornecedorUncheckedUpdateManyInput = {
     fornecedor_id?: Prisma.IntFieldUpdateOperationsInput | number;
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     contato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
 };
 export type Tbl_fornecedorScalarRelationFilter = {
     is?: Prisma.tbl_fornecedorWhereInput;
@@ -349,8 +349,8 @@ export type tbl_fornecedorCreateWithoutRel_fornecedor_ingredienteInput = {
     email?: string | null;
     contato?: string | null;
     telefone?: string | null;
-    nome?: string | null;
-    registro_nacional?: string | null;
+    nome: string;
+    registro_nacional: string;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoCreateNestedManyWithoutTbl_fornecedorInput;
 };
 export type tbl_fornecedorUncheckedCreateWithoutRel_fornecedor_ingredienteInput = {
@@ -358,8 +358,8 @@ export type tbl_fornecedorUncheckedCreateWithoutRel_fornecedor_ingredienteInput 
     email?: string | null;
     contato?: string | null;
     telefone?: string | null;
-    nome?: string | null;
-    registro_nacional?: string | null;
+    nome: string;
+    registro_nacional: string;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedCreateNestedManyWithoutTbl_fornecedorInput;
 };
 export type tbl_fornecedorCreateOrConnectWithoutRel_fornecedor_ingredienteInput = {
@@ -379,8 +379,8 @@ export type tbl_fornecedorUpdateWithoutRel_fornecedor_ingredienteInput = {
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     contato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUpdateManyWithoutTbl_fornecedorNestedInput;
 };
 export type tbl_fornecedorUncheckedUpdateWithoutRel_fornecedor_ingredienteInput = {
@@ -388,16 +388,16 @@ export type tbl_fornecedorUncheckedUpdateWithoutRel_fornecedor_ingredienteInput 
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     contato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
     rel_fornecedor_produto?: Prisma.rel_fornecedor_produtoUncheckedUpdateManyWithoutTbl_fornecedorNestedInput;
 };
 export type tbl_fornecedorCreateWithoutRel_fornecedor_produtoInput = {
     email?: string | null;
     contato?: string | null;
     telefone?: string | null;
-    nome?: string | null;
-    registro_nacional?: string | null;
+    nome: string;
+    registro_nacional: string;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteCreateNestedManyWithoutTbl_fornecedorInput;
 };
 export type tbl_fornecedorUncheckedCreateWithoutRel_fornecedor_produtoInput = {
@@ -405,8 +405,8 @@ export type tbl_fornecedorUncheckedCreateWithoutRel_fornecedor_produtoInput = {
     email?: string | null;
     contato?: string | null;
     telefone?: string | null;
-    nome?: string | null;
-    registro_nacional?: string | null;
+    nome: string;
+    registro_nacional: string;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteUncheckedCreateNestedManyWithoutTbl_fornecedorInput;
 };
 export type tbl_fornecedorCreateOrConnectWithoutRel_fornecedor_produtoInput = {
@@ -426,8 +426,8 @@ export type tbl_fornecedorUpdateWithoutRel_fornecedor_produtoInput = {
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     contato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteUpdateManyWithoutTbl_fornecedorNestedInput;
 };
 export type tbl_fornecedorUncheckedUpdateWithoutRel_fornecedor_produtoInput = {
@@ -435,8 +435,8 @@ export type tbl_fornecedorUncheckedUpdateWithoutRel_fornecedor_produtoInput = {
     email?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     contato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
     telefone?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    nome?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
-    registro_nacional?: Prisma.NullableStringFieldUpdateOperationsInput | string | null;
+    nome?: Prisma.StringFieldUpdateOperationsInput | string;
+    registro_nacional?: Prisma.StringFieldUpdateOperationsInput | string;
     rel_fornecedor_ingrediente?: Prisma.rel_fornecedor_ingredienteUncheckedUpdateManyWithoutTbl_fornecedorNestedInput;
 };
 /**
@@ -525,8 +525,8 @@ export type $tbl_fornecedorPayload<ExtArgs extends runtime.Types.Extensions.Inte
         email: string | null;
         contato: string | null;
         telefone: string | null;
-        nome: string | null;
-        registro_nacional: string | null;
+        nome: string;
+        registro_nacional: string;
     }, ExtArgs["result"]["tbl_fornecedor"]>;
     composites: {};
 };
@@ -1104,7 +1104,7 @@ export type tbl_fornecedorCreateArgs<ExtArgs extends runtime.Types.Extensions.In
     /**
      * The data needed to create a tbl_fornecedor.
      */
-    data?: Prisma.XOR<Prisma.tbl_fornecedorCreateInput, Prisma.tbl_fornecedorUncheckedCreateInput>;
+    data: Prisma.XOR<Prisma.tbl_fornecedorCreateInput, Prisma.tbl_fornecedorUncheckedCreateInput>;
 };
 /**
  * tbl_fornecedor createMany

@@ -1,1 +1,1 @@
-{"version":3,"file":"ingrediente.entity.d.ts","sourceRoot":"","sources":["../../../src/models/entities/ingrediente.entity.ts"],"names":[],"mappings":""}
+{"version":3,"file":"ingrediente.entity.d.ts","sourceRoot":"","sources":["../../../src/models/entities/ingrediente.entity.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,WAAW;IAC1B,cAAc,CAAC,EAAE,MAAM,CAAC;IACxB,IAAI,EAAE,MAAM,CAAC;IACb,IAAI,EAAE;QACJ,mBAAmB,EAAE,MAAM,CAAC;QAC5B,KAAK,EAAE,MAAM,CAAC;KACf,CAAC;IACF,cAAc,EAAE,MAAM,CAAC;IACvB,kBAAkB,EAAE,MAAM,CAAC;CAC5B"}

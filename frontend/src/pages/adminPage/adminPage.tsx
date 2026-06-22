@@ -3,6 +3,7 @@ import { useState } from "react";
 import IngredientList from "./forms/IngredientsList";
 import SupplierList from "./forms/SupplierList";
 import ProductList from "./forms/ProductList";
+import OrderReport from "./forms/OrderReport";
 import Message from "../../components/Message";
 import OrderList from "./forms/OrderList";
 
@@ -22,45 +23,6 @@ export default function BrewerySystem() {
   ) => {
     setApiMessage({ text, status });
   };
-
-  // const [orders, setOrders] = useState<Order[]>([
-  //   {
-  //     orderId: 1,
-  //     timeStampOrder: new Date("2026-05-10"),
-  //     status: { statusId: 3, statusText: "Entregue" },
-  //     client: {
-  //       clientId: 1,
-  //       typeClientId: 2,
-  //       nationalRegister: "123",
-  //       name: "Bar do Zé",
-  //     },
-  //     productList: [{ productId: 1, quantity: 24, unitValue: 18.9 }],
-  //   },
-  //   {
-  //     orderId: 2,
-  //     timeStampOrder: new Date("2026-05-12"),
-  //     status: { statusId: 1, statusText: "Pendente" },
-  //     client: {
-  //       clientId: 2,
-  //       typeClientId: 2,
-  //       nationalRegister: "456",
-  //       name: "Restaurante Bom Sabor",
-  //     },
-  //     productList: [{ productId: 2, quantity: 48, unitValue: 12.9 }],
-  //   },
-  //   {
-  //     orderId: 3,
-  //     timeStampOrder: new Date("2026-05-13"),
-  //     status: { statusId: 2, statusText: "Em Produção" },
-  //     client: {
-  //       clientId: 3,
-  //       typeClientId: 2,
-  //       nationalRegister: "789",
-  //       name: "Empório da Cerveja",
-  //     },
-  //     productList: [{ productId: 3, quantity: 12, unitValue: 22.9 }],
-  //   },
-  // ]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50 relative">
@@ -134,12 +96,13 @@ export default function BrewerySystem() {
           <SupplierList onShowMessage={showSystemMessage} />
         )}
 
-{/* Passando a função de emitir mensagem para o componente de Ingredientes */}
+        {/* Passando a função de emitir mensagem para o componente de Ingredientes */}
         {activeTab === "ingredients" && (
           <IngredientList onShowMessage={showSystemMessage} />
         )}
 
         {activeTab === "orders" && <OrderList />}
+        {activeTab === "reports" && <OrderReport />}
       </div>
     </div>
   );

@@ -2,10 +2,12 @@ import { Router } from "express";
 import {
   IngredientApi,
   IngredientTypeApi,
+  OrdersApi,
   ProductApi,
   ProductTypeApi,
   SupplierApi,
   SupplierItemApi,
+  ClienteApi,
 } from "./apis/index.api.ts";
 
 const route = Router();
@@ -62,4 +64,16 @@ route.post(
   "/api/fornecedor/ingrediente",
   SupplierItemApi.registerIngredientSupply,
 );
+
+/**
+ * Pedido
+ */
+route.post("/api/pedido", OrdersApi.registerOrder);
+route.get("/api/pedido", OrdersApi.listOrders);
+
+/**
+ * Cliente
+ */
+route.post("/api/cliente", ClienteApi.registerClient);
+
 export { route };
